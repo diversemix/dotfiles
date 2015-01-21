@@ -29,3 +29,6 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+# finally install the scripts folder
+ln -s $dir/scripts ~/scripts
