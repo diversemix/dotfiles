@@ -8,9 +8,6 @@ fi
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
-source ~/scripts/aliases.sh
-export PATH=${PATH}:~/scripts
-
 update_fw() { 
 	firewall-cmd --zone=public --add-port=$@/tcp --permanent; 
 	firewall-cmd --reload ;
