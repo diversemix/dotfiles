@@ -2,36 +2,71 @@
 
 DOT_DIR=~/dotfiles
 BACKUP_DIR=~/dotfiles/old
-FILE_LIST="bashrc vimrc vim tmux.conf"
+FILE_LIST="bashrc vimrc tmux.conf"
+REQ_APPS="git vim tmux"
 
-# ------------------------------------------------------------
+echo
+echo Installing diversemmix configuration
+echo ------------------------------------
+echo
+echo "  Checking for required applications... "
+for app in ${REQ_APPS}; do
+    if [ -z $(which ${app}) ]  
+    then 
+        yum install ${app} 
+    else
+        echo "    Found ${app}"
+    fi
+done
 
-# Check for git
+# -----------------------------------------------------------------------------
 
-# Check for vim
-
-# Check for other stuff
-
-# ------------------------------------------------------------
-
-echo -n "  Creating ${BACKUP_DIR} ..."
-mkdir -p ${BACKUP_DIR}
-echo done.
+echo -n "  Checking for backup: ${BACKUP_DIR} ... "
+if [ ! -d "${BACKUP_DIR}" ] ; then
+    mkdir -p ${BACKUP_DIR}
+    echo Created!
+else
+    echo Backup folder already exists, exiting!
+    ls -la  ${BACKUP_DIR}
+    exit 1
+fi
 
 cd ${DOT_DIR}
 
-echo "  Moving existing dotfiles in ${HOME} to ${BACKUP_DIR} "
 for file in ${FILE_LIST}; do
-    mv ~/.$file ${BACKUP_DIR}
-    echo "    Creating symlink ${DOT_DIR}/${file} ~/.${file}"
-    ln -s $DOT_DIR/${file} ~/.${file}
+    dest=~/.${file}
+    echo "  Processing ${dest}... "
+    if [ -h ${dest} ] ; then
+        echo "    file is a symlink, skipping!"
+    else
+        if [ -e ${dest} ]
+        then
+            echo "    Backing up to ${BACKUP_DIR}... "
+            mv ${dest} ${BACKUP_DIR}
+        fi
+        echo "    Creating symlink ${DOT_DIR}/${file} ${dest}"
+        ln -s $DOT_DIR/${file} ${dest}
+    fi
 done
 
-# Install color scheme for vim
-cd ~/.vim/
-mkdir -p colors
-git clone https://github.com/morhetz/gruvbox.git
-cp -rf gruvbox/colors/gruvbox.vim ./colors/
+# -----------------------------------------------------------------------------
+VIM_DIR=~/.vim
 
-# Install Vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ ! -d ${VIM_DIR} ] ; then mkdir ~/.vim/ ; fi
+cd ~/.vim/
+
+if [ ! -f colors/gruvbox.vim ] ; then
+    echo "  Install color scheme for vim..."
+    mkdir -p colors
+    git clone https://github.com/morhetz/gruvbox.git
+    cp -rf gruvbox/colors/gruvbox.vim ./colors/
+fi
+
+if [ ! -d bundle/Vundle.vim ] ; then
+    # Install Vundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginUpdate +qall
+fi
+echo Complete!
+
+# EOF ---------------------------------------------------------------
