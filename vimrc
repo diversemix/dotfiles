@@ -20,6 +20,12 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 
+" Syntastic 
+Plugin 'scrooloose/syntastic'
+
+" Nerd Tree
+Plugin 'scrooloose/nerdtree'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required

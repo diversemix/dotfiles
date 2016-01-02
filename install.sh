@@ -50,6 +50,8 @@ for file in ${FILE_LIST}; do
 done
 
 # -----------------------------------------------------------------------------
+
+echo "  Setting up ViM ... please be patient!"
 VIM_DIR=~/.vim
 
 if [ ! -d ${VIM_DIR} ] ; then mkdir ~/.vim/ ; fi
@@ -67,6 +69,11 @@ if [ ! -d bundle/Vundle.vim ] ; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     vim +PluginUpdate +qall
 fi
+
+# -----------------------------------------------------------------------------
+
+cd
+if [ ! -d ~/toolbox ] ; then git clone git@github.com:diversemix/toolbox.git ; fi
 echo Complete!
 
 # EOF ---------------------------------------------------------------
