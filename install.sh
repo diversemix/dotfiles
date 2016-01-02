@@ -3,7 +3,7 @@
 DOT_DIR=~/dotfiles
 BACKUP_DIR=~/dotfiles/old
 FILE_LIST="bashrc vimrc tmux.conf"
-REQ_APPS="git vim tmux"
+REQ_APPS="git vim tmux encfs ack"
 
 echo
 echo Installing diversemmix configuration
@@ -13,7 +13,11 @@ echo "  Checking for required applications... "
 for app in ${REQ_APPS}; do
     if [ -z $(which ${app}) ]  
     then 
-        yum install ${app} 
+        if [ ${app} == "encfs" ] ; then
+            yum install fuse-encfs
+        else
+            yum install ${app} 
+        fi
     else
         echo "    Found ${app}"
     fi
@@ -49,6 +53,8 @@ for file in ${FILE_LIST}; do
     fi
 done
 
+. bashrc
+
 # -----------------------------------------------------------------------------
 
 echo "  Setting up ViM ... please be patient!"
@@ -73,7 +79,14 @@ fi
 # -----------------------------------------------------------------------------
 
 cd
-if [ ! -d ~/toolbox ] ; then git clone git@github.com:diversemix/toolbox.git ; fi
+if [ ! -d ~/toolbox ] ; then 
+    git clone git@github.com:diversemix/toolbox.git 
+fi
+echo
+echo ----------------------------------------------------------
 echo Complete!
+echo
+echo To mount the toolbox use: 'toolbox_mount'
 
+echo
 # EOF ---------------------------------------------------------------
