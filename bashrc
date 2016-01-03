@@ -9,8 +9,14 @@ fi
 # export SYSTEMD_PAGER=
 
 tool_search() {
+    if [ "$1" == "" ] ; then echo Need a search term as an argument! ; exit 1 ; fi
     echo
     ack -i ~/toolbox/pocket --heading --break --match $1 | cut -d '|' -f2- | sed -e "s/\\\/\n/g"
+}
+
+cheatsheet() {
+    if [ "$1" == "" ] ; then echo Need a cheatsheet reference as an argument! ; exit 1 ; fi
+    more ~/toolbox/$1-cheatsheet
 }
 
 # Single letter aliases...
@@ -35,6 +41,7 @@ alias ts=tool_search
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
 alias toolbox_mount='encfs ~/toolbox/pocket_enc ~/toolbox/pocket'
 alias toolbox_umount='fusermount -u ~/toolbox/pocket'
+alias cheat=cheatsheet
 
 # Aliases - Docker
 alias docker_stopall="docker ps -q|xargs docker stop"
