@@ -6,18 +6,20 @@ if [ -f /etc/bashrc ]; then
 fi
 
 export PATH=/usr/local/bin/:$PATH
+export SVN_EDITOR=vim
+export TOOLBOX=~/dotfiles/toolbox
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 tool_search() {
     if [ "$1" == "" ] ; then echo Need a search term as an argument! ; exit 1 ; fi
     echo
-    ack -i ~/toolbox/pocket --heading --break --match $1 | cut -d '|' -f2- | sed -e "s/\\\/\n/g"
+    ack -i ${TOOLBOX} --heading --break --match $1 | cut -d '|' -f2- | sed -e "s/\\\/\n  /g" | colorize green $1 | colorize red dotfiles
 }
 
 cheatsheet() {
     if [ "$1" == "" ] ; then echo Need a cheatsheet reference as an argument! ; exit 1 ; fi
-    more ~/toolbox/$1-cheatsheet
+    more ${TOOLBOX}$1-cheatsheet
 }
 
 # Single letter aliases...
@@ -46,11 +48,10 @@ alias docker_rmall="docker ps -a -q|xargs docker rm"
 
 # Aliases - General
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
-alias toolbox_mount='encfs ~/toolbox/pocket_enc ~/toolbox/pocket'
-alias toolbox_umount='fusermount -u ~/toolbox/pocket'
 alias cheat=cheatsheet
 
 export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
 
 # Finally load any local aliases
 if [ -f ~/.aliases ] ; then source ~/.aliases ; fi
+# EOF

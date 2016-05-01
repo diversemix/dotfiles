@@ -6,8 +6,8 @@ FILE_LIST="bashrc vimrc tmux.conf"
 REQ_APPS="git vim tmux encfs ack"
 
 echo
-echo Installing diversemmix configuration
-echo ------------------------------------
+echo Installing diversemix configuration
+echo -----------------------------------
 echo
 echo "  Checking for required applications... "
 for app in ${REQ_APPS}; do
@@ -36,6 +36,9 @@ else
 fi
 
 cd ${DOT_DIR}
+
+git clone https://github.com/galmeidadavid/bash-colorize.git
+sudo ln -s $PWD/bash-colorize/colorize /usr/local/bin/colorize
 
 for file in ${FILE_LIST}; do
     dest=~/.${file}
