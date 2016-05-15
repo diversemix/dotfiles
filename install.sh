@@ -82,14 +82,11 @@ fi
 # -----------------------------------------------------------------------------
 
 cd
-if [ ! -d ~/toolbox ] ; then 
+if [ ! -d ./toolbox ] ; then 
     git clone git@github.com:diversemix/toolbox.git 
 fi
 echo
 echo ----------------------------------------------------------
 echo Complete!
-echo
-echo To mount the toolbox use: 'toolbox_mount'
-
 echo
 # EOF ---------------------------------------------------------------
