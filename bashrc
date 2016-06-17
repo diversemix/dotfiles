@@ -7,8 +7,11 @@ fi
 
 export PATH=/usr/local/bin/:$PATH
 export SVN_EDITOR=vim
-export TOOLBOX=~/Dropbox/app_data
-. ${TOOLBOX}/toolbox_aliases
+export TOOLBOX_DATA=~/Dropbox/app_data
+export TOOLBOX=~/toolbox
+
+# Assume we are cloned into ~/toolbox
+. ~/toolbox/toolbox_aliases
 
 # Single letter aliases...
 alias l="ls -ltrh $*"

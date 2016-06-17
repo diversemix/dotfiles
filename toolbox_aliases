@@ -1,0 +1,32 @@
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+tool_search() {
+    if [ "$1" == "" ] ; then echo Need a search term as an argument! ; exit 1 ; fi
+    echo
+    ack -i ${TOOLBOX_DATA}/pocket --heading --break --match $1 | cut -d '|' -f2- | sed -e "s/\\\/\n  /g" | colorize green $1 | colorize red dotfiles
+}
+
+cheatsheet() {
+    if [ "$1" == "" ] ; then echo Need a cheatsheet reference as an argument! ; exit 1 ; fi
+    more ${TOOLBOX_DATA}/cheats/$1-cheatsheet
+}
+
+tool_add() {
+    echo -n "Enter the filename/category > "
+    read tfile
+
+    echo -n "Enter the comma separated list of tags > "
+    read tags
+
+    echo "Now the useful info..."
+    read info
+
+    echo "$tags | $info" >> ${TOOLBOX_DATA}/pocket/$tfile
+}
+
+alias ts=tool_search
+alias ta=tool_add
+alias cheat=cheatsheet
+alias cheats="ls -1 ${TOOLBOX_DATA}/cheats/*-cheatsheet"
+# EOF
