@@ -7,20 +7,8 @@ fi
 
 export PATH=/usr/local/bin/:$PATH
 export SVN_EDITOR=vim
-export TOOLBOX=~/dotfiles/toolbox
-
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-tool_search() {
-    if [ "$1" == "" ] ; then echo Need a search term as an argument! ; exit 1 ; fi
-    echo
-    ack -i ${TOOLBOX} --heading --break --match $1 | cut -d '|' -f2- | sed -e "s/\\\/\n  /g" | colorize green $1 | colorize red dotfiles
-}
-
-cheatsheet() {
-    if [ "$1" == "" ] ; then echo Need a cheatsheet reference as an argument! ; exit 1 ; fi
-    more ${TOOLBOX}$1-cheatsheet
-}
+export TOOLBOX=~/Dropbox/app_data
+. ${TOOLBOX}/toolbox_aliases
 
 # Single letter aliases...
 alias l="ls -ltrh $*"
@@ -37,7 +25,6 @@ alias c='top -d 0.5 -bn3 | grep "%Cpu(s)" | cut -d ',' -f4 | awk "{print 100 - $
 
 # Double letter aliases...
 alias dm="ssh diversemixcom@diversemix.com"
-alias ts=tool_search
 
 # Docker
 alias dp="docker ps -a"
@@ -48,7 +35,6 @@ alias docker_rmall="docker ps -a -q|xargs docker rm"
 
 # Aliases - General
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
-alias cheat=cheatsheet
 
 export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
 
