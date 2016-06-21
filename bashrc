@@ -11,7 +11,7 @@ export TOOLBOX_DATA=~/Dropbox/app_data
 export TOOLBOX=~/toolbox
 
 # Assume we are cloned into ~/toolbox
-. ~/toolbox/toolbox_aliases
+. ~/dotfiles/toolbox_aliases
 
 # Single letter aliases...
 alias l="ls -ltrh $*"
@@ -35,6 +35,7 @@ alias di="docker images"
 alias ds=" docker ps -q | xargs docker inspect --format '{{ .Name }} {{ .Config.Image }} {{ .NetworkSettings.IPAddress }} {{ .Config.Cmd }} {{ .Config.ExposedPorts }}'"
 alias docker_stopall="docker ps -q|xargs docker stop"
 alias docker_rmall="docker ps -a -q|xargs docker rm"
+alias topmem-"ps -eo size,pid,user,command --sort -size | awk '{ hr=/1024 ; printf(%13.2f Mb ,hr) } { for ( x=4 ; x<=NF ; x++ ) { printf(%s ,) } print  }' | head"
 
 # Aliases - General
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
