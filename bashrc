@@ -7,10 +7,9 @@ fi
 
 export PATH=/usr/local/bin/:$PATH
 export SVN_EDITOR=vim
-export TOOLBOX_DATA=~/Dropbox/app_data
-export TOOLBOX=~/toolbox
 
-# Assume we are cloned into ~/toolbox
+# Assume we have dropbox installed
+export TOOLBOX_DATA=~/Dropbox/app_data
 . ~/dotfiles/toolbox_aliases
 
 # Single letter aliases...

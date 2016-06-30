@@ -82,9 +82,13 @@ fi
 # -----------------------------------------------------------------------------
 
 cd
-if [ ! -d ./toolbox ] ; then 
-    git clone git@github.com:diversemix/toolbox.git 
+if [ ! -d ~/Dropbox ] ; then 
+    echo Please install Dropbox:
+    echo "    https://www.dropbox.com/install?os=lnx"
+    echo
+    exit 1
 fi
+
 echo
 echo ----------------------------------------------------------
 echo Complete!

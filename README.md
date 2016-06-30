@@ -6,9 +6,6 @@ Seems a common thing to do, and I find it very convient working on a number of m
 The "install.sh" script is used to install the dotfiles config to the working config of the current users.
 The existing config is backed up so don't worry.
 
-## toolbox
-
-My 'toolbox' is also installed (see git@github.com:diversemix/toolbox.git )
 
 ## References
 
