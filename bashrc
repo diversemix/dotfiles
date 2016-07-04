@@ -42,6 +42,7 @@ alias di="docker images"
 alias ds=" docker ps -q | xargs docker inspect --format '{{ .Name }} {{ .Config.Image }} {{ .NetworkSettings.IPAddress }} {{ .Config.Cmd }} {{ .Config.ExposedPorts }}'"
 alias docker_stopall="docker ps -q|xargs docker stop"
 alias docker_rmall="docker ps -a -q|xargs docker rm"
+alias docker_rmnone="docker images | grep none| tr -s ' '| cut -d ' ' -f3 | xargs docker rmi"
 
 # Aliases - General
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
