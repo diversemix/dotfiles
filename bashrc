@@ -49,6 +49,9 @@ alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sor
 
 export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
 
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
 # Finally load any local aliases
 if [ -f ~/.aliases ] ; then source ~/.aliases ; fi
 # EOF
