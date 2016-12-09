@@ -46,11 +46,13 @@ alias docker_rmnone="docker images | grep none| tr -s ' '| cut -d ' ' -f3 | xarg
 
 # Aliases - General
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
+alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
 
 export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
 
+export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
-PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Finally load any local aliases
 if [ -f ~/.aliases ] ; then source ~/.aliases ; fi
