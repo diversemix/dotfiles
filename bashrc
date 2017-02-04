@@ -52,3 +52,9 @@ export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
 # Finally load any local aliases
 if [ -f ~/.aliases ] ; then source ~/.aliases ; fi
 # EOF
+
+# Print vital statistics...
+df -h | tr -s ' ' | cut -d ' ' -f5,6 | sort -n -r | head -n 3
+free | grep Mem | awk '{printf ("%2.0lf%% Memory\n", $3/$2 * 100.0) }'
+free | grep Swap | awk '{printf ("%2.0lf%% Swap\n", $3/$2 * 100.0) }'
+echo "--------------- DROPBOX: $(dropbox status)"
