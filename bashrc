@@ -50,9 +50,11 @@ alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
 
 export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
 
-export HISTCONTROL=ignoredups:erasedups
+#http://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history/18443
+HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
 
 # Finally load any local aliases
 if [ -f ~/.aliases ] ; then source ~/.aliases ; fi
