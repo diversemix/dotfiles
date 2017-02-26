@@ -1,0 +1,93 @@
+#==============================================================================
+#                               conky_modosa
+#  Date    : 26/02/2017
+#  Author  : diversemix
+#  Version : v0.1
+#  License : Distributed under the terms of GNU GPL version 2 or later
+#
+#  This version is a modification of seamod which is a mod of lunatico which
+#  is a mod of conky_orange.lua
+#==============================================================================
+
+use_xft yes
+minimum_size 300 1000
+
+background yes
+update_interval 1
+
+cpu_avg_samples 1
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+
+own_window yes
+own_window_type normal
+own_window_transparent no
+own_window_argb_visual no
+own_window_colour 002200
+own_window_argb_value 0
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+
+border_inner_margin 10
+border_outer_margin 0
+gap_y 0
+alignment top_right
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+# Defining colors
+default_color FFFFFF
+# Shades of Gray
+color1 DDDDDD
+color2 AAAAAA
+color3 666666
+# Orange
+color4 EF5A29
+# Green
+color5 77B753
+
+# Loading lua script for drawning rings
+lua_load ~/.conky/Modosa/modosa_rings.lua
+lua_draw_hook_post main
+TEXT
+${font Ubuntu:size=10:bold}${color4}SYSTEM ${hr 2}
+${offset 15}${font Ubuntu:size=10:normal}${color1}$sysname $kernel
+${offset 15}${font Ubuntu:size=10}${color1}$nodename \
+${offset 15}${font Ubuntu:size=10}${color1}Uptime: $uptime
+${voffset 12}${offset 5}${font Ubuntu:bold:size=10}${color5}CPU
+
+${offset 120}${cpugraph 40,183 002200 66aa66}
+${offset 80}${font Ubuntu:size=10}${color4}${top name 1}${alignr}${top cpu 1}%
+${offset 80}${font Ubuntu:size=10}${color1}${top name 2}${alignr}${top cpu 2}%
+${offset 80}${font Ubuntu:size=10}${color2}${top name 3}${alignr}${top cpu 3}%
+${offset 80}${font Ubuntu:size=10}${color3}${top name 4}${alignr}${top cpu 4}%
+${voffset 26}${offset 5}${font Ubuntu:size=10:bold}${color5}MEM
+
+${offset 120}${memgraph 40,183 002200 66aa66}
+${offset 80}${font Ubuntu:size=10}${color4}${top_mem name 1}${alignr}${top_mem mem 1}%
+${offset 80}${font Ubuntu:size=10}${color1}${top_mem name 2}${alignr}${top_mem mem 2}%
+${offset 80}${font Ubuntu:size=10}${color2}${top_mem name 3}${alignr}${top_mem mem 3}%
+${offset 80}${font Ubuntu:size=10}${color3}${top_mem name 4}${alignr}${top_mem mem 4}%
+${voffset 30}${offset 5}${font Ubuntu:size=10:bold}${color5}DISK
+
+${offset 128}${diskiograph 40,183 002200 66aa66}
+${offset 140}${font Ubuntu:size=10}${color1}/${alignr}${fs_free /}
+${offset 140}${font Ubuntu:size=10}${color1}/home${alignr}${fs_free /home}
+${voffset 30}
+${offset 5}${font Ubuntu:size=10:bold}${color5}ETHERNET${voffset 10}
+${offset 15}${color1}${font Ubuntu:size=9:bold}Up: ${font Ubuntu:size=9}$color2${upspeed wlp2s0} \
+${alignr}${color1}${font Ubuntu:size=9:bold}Down: ${font Ubuntu:size=9}$color2${downspeed wlp2s0}
+${offset 15}${upspeedgraph wlp2s0 40,140 4B1B0C FF5C2B 100 -l} \
+${offset 15}${downspeedgraph wlp2s0 40,140 324D23 77B753 100 -l}
+
+${font Ubuntu:size=10:bold}${color4}INFO ${hr 2}
+${color1}
+${texeci 5 ~/.conky/Modosa/modosa-info.sh}
+${voffset 10}
+${font Ubuntu:size=10:bold}${color4}${hr 2}
