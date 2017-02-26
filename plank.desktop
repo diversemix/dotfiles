@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Plank
+GenericName=A Lightweight Application Dock For Linux
+Comment=
+Exec=plank
+Terminal=false
+Type=Application
+Icon=plank
+StartupNotify=false
