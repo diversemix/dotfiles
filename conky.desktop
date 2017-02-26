@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Conky
+GenericName=System Info on Desktop
+Comment=
+Exec=conky -d -c /home/peter/.conky/Modosa/conky_modosa
+Terminal=false
+Type=Application
+Icon=conky
+StartupNotify=false

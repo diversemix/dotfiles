@@ -10,6 +10,7 @@
 #==============================================================================
 
 use_xft yes
+gap_y 0
 minimum_size 300 1000
 
 background yes
@@ -33,7 +34,6 @@ own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
 
 border_inner_margin 10
 border_outer_margin 0
-gap_y 0
 alignment top_right
 
 draw_shades no
