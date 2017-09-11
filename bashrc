@@ -1,4 +1,4 @@
-# .bashrc
+# ansible_user=peter ansible_user=peter .bashrc
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -47,6 +47,9 @@ alias docker_rmnone="docker images | grep none| tr -s ' '| cut -d ' ' -f3 | xarg
 # Aliases - General
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
 alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
+
+alias post-new-review='rbt post -o --guess-summary --guess-description --tracking-branch=origin/master --target-groups cdn --branch="$(git rev-parse --abbrev-ref HEAD)" "$@"'
+
 
 export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
 
