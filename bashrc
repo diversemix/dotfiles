@@ -49,6 +49,7 @@ alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sor
 alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
 
 alias post-new-review='rbt post -o --guess-summary --guess-description --tracking-branch=origin/master --target-groups cdn --branch="$(git rev-parse --abbrev-ref HEAD)" "$@"'
+alias git_clean_all='git clean -xfd'
 
 
 export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
