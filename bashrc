@@ -7,10 +7,14 @@ fi
 
 export PATH=/usr/local/bin/:$PATH
 export SVN_EDITOR=vim
+export GOPATH=$HOME/go
 
 # Assume we have dropbox installed
 export TOOLBOX_DATA=~/Dropbox/app_data
 . ~/dotfiles/toolbox_aliases
+
+# Overrides
+alias ls='ls --color'
 
 # Single letter aliases...
 alias l="ls -ltrh $*"
@@ -70,8 +74,8 @@ if [ -f ~/.aliases ] ; then source ~/.aliases ; fi
 
 # Print vital statistics...
 df -h | tr -s ' ' | cut -d ' ' -f5,6 | sort -n -r | head -n 3
-free | grep Mem | awk '{printf ("%2.0lf%% Memory\n", $3/$2 * 100.0) }'
-free | grep Swap | awk '{printf ("%2.0lf%% Swap\n", $3/$2 * 100.0) }'
+free | grep Mem | awk '{printf ("%2.0f%% Memory\n", $3/$2 * 100.0) }'
+free | grep Swap | awk '{printf ("%2.0f%% Swap\n", $3/$2 * 100.0) }'
 echo "--------------- DROPBOX: $(dropbox status)"
 
 function swap()
