@@ -8,11 +8,13 @@ fi
 export PATH=/usr/local/bin/:$PATH
 export SVN_EDITOR=vim
 export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # Assume we have dropbox installed
 export TOOLBOX_DATA=~/Dropbox/app_data
 . ~/dotfiles/toolbox_aliases
 
+###################### ALIASES #####################
 # Overrides
 alias ls='ls --color'
 
