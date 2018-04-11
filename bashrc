@@ -5,8 +5,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-export PATH=/usr/local/bin/:$PATH
+export GOPATH=$HOME/go
+export PATH=/usr/local/bin/:$PATH:$GOPATH/bin
 export SVN_EDITOR=vim
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Assume we have dropbox installed
 export TOOLBOX_DATA=~/Dropbox/app_data
@@ -47,7 +49,9 @@ alias docker_rmnone="docker images | grep none| tr -s ' '| cut -d ' ' -f3 | xarg
 # Aliases - General
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
 alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
-
+alias vpn='sudo /etc/vpnsecure/vpnsecure'
+alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
+ 
 export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
 
 #http://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history/18443
@@ -65,3 +69,7 @@ df -h | tr -s ' ' | cut -d ' ' -f5,6 | sort -n -r | head -n 3
 free | grep Mem | awk '{printf ("%2.0lf%% Memory\n", $3/$2 * 100.0) }'
 free | grep Swap | awk '{printf ("%2.0lf%% Swap\n", $3/$2 * 100.0) }'
 echo "--------------- DROPBOX: $(dropbox status)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
