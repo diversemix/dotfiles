@@ -1,4 +1,4 @@
-# .bashrc
+# ansible_user=peter ansible_user=peter .bashrc
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -9,10 +9,16 @@ export GOPATH=$HOME/go
 export PATH=/usr/local/bin/:$PATH:$GOPATH/bin
 export SVN_EDITOR=vim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # Assume we have dropbox installed
 export TOOLBOX_DATA=~/Dropbox/app_data
 . ~/dotfiles/toolbox_aliases
+
+###################### ALIASES #####################
+# Overrides
+alias ls='ls --color'
 
 # Single letter aliases...
 alias l="ls -ltrh $*"
@@ -28,7 +34,7 @@ alias f="free -mh $*"
 alias c='top -d 0.5 -bn3 | grep "%Cpu(s)" | cut -d ',' -f4 | awk "{print 100 - $1"% Cpu Load"}" | tail -n 1'
 
 # Double letter aliases...
-alias dm="ssh diversemixcom@diversemix.com"
+alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 
 function topmem() 
 {
@@ -51,13 +57,34 @@ alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sor
 alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
 alias vpn='sudo /etc/vpnsecure/vpnsecure'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
- 
-export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
+alias post-new-review='rbt post -o --guess-summary --guess-description --tracking-branch=origin/master --target-groups cdn --branch="$(git rev-parse --abbrev-ref HEAD)" "$@"'
+alias git_clean_all='git clean -xfd'
 
-#http://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history/18443
-HISTCONTROL=ignoredups:erasedups
+# Prompt Section
+# export PS1="\n\[\e[1;32m\]\w\[\e[1;31m\] [\!] \[\e[1;33m\]\$\[\e[m\] "
+
+RESET="\[\017\]"
+NORMAL="\[\033[0m\]"
+RED="\[\033[31;1m\]"
+YELLOW="\[\033[33;1m\]"
+WHITE="\[\033[37;1m\]"
+GREEN="\[\033[32;1m\]"
+BLUE="\[\033[34;1m\]"
+SMILEY="${GREEN}✔${NORMAL}"
+FROWNY="${RED}✖${NORMAL}"
+SELECT="if [ \$? = 0 ]; then echo \"${SMILEY}\"; else echo \"${FROWNY}\"; fi"
+
+PS1="${RESET}\`${SELECT}\` ${YELLOW}\h${NORMAL}:${BLUE}\w ${YELLOW}>${NORMAL}"
+
+# History Settings
+#
+HISTCONTROL=ignoreboth
 shopt -s histappend
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
+function set-title() {
+    TITLE=$1
+    PROMPT_COMMAND='echo -ne "\033]0;${TITLE}\007"'
+}
 
 
 # Finally load any local aliases
@@ -66,10 +93,15 @@ if [ -f ~/.aliases ] ; then source ~/.aliases ; fi
 
 # Print vital statistics...
 df -h | tr -s ' ' | cut -d ' ' -f5,6 | sort -n -r | head -n 3
-free | grep Mem | awk '{printf ("%2.0lf%% Memory\n", $3/$2 * 100.0) }'
-free | grep Swap | awk '{printf ("%2.0lf%% Swap\n", $3/$2 * 100.0) }'
+free | grep Mem | awk '{printf ("%2.0f%% Memory\n", $3/$2 * 100.0) }'
+free | grep Swap | awk '{printf ("%2.0f%% Swap\n", $3/$2 * 100.0) }'
 echo "--------------- DROPBOX: $(dropbox status)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+function swap()
+{
+    awk '{ t = $1; $1 = $2; $2 = t; print; }'
+}
