@@ -11,12 +11,12 @@ echo -----------------------------------
 echo
 echo "  Checking for required applications... "
 for app in ${REQ_APPS}; do
-    if [ -z $(which ${app}) ]  
-    then 
+    if [ -z $(which ${app}) ]
+    then
         if [ ${app} == "encfs" ] ; then
-            yum install fuse-encfs
+            dnf install fuse-encfs
         else
-            yum install ${app} 
+            dnf install ${app}
         fi
     else
         echo "    Found ${app}"
@@ -37,8 +37,8 @@ fi
 
 cd ${DOT_DIR}
 
-git clone https://github.com/galmeidadavid/bash-colorize.git
-sudo ln -s $PWD/bash-colorize/colorize /usr/local/bin/colorize
+#git clone https://github.com/galmeidadavid/bash-colorize.git
+#sudo ln -s $PWD/bash-colorize/colorize /usr/local/bin/colorize
 
 for file in ${FILE_LIST}; do
     dest=~/.${file}
@@ -60,29 +60,8 @@ done
 
 # -----------------------------------------------------------------------------
 
-echo "  Setting up ViM ... please be patient!"
-VIM_DIR=~/.vim
-
-if [ ! -d ${VIM_DIR} ] ; then mkdir ~/.vim/ ; fi
-cd ~/.vim/
-
-if [ ! -f colors/gruvbox.vim ] ; then
-    echo "  Install color scheme for vim..."
-    mkdir -p colors
-    git clone https://github.com/morhetz/gruvbox.git
-    cp -rf gruvbox/colors/gruvbox.vim ./colors/
-fi
-
-if [ ! -d bundle/Vundle.vim ] ; then
-    # Install Vundle
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +PluginUpdate +qall
-fi
-
-# -----------------------------------------------------------------------------
-
 cd
-if [ ! -d ~/Dropbox ] ; then 
+if [ ! -d ~/Dropbox ] ; then
     echo Please install Dropbox:
     echo "    https://www.dropbox.com/install?os=lnx"
     echo
@@ -90,6 +69,7 @@ if [ ! -d ~/Dropbox ] ; then
 fi
 
 echo
+echo "Don't forget: atom, node, etc..."
 echo ----------------------------------------------------------
 echo Complete!
 echo
