@@ -34,13 +34,15 @@ git_info() {
       sed -e 's/git@github.com://g')
     echo "$remote_short${TEAL}:$branch"
 
-    staged=$(git status -s | cut -c 1| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs)
-    locally=$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs)
+    staged="($(git status -s | cut -c 1| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs))"
+    if [ ${staged} == "()" ] ; then staged="" ; fi
+    locally="[$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs)]"
+    if [ ${locally} == "[]" ] ; then locally="" ; fi
 
     ahead_by=$(git rev-list origin..HEAD|wc -l)
     behind_by=$(git rev-list HEAD..origin|wc -l)
     sync="▼${ahead_by} ▲${behind_by} | "
-    printf "${RESET}${sync}${RED}[$locally]${TEAL}($staged)"
+    printf "${RESET}${sync}${RED}$locally${TEAL}$staged"
   fi
 }
 
