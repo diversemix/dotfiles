@@ -39,8 +39,8 @@ git_info() {
 
     ahead_by=$(git rev-list origin..HEAD|wc -l)
     behind_by=$(git rev-list HEAD..origin|wc -l)
-    sync="▼${ahead_by} ▲${behind_by}"
-    printf "${sync}${RED}[$locally]${TEAL}($staged)"
+    sync="▼${ahead_by} ▲${behind_by} | "
+    printf "${RESET}${sync}${RED}[$locally]${TEAL}($staged)"
   fi
 }
 
