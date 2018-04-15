@@ -18,3 +18,45 @@ function swap()
 {
     awk '{ t = $1; $1 = $2; $2 = t; print; }'
 }
+
+print_value_with_color() {
+	message=$1
+	value=$2
+	color=${RED}
+	if [ $value -le 80 ] ; then color=${YELLOW} ; fi
+	if [ $value -le 50 ] ; then color=${GREEN} ; fi
+	printf "${color}${message}${NORMAL}"
+}
+
+print_command_with_color() {
+  message=$1
+  command=$2
+  color=${RED}
+  value=$(${command})
+  if [ $? = 0 ]; then color=${GREEN} ; fi
+  printf "${color}${message}${value}${NORMAL}\n"
+}
+
+test_network() {
+  ping -c1 google.co.uk | head -n 1 | cut -d ' ' -f1-3
+}
+
+test_dropbox() {
+  out=$(dropbox status)
+  echo $out ; ps aux | grep dropbox | grep -v grep >/dev/null
+}
+
+print_stats() {
+	DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
+	MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
+	SWAP=$(free | grep Swap | awk '{printf ("%2.0f", $3/$2 * 100.0) }')
+
+	printf "${GREEN}✔ Last    : Return value of last command${NORMAL}\n"
+	# disk, memory, network, dropbox
+
+	print_value_with_color "⛃ Disk    : ${DISK}%% \n" ${DISK}
+	print_value_with_color "🗇 Memory  : ${MEM}%% \n" ${MEM}
+	print_value_with_color "  Swap    : ${SWAP}%% \n" ${SWAP}
+	print_command_with_color "🖧 Network : " "test_network"
+	print_command_with_color "🖿 Dropbox : " "test_dropbox"
+}
