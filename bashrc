@@ -28,3 +28,4 @@ shopt -s histappend
 if [ -f ~/.aliases ] ; then source ~/.aliases ; fi
 
 print_stats
+echo "------"

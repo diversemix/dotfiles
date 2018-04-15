@@ -18,9 +18,12 @@ git_info() {
       sed -e 's/https:\/\/github.com\///g' | \
       sed -e 's/.git$//g' | \
       sed -e 's/git@github.com://g')
-    echo $remote_short
-    branch_color=${TEAL}
-    printf "${branch_color}[$branch]"
+    echo "$remote_short${TEAL}:$branch"
+
+    staged=$(git status -s | cut -c 1| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs)
+    locally=$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs)
+
+    printf "${RED}[$locally]${TEAL}($staged)"
   fi
 }
 
@@ -28,13 +31,25 @@ prompt_prefix() {
   if [ -d .git ]; then
     git_info
   else
+    DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
+    print_value_with_color "⛃ " ${DISK}
+
+    MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
+    print_value_with_color "🗇 " ${MEM}
+    #print_command_with_color "🖧 " "test_network"
+
     # disk, memory, network, dropbox
-    echo "⛃ 🗇 🖧 🖿 |$(hostname)"
+    echo "| ${YELLOW}$(hostname)${RESET}"
   fi
 }
 
-LAST_RESULT="if [ \$? = 0 ]; then echo \"${GOOD}\"; else echo \"${BAD}\"; fi"
+last_result() {
+  if [ $? = 0 ]; then echo "${GOOD}"; else echo "${BAD}"; fi
+}
+
+LAST_RESULT="last_result"
 THE_PWD="short_pwd"
 PROMPT_PREFIX="prompt_prefix"
 
-PS1="${P_RESET}\`${LAST_RESULT}\`${P_NORMAL}|${P_YELLOW}\`${PROMPT_PREFIX}\`${P_NORMAL}:${P_BLUE}\`${THE_PWD}\` ${P_YELLOW}\$${P_NORMAL} "
+PS1="${P_RESET}\`${LAST_RESULT}\`${P_RESET}|${P_YELLOW}\`${PROMPT_PREFIX}\`${P_RESET}:${P_BLUE}\`${THE_PWD}\`\n${P_YELLOW}\$${P_RESET} "
+echo ""

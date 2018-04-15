@@ -1,15 +1,14 @@
 
-export RESET='\017'
-export NORMAL='\033[0m'
-export RED='\033[31;1m'
-export YELLOW='\033[33;1m'
-export WHITE='\033[37;1m'
-export GREEN='\033[32;1m'
-export BLUE='\033[34;1m'
-export TEAL='\033[0;36m'
+export RESET=$(tput sgr0)
+export BOLD=$(tput bold)
+export RED=$(tput bold;tput setaf 1)
+export YELLOW=$(tput bold;tput setaf 3)
+export WHITE=$(tput bold;tput setaf 7)
+export GREEN=$(tput bold;tput setaf 2)
+export BLUE=$(tput bold;tput setaf 4)
+export TEAL=$(tput bold;tput setaf 6)
 
 export P_RESET="\[${RESET}\]"
-export P_NORMAL="\[${NORMAL}\]"
 export P_RED="\[${RED}\]"
 export P_YELLOW="\[${YELLOW}\]"
 export P_WHITE="\[${WHITE}\]"
@@ -17,5 +16,5 @@ export P_GREEN="\[${GREEN}\]"
 export P_BLUE="\[${BLUE}\]"
 export P_TEAL="\[${TEAL}\]"
 
-export GOOD="${P_GREEN}✔${P_NORMAL}"
-export BAD="${P_RED}✖${P_NORMAL}"
+export GOOD="${BOLD}${GREEN}✔${RESET}"
+export BAD="${BOLD}${RED}✖${RESET}"
