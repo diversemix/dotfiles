@@ -15,6 +15,7 @@ function swap()
 {
     awk '{ t = $1; $1 = $2; $2 = t; print; }'
 }
+
 short_pwd() {
   local pwd=$(pwd)
   pwd=${pwd/#$HOME/\~}
@@ -36,7 +37,10 @@ git_info() {
     staged=$(git status -s | cut -c 1| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs)
     locally=$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs)
 
-    printf "${RED}[$locally]${TEAL}($staged)"
+    ahead_by=$(git rev-list origin..HEAD|wc -l)
+    behind_by=$(git rev-list HEAD..origin|wc -l)
+    sync="▼${ahead_by} ▲${behind_by}"
+    printf "${sync}${RED}[$locally]${TEAL}($staged)"
   fi
 }
 
