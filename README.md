@@ -1,5 +1,6 @@
 # dotfiles
 
+
 Started by reading the article[1].
 
 Seems a common thing to do, and I find it very convient working on a number of machines to unify my setup.
