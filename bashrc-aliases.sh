@@ -19,6 +19,8 @@ alias c='top -d 0.5 -bn3 | grep "%Cpu(s)" | cut -d ',' -f4 | awk "{print 100 - $
 # Double letter aliases...
 alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 alias va='vi ~/.bash_aliases ; source ~/.bash_aliases'
+alias gl="git log --oneline --graph --decorate --all"
+alias gs='git status -sb'
 
 # Docker
 alias dp="docker ps -a"
@@ -36,17 +38,3 @@ alias vpn='sudo /etc/vpnsecure/vpnsecure'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias post-new-review='rbt post -o --guess-summary --guess-description --tracking-branch=origin/master --target-groups cdn --branch="$(git rev-parse --abbrev-ref HEAD)" "$@"'
 alias git_clean_all='git clean -xfd'
-
-browse_to() {
-	/opt/google/chrome/chrome $1$2
-}
-
-# eLife
-alias pr='browse_to https://github.com/elifesciences/elife-xpub/pull/'
-alias issue='browse_to https://github.com/elifesciences/elife-xpub/issues/'
-
-# Example : $ compare <branch>
-alias compare='browse_to https://github.com/elifesciences/elife-xpub/compare/develop...' 
-alias el="cd ~/dev/elife-xpub"
-alias gl="git log --oneline --graph --decorate --all"
-
