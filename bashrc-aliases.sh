@@ -4,6 +4,14 @@ source ~/dotfiles/bashrc-funcs.sh
 source ~/dotfiles/bashrc-prompt.sh
 source ~/dotfiles/toolbox_aliases
 
+browse_to() {
+	/opt/google/chrome/chrome $1$2
+}
+
+cheatsheet() {
+	browse_to "https://duckduckgo.com/?q=cheatsheet+$1&ia=cheatsheet&iax=1"
+}
+
 ###################### ALIASES #####################
 # Overrides
 alias ls='ls --color'
@@ -44,5 +52,8 @@ alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.
 alias post-new-review='rbt post -o --guess-summary --guess-description --tracking-branch=origin/master --target-groups cdn --branch="$(git rev-parse --abbrev-ref HEAD)" "$@"'
 alias git_clean_all='git clean -xfd'
 alias longest_jsfiles='for f in $(git ls-tree --name-only -r HEAD | grep js$); do  cat $f | wc -l ; echo $f; done | paste -d "," - -  | sort -n'
+
+#Cheat sheets
+alias cs='cheatsheet'
 
 source ~/dotfiles/elife-aliases

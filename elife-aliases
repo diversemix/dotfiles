@@ -1,7 +1,3 @@
-browse_to() {
-	/opt/google/chrome/chrome $1$2
-}
-
 alias pb="npx pubsweet server"
 alias node_clean="find . -type d -name 'node_modules' -exec rm -rf {} \;"
 alias db_rebuild="docker stop elifexpub_postgres_1; docker rm -v elifexpub_postgres_1; docker volume rm elifexpub_postgres-volume; dc up -d postgres"
@@ -20,3 +16,20 @@ alias issue='browse_to https://github.com/elifesciences/elife-xpub/issues/'
 # Example : $ compare <branch>
 alias compare='browse_to https://github.com/elifesciences/elife-xpub/compare/develop...' 
 alias el="cd ~/dev/elife-xpub"
+
+export GIT_TOKEN=$(cat ~/dotfiles/git_token)
+
+xpub_prs() {
+	curl -s https://api.github.com/repos/elifesciences/elife-xpub/pulls?state=open > /tmp/open
+	cat /tmp/open | jq '.[] | {title: .title, url: .html_url, name: .user.login }'
+	#cat /tmp/open | cut -d " " -f5- | grep "^\"title\"" | cut -d "\"" -f4 | cut -c 1-30 > /tmp/open_titles
+	#cat /tmp/open | cut -d " " -f5- | grep "^\"html_url\"" | cut -d "\"" -f4 > /tmp/open_urls
+	#cat /tmp/open | cut -d " " -f7- | grep "^\"login\"" | cut -d "\"" -f4 > /tmp/open_user
+	#echo ${BLUE} ;paste /tmp/open_titles /tmp/open_urls /tmp/open_user
+	#echo ""
+}
+
+xpub_project() {
+	curl -H "Authorization: token ${TOKEN}" -H "Accept: application/vnd.github.inertia-preview+json" https://api.github.com/repos/elifesciences/elife-xpub/projects
+	curl -H "Authorization: token ${TOKEN}" -H "Accept: application/vnd.github.inertia-preview+json" https://api.github.com/projects/1391224
+}
