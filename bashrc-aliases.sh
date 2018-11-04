@@ -1,4 +1,9 @@
 
+source ~/dotfiles/bashrc-vars.sh
+source ~/dotfiles/bashrc-funcs.sh
+source ~/dotfiles/bashrc-prompt.sh
+source ~/dotfiles/toolbox_aliases
+
 ###################### ALIASES #####################
 # Overrides
 alias ls='ls --color'
@@ -38,3 +43,6 @@ alias vpn='sudo /etc/vpnsecure/vpnsecure'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias post-new-review='rbt post -o --guess-summary --guess-description --tracking-branch=origin/master --target-groups cdn --branch="$(git rev-parse --abbrev-ref HEAD)" "$@"'
 alias git_clean_all='git clean -xfd'
+alias longest_jsfiles='for f in $(git ls-tree --name-only -r HEAD | grep js$); do  cat $f | wc -l ; echo $f; done | paste -d "," - -  | sort -n'
+
+source ~/dotfiles/elife-aliases

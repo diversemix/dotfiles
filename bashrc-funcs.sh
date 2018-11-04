@@ -24,41 +24,37 @@ short_pwd() {
 
 git_info() {
   if [ -d .git ]; then
-    #local pwd=$(pwd)
-    #echo ${pwd} $(pwd) $PWD
     local branch=$(git status -s -b | head -n 1 | sed -e 's/## //g' | sed -e 's/\.\.\..*//g')
     local remote=$(git remote -v | grep fetch | cut -f2 | cut -d ' ' -f1)
     local remote_short=$(echo $remote | \
       sed -e 's/https:\/\/github.com\///g' | \
       sed -e 's/.git$//g' | \
       sed -e 's/git@github.com://g')
-    echo "$remote_short${TEAL}:$branch"
 
-    staged="($(git status -s | cut -c 1| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs))"
-    if [ ${staged} == "()" ] ; then staged="" ; fi
+    staged="($(git status -s | grep -v '?' |cut -c 1| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs))"
     locally="[$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs)]"
-    if [ ${locally} == "[]" ] ; then locally="" ; fi
 
     ahead_by=$(git rev-list origin..HEAD|wc -l)
     behind_by=$(git rev-list HEAD..origin|wc -l)
-    sync="▼${ahead_by} ▲${behind_by} | "
-    printf "${RESET}${sync}${RED}$locally${TEAL}$staged"
+    sync=" ⋮ ${ahead_by}▼ ${behind_by}▲ "
+    remote="\n${YELLOW}$remote_short${TEAL}:$branch"
+    printf "${RESET}${sync}${RED}$locally ${GREEN}$staged $remote"
   fi
 }
+system_info() {
+    DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
+    MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
+    DOCKER=$(docker ps | grep -v CONTAINER | wc -l)
+    print_value_with_color "⛃ ${DISK}%%" ${DISK}
+    print_value_with_color " ⬟ ${MEM}%%" ${MEM}
+    printf " 🐋 ${DOCKER}"
+}
 
-prompt_prefix() {
+host_or_git() {
   if [ -d .git ]; then
     git_info
   else
-    DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
-    print_value_with_color "⛃ " ${DISK}
-
-    MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
-    print_value_with_color "🗇 " ${MEM}
-    #print_command_with_color "🖧 " "test_network"
-
-    # disk, memory, network, dropbox
-    echo "| ${YELLOW}$(hostname)${RESET}"
+    echo " ${YELLOW}$(hostname)${RESET}"
   fi
 }
 
@@ -72,7 +68,7 @@ print_value_with_color() {
 	color=${RED}
 	if [ $value -le 80 ] ; then color=${YELLOW} ; fi
 	if [ $value -le 50 ] ; then color=${GREEN} ; fi
-	printf "${color}${message}${NORMAL}"
+	printf "${color}${message}${RESET}"
 }
 
 print_command_with_color() {
@@ -102,7 +98,7 @@ print_stats() {
 	# disk, memory, network, dropbox
 
 	print_value_with_color "⛃ Disk    : ${DISK}%% \n" ${DISK}
-	print_value_with_color "🗇 Memory  : ${MEM}%% \n" ${MEM}
+	print_value_with_color "📏 Memory  : ${MEM}%% \n" ${MEM}
 	print_value_with_color "  Swap    : ${SWAP}%% \n" ${SWAP}
 	print_command_with_color "🖧 Network : " "test_network"
   echo ""
