@@ -18,18 +18,60 @@ alias compare='browse_to https://github.com/elifesciences/elife-xpub/compare/dev
 alias el="cd ~/dev/elife-xpub"
 
 export GIT_TOKEN=$(cat ~/dotfiles/git_token)
+export H_TOKEN="Authorization: token ${GIT_TOKEN}" 
+export H_ACCEPT="Accept: application/vnd.github.inertia-preview+json"
 
-xpub_prs() {
-	curl -s https://api.github.com/repos/elifesciences/elife-xpub/pulls?state=open > /tmp/open
-	cat /tmp/open | jq '.[] | {title: .title, url: .html_url, name: .user.login }'
-	#cat /tmp/open | cut -d " " -f5- | grep "^\"title\"" | cut -d "\"" -f4 | cut -c 1-30 > /tmp/open_titles
-	#cat /tmp/open | cut -d " " -f5- | grep "^\"html_url\"" | cut -d "\"" -f4 > /tmp/open_urls
-	#cat /tmp/open | cut -d " " -f7- | grep "^\"login\"" | cut -d "\"" -f4 > /tmp/open_user
-	#echo ${BLUE} ;paste /tmp/open_titles /tmp/open_urls /tmp/open_user
-	#echo ""
+git_url() {
+	curl -s -H "${H_TOKEN}" -H "${H_ACCEPT}" $1
 }
 
-xpub_project() {
-	curl -H "Authorization: token ${TOKEN}" -H "Accept: application/vnd.github.inertia-preview+json" https://api.github.com/repos/elifesciences/elife-xpub/projects
-	curl -H "Authorization: token ${TOKEN}" -H "Accept: application/vnd.github.inertia-preview+json" https://api.github.com/projects/1391224
+show_column() {
+	printf "${1}%0.s-" {1..10}
+	git_url https://api.github.com/projects/columns/$3/cards | 
+		jq '.[] | { content_url: .content_url }' |
+		grep ":"| cut -d "\"" -f4 > /tmp/open_urls_$3
+	NUM=$(wc -l /tmp/open_urls_$3| cut -d ' ' -f1) 
+	printf " $2 (${NUM})\n\n" 
+	echo "" > /tmp/column_$3
+	for url in $(cat /tmp/open_urls_$3)
+	do
+		git_url "${url}" | 
+			jq '{title: .title, url: .html_url, name: .user.login }' | 
+			grep ":" | cut -d "\"" -f4 | paste -d "," - - - >> /tmp/column_$3
+	done
+	cat /tmp/column_$3| column -s, -t
+}
+
+
+pulls() {
+	git_url https://api.github.com/repos/elifesciences/elife-xpub/pulls?state=open |
+		jq '.[] | {title: .title, url: .html_url, name: .user.login }' > /tmp/open.json
+	printf "${BLUE}%0.s-" {1..10}
+	printf " PULL REQUESTS\n"
+	cat /tmp/open.json | grep ":" | cut -d "\"" -f4 | paste -d "," - - - | column -s, -t
+	echo ""
+}
+
+kanban() {
+	# Useful for getting the other endpoints ... 
+	# git_url https://api.github.com/repos/elifesciences/elife-xpub/projects
+	# git_url https://api.github.com/projects/1391224
+	# git_url https://api.github.com/projects/1391224/columns
+
+	# In Progress - https://api.github.com/projects/columns/2434975/cards
+	show_column ${GREEN} "IN PROGRESS" 2434975
+
+	# Checking - https://api.github.com/projects/columns/2645076/cards
+	show_column ${YELLOW} "CHECKING" 2645076
+
+	# Awaiting Design Revew - https://api.github.com/projects/columns/3647425/cards
+	show_column ${TEAL} "AWAITING DESING REVIEW" 3647425
+
+	# Triage - https://api.github.com/projects/columns/3693848/cards
+	show_column ${RED} "TRIAGE" 3693848
+}
+
+xpub() {
+	pulls
+	kanban
 }
