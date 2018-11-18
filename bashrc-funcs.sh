@@ -46,7 +46,7 @@ system_info() {
     MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
     DOCKER=$(docker ps | grep -v CONTAINER | wc -l)
     print_value_with_color "⛃ ${DISK}%%" ${DISK}
-    print_value_with_color " ⬟ ${MEM}%%" ${MEM}
+    print_value_with_color " 🐘 ${MEM}%%" ${MEM}
     printf " 🐋 ${DOCKER}"
 }
 
@@ -98,7 +98,7 @@ print_stats() {
 	# disk, memory, network, dropbox
 
 	print_value_with_color "⛃ Disk    : ${DISK}%% \n" ${DISK}
-	print_value_with_color "📏 Memory  : ${MEM}%% \n" ${MEM}
+	print_value_with_color "🐘 Memory  : ${MEM}%% \n" ${MEM}
 	print_value_with_color "  Swap    : ${SWAP}%% \n" ${SWAP}
 	print_command_with_color "🖧 Network : " "test_network"
   echo ""

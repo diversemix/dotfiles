@@ -12,10 +12,13 @@ alias ssh_prod="ssh -L 50001:elife-xpub-prod.cxyopn44uqbl.us-east-1.rds.amazonaw
 # eLife
 alias pr='browse_to https://github.com/elifesciences/elife-xpub/pull/'
 alias issue='browse_to https://github.com/elifesciences/elife-xpub/issues/'
+alias b="~/dev/builder/bldr"
 
 # Example : $ compare <branch>
 alias compare='browse_to https://github.com/elifesciences/elife-xpub/compare/develop...' 
 alias el="cd ~/dev/elife-xpub"
+
+alias gk='gitkan'
 
 export GIT_TOKEN=$(cat ~/dotfiles/git_token)
 export H_TOKEN="Authorization: token ${GIT_TOKEN}" 
