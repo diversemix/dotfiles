@@ -30,10 +30,14 @@ alias f="free -mh $*"
 alias c='top -d 0.5 -bn3 | grep "%Cpu(s)" | cut -d ',' -f4 | awk "{print 100 - $1"% Cpu Load"}" | tail -n 1'
 
 # Double letter aliases...
+alias xo=xdg-open
 alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 alias va='vi ~/.bash_aliases ; source ~/.bash_aliases'
 alias ve='vi ~/dotfiles/elife-aliases ; source ~/.bash_aliases'
+
+# Git aliases
 alias gl="git log --oneline --graph --decorate --all"
+alias glf="git log --oneline --name-only"
 alias gs='git status -sb'
 
 # Docker

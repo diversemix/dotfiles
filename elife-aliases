@@ -17,6 +17,7 @@ alias b="~/dev/builder/bldr"
 # Example : $ compare <branch>
 alias compare='browse_to https://github.com/elifesciences/elife-xpub/compare/develop...' 
 alias el="cd ~/dev/elife-xpub"
+alias el2="cd ~/dev/elife-xpub-2"
 
 alias gk='gitkan'
 
