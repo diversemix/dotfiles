@@ -19,12 +19,27 @@ Plugin 'tpope/vim-fugitive'
 " Vim-Airline for the nice statusbar
 Plugin 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Syntastic 
 Plugin 'scrooloose/syntastic'
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Nerd Tree
 Plugin 'scrooloose/nerdtree'
+let NERDTreeMapOpenInTab='\r'
+
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+map <C-n> :NERDTreeToggle<CR>
+
+" From vim-awesome
+Plugin 'pangloss/vim-javascript'
+
+
+Plugin 'JamshedVesuna/vim-markdown-preview'
+let vim_markdown_preview_hotkey='<C-m>'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -49,26 +64,44 @@ set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
 colorscheme gruvbox       " set colorscheme
 set background=dark       " set the colorscheme (https://github.com/morhetz/gruvbox/wiki/Usage)
-set number                " show line numbers
+set rnu                   " show line numbers
+set nu
 set laststatus=2          " last window always has a statusline
-set nohlsearch            " Don't continue to highlight searched phrases.
+"set nohlsearch            " Don't continue to highlight searched phrases.
 set incsearch             " But do highlight as you type your search.
-set ignorecase            " Make searches case-insensitive.
 set ruler                 " Always show info along bottom.
 set autoindent            " auto-indent
-set tabstop=4             " tab spacing
-set softtabstop=4         " unify
-set shiftwidth=4          " indent/outdent by 4 columns
+set tabstop=2             " tab spacing
+set softtabstop=2         " unify
+set shiftwidth=2          " indent/outdent by 2 columns
 set shiftround            " always indent/outdent to the nearest tabstop
 set expandtab             " use spaces instead of tabs
 set nowrap                " don't wrap text
-set shortmess=at          " Don't display standard message
+"set shortmess=at          " Don't display standard message
+
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_undefined            = "¿"
+let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "⇒"
+" let g:javascript_conceal_noarg_arrow_function = ""
+" let g:javascript_conceal_underscore_arrow_function = ""
+set conceallevel=1
 
 " Keys for window resizing
 noremap <silent> <C-l> :vertical resize +3<CR>
 noremap <silent> <C-h> :vertical resize -3<CR>
-noremap <silent> <C-j> :resize +3<CR>
-noremap <silent> <C-k> :resize -3<CR>
+noremap <silent> <C-j> :resize +3<CR> noremap <silent> <C-k> :resize -3<CR>
 
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 let &colorcolumn="80,".join(range(120,999),",")
+
+set path+=**
+set wildmenu
 

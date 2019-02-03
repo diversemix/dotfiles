@@ -3,25 +3,12 @@
 DOT_DIR=~/dotfiles
 BACKUP_DIR=~/dotfiles/old
 FILE_LIST="bashrc vimrc tmux.conf"
-REQ_APPS="git vim tmux encfs ack"
 
 echo
 echo Installing diversemix configuration
 echo -----------------------------------
 echo
-echo "  Checking for required applications... "
-for app in ${REQ_APPS}; do
-    if [ -z $(which ${app}) ]
-    then
-        if [ ${app} == "encfs" ] ; then
-            dnf install fuse-encfs
-        else
-            dnf install ${app}
-        fi
-    else
-        echo "    Found ${app}"
-    fi
-done
+source ./install-apps.sh
 
 # -----------------------------------------------------------------------------
 
@@ -37,8 +24,6 @@ fi
 
 cd ${DOT_DIR}
 
-#git clone https://github.com/galmeidadavid/bash-colorize.git
-#sudo ln -s $PWD/bash-colorize/colorize /usr/local/bin/colorize
 
 for file in ${FILE_LIST}; do
     dest=~/.${file}

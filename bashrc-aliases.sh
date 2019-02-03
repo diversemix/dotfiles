@@ -39,6 +39,7 @@ alias ve='vi ~/dotfiles/elife-aliases ; source ~/.bash_aliases'
 alias gl="git log --oneline --graph --decorate --all"
 alias glf="git log --oneline --name-only"
 alias gs='git status -sb'
+alias tag_hist='git for-each-ref --sort=taggerdate --format "%(taggerdate) %(refname)" refs/tags'
 
 # Docker
 alias dp="docker ps -a"
@@ -54,9 +55,9 @@ alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sor
 alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
 alias vpn='sudo /etc/vpnsecure/vpnsecure'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-alias post-new-review='rbt post -o --guess-summary --guess-description --tracking-branch=origin/master --target-groups cdn --branch="$(git rev-parse --abbrev-ref HEAD)" "$@"'
 alias git_clean_all='git clean -xfd'
 alias longest_jsfiles='for f in $(git ls-tree --name-only -r HEAD | grep js$); do  cat $f | wc -l ; echo $f; done | paste -d "," - -  | sort -n'
+alias jstags="find . -type f -iregex '.*\.js$' -not -path './node_modules/*' -exec jsctags {} -f \; | sed '/^$/d' | LANG=C sort > tags"
 
 #Cheat sheets
 alias cs='cheatsheet'

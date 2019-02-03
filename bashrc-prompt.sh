@@ -7,7 +7,7 @@ THE_PWD="short_pwd"
 HOST_OR_GIT="host_or_git"
 SYS_INFO="system_info"
 
-PS1="${P_RESET}\`${LAST_RESULT}\` \`${SYS_INFO}\`${P_RESET}${P_YELLOW}\`${HOST_OR_GIT}\`${P_RESET}:${P_BLUE}\`${THE_PWD}\`\n${P_RESET}\$ "
+PS1="${P_RESET}\`${LAST_RESULT}\` ${BLUE}\w${RESET} $ "
 echo ""
-alias sp='PS1="${P_RESET}\`${LAST_RESULT}\` ${BLUE}\w${RESET}\n$ "'
+alias sp='PS1="${P_RESET}\`${LAST_RESULT}\` ${BLUE}\w${RESET} $ "'
 alias bp='PS1="${P_RESET}\`${LAST_RESULT}\` \`${SYS_INFO}\`${P_RESET}${P_YELLOW}\`${HOST_OR_GIT}\`${P_RESET}:${P_BLUE}\`${THE_PWD}\`\n${P_RESET}\$ "'
