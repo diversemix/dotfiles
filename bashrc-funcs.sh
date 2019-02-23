@@ -58,10 +58,6 @@ host_or_git() {
   fi
 }
 
-last_result() {
-  if [ $? = 0 ]; then echo "${GOOD}"; else echo "${BAD}"; fi
-}
-
 print_value_with_color() {
 	message=$1
 	value=$2
