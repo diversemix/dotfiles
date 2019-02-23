@@ -16,6 +16,10 @@ alias pr='browse_to https://github.com/elifesciences/elife-xpub/pull/'
 alias issue='browse_to https://github.com/elifesciences/elife-xpub/issues/'
 alias b="~/dev/builder/bldr"
 
+# google chrome
+alias gc_email="google-chrome https://mail.google.com/mail/u/1/#inbox"
+alias gc_mm="google-chrome https://calendar.google.com/calendar/b/1/r"
+
 # Example : $ compare <branch>
 alias compare='browse_to https://github.com/elifesciences/elife-xpub/compare/develop...' 
 alias el="cd ~/dev/elife-xpub"

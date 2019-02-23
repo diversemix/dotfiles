@@ -53,8 +53,6 @@ if [ ! -d ~/Dropbox ] ; then
     exit 1
 fi
 
-echo
-echo "Don't forget: atom, node, etc..."
 echo ----------------------------------------------------------
 echo Complete!
 echo
