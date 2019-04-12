@@ -6,8 +6,8 @@ alias clean_stg="ssh elife@staging--xpub.elifesciences.org \"docker images | gre
 
 # AWS
 alias ssh_ci="ssh elife@ci--xpub.elifesciences.org"
-alias ssh_stg="ssh -L 50000:elife-xpub-staging.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@35.173.248.44"
-alias ssh_prod="ssh -L 50001:elife-xpub-prod.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@3.94.102.92"
+alias ssh_stg="ssh -L 50000:elife-xpub-staging.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@3.80.112.99"
+alias ssh_prod="ssh -L 50001:elife-xpub-prod.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@52.90.128.135"
 alias psql_stg="psql -U root -h localhost -p 50000 elifexpubstaging -w"
 alias psql_prod="psql -U root -h localhost -p 50001 elifexpubprod -w"
 

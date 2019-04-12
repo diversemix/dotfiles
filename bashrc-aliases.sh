@@ -34,6 +34,7 @@ alias xo=xdg-open
 alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 alias va='vi ~/.bash_aliases ; source ~/.bash_aliases'
 alias ve='vi ~/dotfiles/elife-aliases ; source ~/.bash_aliases'
+alias vv='vi ~/.vimrc'
 
 # Git aliases
 alias gl="git log --oneline --graph --decorate --all"

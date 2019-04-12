@@ -29,6 +29,7 @@ tool_add() {
     echo "$tags | $info" >> ${TOOLBOX_DATA}/pocket/$tfile
 }
 
+alias td="vi ~/diversemix.github.io/todo.md"
 alias ts=tool_search
 alias ta=tool_add
 alias cheat=cheatsheet

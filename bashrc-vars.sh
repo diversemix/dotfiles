@@ -7,4 +7,4 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # Assume we have dropbox installed
-export TOOLBOX_DATA=~/Dropbox/app_data
+export TOOLBOX_DATA=~/diversemix.github.io/toolbox
