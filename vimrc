@@ -8,12 +8,12 @@ source ~/dotfiles/leader.vim
 
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
-colorscheme gruvbox       " set colorscheme
+colorscheme palenight     " set colorscheme
 set background=dark       " set the colorscheme (https://github.com/morhetz/gruvbox/wiki/Usage)
 set rnu                   " show line numbers
 set nu
 set laststatus=2          " last window always has a statusline
-set nohlsearch            " Don't continue to highlight searched phrases.
+"set nohlsearch            " Don't continue to highlight searched phrases.
 set incsearch             " But do highlight as you type your search.
 set ruler                 " Always show info along bottom.
 set autoindent            " auto-indent
@@ -25,6 +25,12 @@ set expandtab             " use spaces instead of tabs
 set nowrap                " don't wrap text
 "set shortmess=at          " Don't display standard message
 set autowrite             " save buffers when going hidden
+set hls
+set mouse=a
+set clipboard=unnamedplus
+set hidden                " unamed files don't need saving
+set splitright            " new split on right
+set splitbelow            " new split below
 
 let &colorcolumn="80,".join(range(120,999),",")
 
@@ -34,7 +40,7 @@ set wildmenu
 map <F6> :setlocal spell! spelllang=en_gb<CR>
 hi SpellBad guibg=#ff2929 ctermbg=224
 
-set listchars=eol:↩,tab:►-,trail:•,extends:>,precedes:<
+" set listchars=eol:↩,tab:►-,trail:•,extends:>,precedes:<
 set list
 
 " Remove trailing whitespace

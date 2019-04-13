@@ -7,6 +7,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'drewtempelmeyer/palenight.vim'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -32,10 +34,10 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " From vim-awesome
 Plugin 'pangloss/vim-javascript'
-let g:javascript_conceal_function             = "ƒ"
+" let g:javascript_conceal_function             = "ƒ"
 let g:javascript_conceal_null                 = "ø"
 let g:javascript_conceal_this                 = "@"
-let g:javascript_conceal_return               = "⇚"
+"let g:javascript_conceal_return               = "⇚"
 let g:javascript_conceal_undefined            = "¿"
 let g:javascript_conceal_NaN                  = "ℕ"
 let g:javascript_conceal_prototype            = "¶"

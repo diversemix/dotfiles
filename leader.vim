@@ -1,14 +1,19 @@
 inoremap <Leader><Space> <Esc>/<++><Enter>"_c4l
 noremap <Leader><Space> /<++><Enter>"_c4l
 
-noremap <Leader>s :w<cr>
-noremap <Leader>q :q<cr>
 noremap <Leader>c :bd<cr>
 noremap <Leader>e :e %:p:h<cr>
-noremap <Leader>w :w<cr><c-w>w
-noremap <Leader>l :bnext<CR>
+noremap <Leader>h :vsp<cr>:exe "e $HOME/Dropbox/app_data/help/" . &ft . ".md"<cr>
 noremap <Leader>j :bprevious<CR>
-" noremap <Leader>n 
+noremap <Leader>l :bnext<CR>
+noremap <Leader>n :set norelativenumber!<CR>
+noremap <Leader>q :q<cr>
+noremap <Leader>s :w<cr>
+noremap <Leader>t :vsp<cr>:exe "e $HOME/Dropbox/app_data/todo.md"<cr>
+noremap <Leader>v :vsp<cr>
+noremap <Leader>vv :sp<cr>
+noremap <Leader>w <c-w>w
+noremap <Leader>x :new +0r!
 
 " folding
 nnoremap <leader>ff :set fdm=manual<cr>
@@ -23,9 +28,9 @@ autocmd FileType html inoremap <Leader>h <h1></h1><Space><++><Esc>FhT>i
 autocmd FileType html inoremap <Leader>d <div></div><Space><++><Esc>FdT>i
 
 "js snippets
-autocmd FileType javascript inoremap <Leader>jc console.log(``)<Space><++><Esc>F`i
-autocmd FileType javascript inoremap <Leader>jj JSON.stringify()<Space><++><Esc>F)i
-autocmd FileType javascript inoremap <Leader>jv ${}<Esc>i
-autocmd FileType javascript inoremap <Leader>ja ()<Space>=><Space>{<CR><++><CR>}<Space><++><Esc>?)<CR>i
-autocmd FileType javascript inoremap <Leader>jf function ()<Space>{<CR><++><CR>}<Space><++><Esc>?(<CR>i
+autocmd FileType javascript inoremap <Leader>c console.log(``)<Space><++><Esc>F`i
+autocmd FileType javascript inoremap <Leader>j JSON.stringify()<Space><++><Esc>F)i
+autocmd FileType javascript inoremap <Leader>v ${}<Esc>i
+autocmd FileType javascript inoremap <Leader>a ()<Space>=><Space>{<CR><++><CR>}<Space><++><Esc>?)<CR>i
+autocmd FileType javascript inoremap <Leader>f function ()<Space>{<CR><++><CR>}<Space><++><Esc>?(<CR>i
 
