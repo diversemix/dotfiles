@@ -8,7 +8,7 @@ source ~/dotfiles/leader.vim
 
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
-colorscheme palenight     " set colorscheme
+colorscheme gruvbox       " set colorscheme
 set background=dark       " set the colorscheme (https://github.com/morhetz/gruvbox/wiki/Usage)
 set rnu                   " show line numbers
 set nu
@@ -32,7 +32,7 @@ set hidden                " unamed files don't need saving
 set splitright            " new split on right
 set splitbelow            " new split below
 
-let &colorcolumn="80,".join(range(120,999),",")
+let &colorcolumn="80,".join(range(120,120),",")
 
 set history=1000
 set path+=**

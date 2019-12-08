@@ -1,3 +1,5 @@
+export VAULT_ADDR=https://2018-04-09-2--master-server.elifesciences.org:8200
+
 alias pb="npx pubsweet server"
 alias node_clean="find . -type d -name 'node_modules' -exec rm -rf {} \;"
 alias db_rebuild="docker stop elifexpub_postgres_1; docker rm -v elifexpub_postgres_1; docker volume rm elifexpub_postgres-volume; dc up -d postgres"
@@ -6,13 +8,12 @@ alias clean_stg="ssh elife@staging--xpub.elifesciences.org \"docker images | gre
 
 # AWS
 alias ssh_ci="ssh elife@ci--xpub.elifesciences.org"
-alias ssh_stg="ssh -L 50000:elife-xpub-staging.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@3.80.112.99"
-alias ssh_prod="ssh -L 50001:elife-xpub-prod.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@52.90.128.135"
+alias ssh_stg="ssh -L 50000:elife-xpub-staging.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@54.91.166.142"
+alias ssh_prod="ssh -L 50001:elife-xpub-prod.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@52.5.166.105"
 alias psql_stg="psql -U root -h localhost -p 50000 elifexpubstaging -w"
 alias psql_prod="psql -U root -h localhost -p 50001 elifexpubprod -w"
 
 # eLife
-alias pr='browse_to https://github.com/elifesciences/elife-xpub/pull/'
 alias issue='browse_to https://github.com/elifesciences/elife-xpub/issues/'
 alias b="~/dev/builder/bldr"
 
@@ -22,8 +23,9 @@ alias gc_mm="google-chrome https://calendar.google.com/calendar/b/1/r"
 
 # Example : $ compare <branch>
 alias compare='browse_to https://github.com/elifesciences/elife-xpub/compare/develop...' 
-alias el="cd ~/dev/elife-xpub"
-alias el2="cd ~/dev/elife-xpub-2"
+alias el="cd ~/dev/elifesciences/elife-xpub"
+alias rev="cd ~/dev/libero/reviewer"
+
 
 alias gk='gitkan'
 
@@ -67,18 +69,16 @@ kanban() {
 	# git_url https://api.github.com/repos/elifesciences/elife-xpub/projects
 	# git_url https://api.github.com/projects/1391224
 	# git_url https://api.github.com/projects/1391224/columns
+	# git_url https://api.github.com/projects/columns/2434975/cards
 
-	# In Progress - https://api.github.com/projects/columns/2434975/cards
-	show_column ${GREEN} "IN PROGRESS" 2434975
+	# ToDo
+	show_column ${YELLOW} "TODO" 6581624
 
-	# Checking - https://api.github.com/projects/columns/2645076/cards
-	show_column ${YELLOW} "CHECKING" 2645076
+	# In Progress  
+	show_column ${GREEN} "IN PROGRESS" 5944599
 
-	# Awaiting Design Revew - https://api.github.com/projects/columns/3647425/cards
-	show_column ${TEAL} "AWAITING DESING REVIEW" 3647425
-
-	# Triage - https://api.github.com/projects/columns/3693848/cards
-	show_column ${RED} "TRIAGE" 3693848
+	# Done
+	# show_column ${RED} "DONE" 5944601
 }
 
 xpub() {

@@ -1,19 +1,23 @@
 inoremap <Leader><Space> <Esc>/<++><Enter>"_c4l
 noremap <Leader><Space> /<++><Enter>"_c4l
 
+noremap <Leader>a :sp<cr>
+noremap <Leader>b :vsp<cr>
 noremap <Leader>c :bd<cr>
 noremap <Leader>e :e %:p:h<cr>
 noremap <Leader>h :vsp<cr>:exe "e $HOME/Dropbox/app_data/help/" . &ft . ".md"<cr>
 noremap <Leader>j :bprevious<CR>
-noremap <Leader>l :bnext<CR>
+noremap <Leader>k :bnext<CR>
+noremap <Leader>l :e ~/dotfiles/leader.vim<cr>
 noremap <Leader>n :set norelativenumber!<CR>
+noremap <Leader>o :vsp<cr>:exe "e $HOME/Dropbox/app_data/todo.md"<cr>
 noremap <Leader>q :q<cr>
-noremap <Leader>s :w<cr>
-noremap <Leader>t :vsp<cr>:exe "e $HOME/Dropbox/app_data/todo.md"<cr>
-noremap <Leader>v :vsp<cr>
-noremap <Leader>vv :sp<cr>
+" noremap <Leader>s <c-w>w
+noremap <Leader>t :terminal<cr>
+noremap <Leader>v :e ~/dotfiles/vimrc<cr>
 noremap <Leader>w <c-w>w
 noremap <Leader>x :new +0r!
+noremap <Leader>z :!how2 -l node
 
 " folding
 nnoremap <leader>ff :set fdm=manual<cr>

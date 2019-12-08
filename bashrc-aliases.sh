@@ -23,11 +23,13 @@ alias s="systemctl $*"
 alias j="journalctl $*"
 alias v="vim $*"
 alias i="ifconfig $*"
+alias m="GTK_THEME=Arc meld"
 alias n="netstat -lpn"
 alias p="ps aux"
 alias h="history $*"
 alias f="free -mh $*"
 alias c='top -d 0.5 -bn3 | grep "%Cpu(s)" | cut -d ',' -f4 | awk "{print 100 - $1"% Cpu Load"}" | tail -n 1'
+alias u='cd ..'
 
 # Double letter aliases...
 alias xo=xdg-open
@@ -35,11 +37,13 @@ alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 alias va='vi ~/.bash_aliases ; source ~/.bash_aliases'
 alias ve='vi ~/dotfiles/elife-aliases ; source ~/.bash_aliases'
 alias vv='vi ~/.vimrc'
+alias hn='history | cut -d " " -f6- | sort | uniq -c | sort -n '
 
 # Git aliases
 alias gl="git log --oneline --graph --decorate --all"
 alias glf="git log --oneline --name-only"
 alias gs='git status -sb'
+alias pr='hub pull-request'
 alias tag_hist='git for-each-ref --sort=taggerdate --format "%(taggerdate) %(refname)" refs/tags'
 
 # Docker
@@ -49,6 +53,7 @@ alias ds=" docker ps -q | xargs docker inspect --format '{{ .Name }} {{ .Config.
 alias docker_stopall="docker ps -q|xargs docker stop"
 alias docker_rmall="docker ps -a -q|xargs docker rm"
 alias docker_rmnone="docker images | grep none| tr -s ' '| cut -d ' ' -f3 | xargs docker rmi"
+alias docker_rmvol="docker volume ls | cut -d ' ' -f16- | xargs docker volume rm "
 alias dc=docker-compose
 
 # Aliases - General
@@ -59,6 +64,8 @@ alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.
 alias git_clean_all='git clean -xfd'
 alias longest_jsfiles='for f in $(git ls-tree --name-only -r HEAD | grep js$); do  cat $f | wc -l ; echo $f; done | paste -d "," - -  | sort -n'
 alias jstags="find . -type f -iregex '.*\.js$' -not -path './node_modules/*' -exec jsctags {} -f \; | sed '/^$/d' | LANG=C sort > tags"
+alias git_uncommit="git reset --soft HEAD^"
+
 
 #Cheat sheets
 alias cs='cheatsheet'
