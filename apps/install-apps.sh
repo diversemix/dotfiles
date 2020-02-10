@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "  Ensuring the app-list is installed...."
-pushd ~/dotfiles
+pushd ~/dotfiles/apps
 cat app-list | xargs sudo apt install -y
 popd
 

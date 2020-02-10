@@ -36,11 +36,12 @@ git_info() {
 
     ahead_by=$(git rev-list origin..HEAD|wc -l)
     behind_by=$(git rev-list HEAD..origin|wc -l)
-    sync=" ⋮ ${ahead_by}▼ ${behind_by}▲ "
-    remote="\n${YELLOW}$remote_short${TEAL}:$branch"
-    printf "${RESET}${sync}${RED}$locally ${GREEN}$staged $remote"
+    sync="${RESET} ⋮ ${ahead_by}▼ ${behind_by}▲ "
+    remote="${YELLOW}$remote_short${TEAL}:$branch"
+    printf "${remote}${sync}${RED}$locally ${GREEN}$staged\n"
   fi
 }
+
 system_info() {
     DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
     MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')

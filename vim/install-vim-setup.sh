@@ -1,5 +1,12 @@
 #!/bin/bash
 
+read -p "This may overwrite your vimrc file. Are you sure? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    ln -s ${HOME}/dotfiles/diversemix.vimrc ${HOME}/.vimrc || exit 1
+fi
+
 echo "  Setting up ViM ... please be patient!"
 VIM_DIR=~/.vim
 
