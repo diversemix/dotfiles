@@ -1,6 +1,6 @@
 #!/bin/bash
 
 mkdir -p ~/.conky/Modosa
-cp modosa* ~/.conky/Modosa
-cp conky*  ~/.conky/Modosa
-cp conky.desktop ~/.config/autostart/
+cp conky/modosa* ~/.conky/Modosa
+cp conky/conky*  ~/.conky/Modosa
+cp conky/conky.desktop ~/.config/autostart/

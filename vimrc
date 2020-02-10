@@ -1,10 +1,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-source ~/dotfiles/disable-arrows.vim
-source ~/dotfiles/plugins.vim
-source ~/dotfiles/windows.vim
-source ~/dotfiles/leader.vim
+source ~/dotfiles/vim/disable-arrows.vim
+source ~/dotfiles/vim/plugins.vim
+source ~/dotfiles/vim/windows.vim
+source ~/dotfiles/vim/leader.vim
 
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).

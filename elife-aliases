@@ -86,3 +86,5 @@ xpub() {
 	kanban
 }
 
+nvm use 10.16.3
+export NEW_RELIC_NO_CONFIG_FILE=true
