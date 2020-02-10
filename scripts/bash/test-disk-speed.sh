@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo Write...
+sync; dd if=/dev/zero of=tempfile bs=1M count=1024; sync
+echo Read...
+sync; dd if=tempfile of=/dev/null bs=1M count=1024; sync
