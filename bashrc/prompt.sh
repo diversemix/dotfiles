@@ -1,10 +1,10 @@
 last_result_color() {
   if [ $? = 0 ]
   then 
-    echo ${BLUE}
+    echo "${BLUE}✔ "
     export LAST_RESULT=1
   else 
-    echo ${RED}
+    echo "${RED}$? ✖ "
     export LAST_RESULT=0
   fi
 }
@@ -16,7 +16,8 @@ HOST_OR_GIT="host_or_git"
 SYS_INFO="system_info"
 echo ""
 
-PS1='\[$(last_result_color)\]\w\[${RESET}\] $ '
+PS1='\[$(last_result_color)\]\w\[${RESET}\] $(git_info)\n$ '
+
 
 # TODO - would be good to do some checking if in a git repo folder
 # Large prompt -depricated as its taking a long time to perfect

@@ -38,7 +38,7 @@ git_info() {
     behind_by=$(git rev-list HEAD..origin|wc -l)
     sync="${RESET} ⋮ ${ahead_by}▼ ${behind_by}▲ "
     remote="${YELLOW}$remote_short${TEAL}:$branch"
-    printf "${remote}${sync}${RED}$locally ${GREEN}$staged\n"
+    printf "⇒ ${remote}${sync}${RED}$locally ${GREEN}${staged}${RESET}\n"
   fi
 }
 
