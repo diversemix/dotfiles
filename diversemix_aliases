@@ -1,16 +1,4 @@
-
-source ~/dotfiles/bashrc-vars.sh
-source ~/dotfiles/bashrc-funcs.sh
-source ~/dotfiles/bashrc-prompt.sh
-source ~/dotfiles/toolbox_aliases
-
-browse_to() {
-	/opt/google/chrome/chrome $1$2
-}
-
-cheatsheet() {
-	browse_to "https://duckduckgo.com/?q=cheatsheet+$1&ia=cheatsheet&iax=1"
-}
+source ~/dotfiles/aliases/toolbox_aliases
 
 ###################### ALIASES #####################
 # Overrides
@@ -67,7 +55,8 @@ alias jstags="find . -type f -iregex '.*\.js$' -not -path './node_modules/*' -ex
 alias git_uncommit="git reset --soft HEAD^"
 
 
-#Cheat sheets
+# Cheat sheets
 alias cs='cheatsheet'
 
-source ~/dotfiles/elife-aliases
+# Current workplace aliases
+source ~/dotfiles/aliases/elife-aliases

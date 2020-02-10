@@ -4,27 +4,32 @@
 Started by reading the article[1].
 
 Seems a common thing to do, and I find it very convient working on a number of machines to unify my setup.
-The "install.sh" script is used to install the dotfiles config to the working config of the current users.
-The existing config is backed up so don't worry.
+This did use an `install.sh` script - however I've found I need greater constrol of how things are done.
+Below is how I use/install the dotfiles configuations
 
-## What the install does
+## Installing on Ubuntu
 
-The result of running the install should result in the following being added to
-your home folder:
-```
-.bash_aliases -> /home/peter/dotfiles/bashrc-aliases.sh
-.tmux.conf -> dotfiles/tmux.conf
-.vimrc -> /home/peter/dotfiles/vimrc
-```
+### Aliases
+
+- Link with `ln -s %{HOME}/dotfiles/diversemix_aliases ~/.bash_aliases` 
+
+(If you already have this file you can source `diversemix_aliases`at the end)
+
+### Bash Environment
+
+- Edit `.profile` and add `source ~/dotfiles/diversemix_profile`
+- (Change terminal Preferences->Command to Run Shell at login)[https://askubuntu.com/a/1026126/124914]
 
 In most `~/.bashrc` there is a section that runs `~/.bash_aliases` if it exists.
 If not you can add the following to your `~/.bashrc`:
 
-```{bash}
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-```
+### ViM Environment
+
+- Use `ln -s ${HOME}/dotfiles/diversemix.vimrc ~/.vimrc`
+
+### TMux Environment
+
+- Use `ln -s ${HOME}/dotfiles/diversemix.tmux.conf ~/.tmux.conf`
 
 ## References
 
