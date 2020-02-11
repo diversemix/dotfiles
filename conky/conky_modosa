@@ -1,8 +1,9 @@
 use_xft yes
 border_inner_margin 10
 border_outer_margin 10
-alignment middle_right
+alignment middle_left
 gap_y 0
+gap_x 20
 minimum_size 300 1000
 
 background no
@@ -46,26 +47,19 @@ color5 77B753
 lua_load ~/.conky/Modosa/modosa_rings.lua
 lua_draw_hook_post main
 TEXT
-# ${font Ubuntu:size=10:bold}${color4}SYSTEM ${hr 2}
-${offset 15}${font Ubuntu:size=10:normal}${color1}$sysname $kernel
-${offset 15}${font Ubuntu:size=10}${color1}$nodename \
-${offset 15}${font Ubuntu:size=10}${color1}Uptime: $uptime
-${voffset 12}${offset 5}${font Ubuntu:bold:size=10}${color5}CPU
-
+${voffset 20} ${font Ubuntu:size=10:bold}${color5}CPU
 ${offset 120}${cpugraph 40,183 002200 66aa66}
 ${offset 80}${font Ubuntu:size=10}${color4}${top name 1}${alignr}${top cpu 1}%
 ${offset 80}${font Ubuntu:size=10}${color1}${top name 2}${alignr}${top cpu 2}%
 ${offset 80}${font Ubuntu:size=10}${color2}${top name 3}${alignr}${top cpu 3}%
 ${offset 80}${font Ubuntu:size=10}${color3}${top name 4}${alignr}${top cpu 4}%
-${voffset 26}${offset 5}${font Ubuntu:size=10:bold}${color5}MEM
-
+${voffset 30}${font Ubuntu:size=10:bold}${color5}MEM
 ${offset 120}${memgraph 40,183 002200 66aa66}
 ${offset 80}${font Ubuntu:size=10}${color4}${top_mem name 1}${alignr}${top_mem mem 1}%
 ${offset 80}${font Ubuntu:size=10}${color1}${top_mem name 2}${alignr}${top_mem mem 2}%
 ${offset 80}${font Ubuntu:size=10}${color2}${top_mem name 3}${alignr}${top_mem mem 3}%
 ${offset 80}${font Ubuntu:size=10}${color3}${top_mem name 4}${alignr}${top_mem mem 4}%
-${voffset 30}${offset 5}${font Ubuntu:size=10:bold}${color5}DISK
-
+${voffset 30}${font Ubuntu:size=10:bold}${color5}DISK
 ${offset 128}${diskiograph 40,183 002200 66aa66}
 ${offset 140}${font Ubuntu:size=10}${color1}/${alignr}${fs_free /}
 ${offset 140}${font Ubuntu:size=10}${color1}/home/peter-big${alignr}${fs_free /home/peter-big}
@@ -75,9 +69,10 @@ ${offset 15}${color1}${font Ubuntu:size=9:bold}Up: ${font Ubuntu:size=9}$color2$
 ${alignr}${color1}${font Ubuntu:size=9:bold}Down: ${font Ubuntu:size=9}$color2${downspeed wlp2s0}
 ${offset 15}${upspeedgraph wlp2s0 40,140 4B1B0C FF5C2B 100 -l} \
 ${offset 15}${downspeedgraph wlp2s0 40,140 324D23 77B753 100 -l}
-
-# ${font Ubuntu:size=10:bold}${color4}GIT INFO ${hr 2}
-${font Hasklig:size=10:normal}${color1}${texeci 5 ~/.conky/Modosa/modosa-info.sh}
-# ${voffset 10}
-# ${font Ubuntu:size=10:bold}${color4}${hr 2}
+${voffset 200}
+${offset 15}${font Hasklig:size=10:normal}${color1}$sysname $kernel 
+${offset 15}${font Hasklig:size=10}${color1}Uptime: $uptime
+${hr}
+${font Hasklig:size=9:normal}${color1}${texeci 5 ~/.conky/Modosa/modosa-info.sh}
+${hr}
 
