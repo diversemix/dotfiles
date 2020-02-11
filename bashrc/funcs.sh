@@ -39,7 +39,12 @@ git_info() {
     sync="${RESET} ⋮ ${ahead_by}▼ ${behind_by}▲ "
     remote="${YELLOW}$remote_short${TEAL}:$branch"
     printf "⇒ ${remote}${sync}${RED}$locally ${GREEN}${staged}${RESET}\n"
-    printf "$(pwd) [${ahead_by}]\n${remote_short}:${branch} [${behind_by}]\n$locally\n${staged}\n" >/tmp/last_git
+    printf "%-35s %s\n%-35s %s\n%-35s %s\n%-35s %s\n" \
+      $(pwd) [${ahead_by}] \
+      ${remote_short}:${branch} [${behind_by}] \
+      "Not staged" ${locally} \
+      "Staged" ${staged} \
+      >/tmp/last_git
   fi
 }
 
