@@ -32,3 +32,4 @@ alias gk='gitkan'
 export GIT_TOKEN=$(cat ~/dotfiles/git_token)
 export H_TOKEN="Authorization: token ${GIT_TOKEN}" 
 export H_ACCEPT="Accept: application/vnd.github.inertia-preview+json"
+echo -n "Got elife..."

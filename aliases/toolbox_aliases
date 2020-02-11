@@ -1,6 +1,4 @@
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
 
 tool_search() {
     if [ "$1" == "" ] ; then echo Need a search term as an argument! ; return 1 ; fi
@@ -12,8 +10,7 @@ tool_search() {
 }
 
 cheatsheet() {
-    if [ "$1" == "" ] ; then echo Need a cheatsheet reference as an argument! ; exit 1 ; fi
-    more ${TOOLBOX_DATA}/cheats/$1-cheatsheet
+    curl -s "https://raw.githubusercontent.com/duckduckgo/zeroclickinfo-goodies/master/share/goodie/cheat_sheets/json/$1.json" | grep -A 2 $2
 }
 
 tool_add() {
@@ -29,9 +26,9 @@ tool_add() {
     echo "$tags | $info" >> ${TOOLBOX_DATA}/pocket/$tfile
 }
 
-alias td="vi ~/diversemix.github.io/todo.md"
 alias ts=tool_search
 alias ta=tool_add
 alias cheat=cheatsheet
-alias cheats="ls -1 ${TOOLBOX_DATA}/cheats/*-cheatsheet"
+
+echo -n "Got toolbox..."
 # EOF

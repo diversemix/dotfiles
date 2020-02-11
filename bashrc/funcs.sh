@@ -103,3 +103,5 @@ print_stats() {
 	print_command_with_color "🖿 Dropbox : " "test_dropbox"
   echo ""
 }
+
+echo -n "Got funcs..."

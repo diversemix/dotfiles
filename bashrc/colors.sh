@@ -12,3 +12,4 @@ export WHITE=$(tput bold;tput setaf 7)
 
 export GOOD="${GREEN}✔${RESET}"
 export BAD="${RED}✖${RESET}"
+echo -n "Got colors..."

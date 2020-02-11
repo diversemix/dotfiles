@@ -52,3 +52,4 @@ xpub() {
 }
 
 export NEW_RELIC_NO_CONFIG_FILE=true
+echo -n "Got elife.sh..."

@@ -1,19 +1,11 @@
-figlet -w240 -W  -f small "$(date '+%A %d %b %Y')" | lolcat
-echo 
-
 source ~/dotfiles/bashrc/colors.sh
 source ~/dotfiles/bashrc/vars.sh
 source ~/dotfiles/bashrc/funcs.sh
 source ~/dotfiles/bashrc/prompt.sh
 source ~/dotfiles/bashrc/elife.sh
 
-browse_to() {
-	/opt/google/chrome/chrome $1$2
-}
-
-cheatsheet() {
-	browse_to "https://duckduckgo.com/?q=cheatsheet+$1&ia=cheatsheet&iax=1"
-}
+echo 
+figlet -w240 -W  -f small "$(date '+%A %d %b %Y')" | lolcat
 
 system_info
 echo ""
