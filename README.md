@@ -17,7 +17,17 @@ Below is how I use/install the dotfiles configuations
 
 ### Bash Environment
 
-- Edit `.profile` and add `source ~/dotfiles/diversemix_profile`
+- Edit `.profile` and add `source ~/dotfiles/diversemix_profile`, you may wish to follow the pattern below 
+so that you don't have issues in non-interactive shells.
+
+```
+case "$-" in
+  *i*) source ~/dotfiles/diversemix_profile ;;
+  *)   echo This shell is not interactive ;;
+esac
+
+```
+
 - (Change terminal Preferences->Command to Run Shell at login)[https://askubuntu.com/a/1026126/124914]
 
 In most `~/.bashrc` there is a section that runs `~/.bash_aliases` if it exists.

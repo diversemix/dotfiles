@@ -5,7 +5,7 @@ alignment middle_right
 gap_y 20
 minimum_size 300 1000
 
-background yes
+background no
 update_interval 1
 
 cpu_avg_samples 1
@@ -20,7 +20,7 @@ own_window yes
 own_window_type desktop
 own_window_transparent no
 own_window_argb_visual no
-own_window_colour 002200
+own_window_colour 000000
 own_window_argb_value 0
 own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
 
@@ -75,7 +75,7 @@ ${alignr}${color1}${font Ubuntu:size=9:bold}Down: ${font Ubuntu:size=9}$color2${
 ${offset 15}${upspeedgraph wlp2s0 40,140 4B1B0C FF5C2B 100 -l} \
 ${offset 15}${downspeedgraph wlp2s0 40,140 324D23 77B753 100 -l}
 
-${font Ubuntu:size=10:bold}${color4}INFO ${hr 2}
+${font Ubuntu:size=10:bold}${color4}GIT INFO ${hr 2}
 ${color1}
 ${texeci 5 ~/.conky/Modosa/modosa-info.sh}
 ${voffset 10}
