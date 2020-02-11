@@ -147,7 +147,7 @@ gauge = {
     caption_fg_colour=0xFFFFFF,    caption_fg_alpha=0.5,
 },
 {
-    name='fs_used_perc',           arg='/home/',                     max_value=100,
+    name='fs_used_perc',           arg='/home/peter-big',                     max_value=100,
     x=70,                          y=470,
     graph_radius=42,
     graph_thickness=7,
@@ -168,7 +168,7 @@ gauge = {
     caption_fg_colour=0xFFFFFF,    caption_fg_alpha=0.5,
 },
 {
-    name='fs_used_perc',           arg='/',                     max_value=100,
+    name='fs_used_perc',           arg='/home/peter-big',                     max_value=100,
     x=70,                          y=470,
     graph_radius=30,
     graph_thickness=7,

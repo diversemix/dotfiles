@@ -1,9 +1,7 @@
 #!/bin/bash
 
 echo "  Ensuring the app-list is installed...."
-pushd ~/dotfiles/apps
-cat app-list | xargs sudo apt install -y
-popd
+cat app-list | cut -d '#' -f1 | xargs sudo apt install -y
 
 if [ ! -d ~/Dropbox ] ; then
     echo Please install Dropbox:

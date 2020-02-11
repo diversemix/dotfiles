@@ -1,4 +1,4 @@
-figlet -w240 -W  -f small "$(date '+%A, %d %b %Y')" | lolcat
+figlet -w240 -W  -f small "$(date '+%A %d %b %Y')" | lolcat
 echo 
 
 source ~/dotfiles/bashrc/colors.sh

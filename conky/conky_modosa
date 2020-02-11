@@ -1,16 +1,8 @@
-#==============================================================================
-#                               conky_modosa
-#  Date    : 26/02/2017
-#  Author  : diversemix
-#  Version : v0.1
-#  License : Distributed under the terms of GNU GPL version 2 or later
-#
-#  This version is a modification of seamod which is a mod of lunatico which
-#  is a mod of conky_orange.lua
-#==============================================================================
-
 use_xft yes
-gap_y 0
+border_inner_margin 10
+border_outer_margin 10
+alignment middle_right
+gap_y 20
 minimum_size 300 1000
 
 background yes
@@ -25,16 +17,13 @@ no_buffers yes
 text_buffer_size 2048
 
 own_window yes
-own_window_type normal
+own_window_type desktop
 own_window_transparent no
 own_window_argb_visual no
 own_window_colour 002200
 own_window_argb_value 0
 own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
 
-border_inner_margin 10
-border_outer_margin 0
-alignment top_right
 
 draw_shades no
 draw_outline no
@@ -78,7 +67,7 @@ ${voffset 30}${offset 5}${font Ubuntu:size=10:bold}${color5}DISK
 
 ${offset 128}${diskiograph 40,183 002200 66aa66}
 ${offset 140}${font Ubuntu:size=10}${color1}/${alignr}${fs_free /}
-${offset 140}${font Ubuntu:size=10}${color1}/home${alignr}${fs_free /home}
+${offset 140}${font Ubuntu:size=10}${color1}/home/peter-big${alignr}${fs_free /home/peter-big}
 ${voffset 30}
 ${offset 5}${font Ubuntu:size=10:bold}${color5}ETHERNET${voffset 10}
 ${offset 15}${color1}${font Ubuntu:size=9:bold}Up: ${font Ubuntu:size=9}$color2${upspeed wlp2s0} \
