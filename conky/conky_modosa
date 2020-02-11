@@ -2,7 +2,7 @@ use_xft yes
 border_inner_margin 10
 border_outer_margin 10
 alignment middle_right
-gap_y 20
+gap_y 0
 minimum_size 300 1000
 
 background no
@@ -17,9 +17,10 @@ no_buffers yes
 text_buffer_size 2048
 
 own_window yes
+own_window_transparent yes
 own_window_type desktop
-own_window_transparent no
-own_window_argb_visual no
+own_window_argb_visual yes
+own_window_class override
 own_window_colour 000000
 own_window_argb_value 0
 own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
@@ -45,7 +46,7 @@ color5 77B753
 lua_load ~/.conky/Modosa/modosa_rings.lua
 lua_draw_hook_post main
 TEXT
-${font Ubuntu:size=10:bold}${color4}SYSTEM ${hr 2}
+# ${font Ubuntu:size=10:bold}${color4}SYSTEM ${hr 2}
 ${offset 15}${font Ubuntu:size=10:normal}${color1}$sysname $kernel
 ${offset 15}${font Ubuntu:size=10}${color1}$nodename \
 ${offset 15}${font Ubuntu:size=10}${color1}Uptime: $uptime
@@ -75,8 +76,8 @@ ${alignr}${color1}${font Ubuntu:size=9:bold}Down: ${font Ubuntu:size=9}$color2${
 ${offset 15}${upspeedgraph wlp2s0 40,140 4B1B0C FF5C2B 100 -l} \
 ${offset 15}${downspeedgraph wlp2s0 40,140 324D23 77B753 100 -l}
 
-${font Ubuntu:size=10:bold}${color4}GIT INFO ${hr 2}
-${color1}
-${texeci 5 ~/.conky/Modosa/modosa-info.sh}
-${voffset 10}
-${font Ubuntu:size=10:bold}${color4}${hr 2}
+# ${font Ubuntu:size=10:bold}${color4}GIT INFO ${hr 2}
+${font Hasklig:size=10:normal}${color1}${texeci 5 ~/.conky/Modosa/modosa-info.sh}
+# ${voffset 10}
+# ${font Ubuntu:size=10:bold}${color4}${hr 2}
+
