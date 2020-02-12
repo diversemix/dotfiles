@@ -48,6 +48,10 @@ git_info() {
   fi
 }
 
+docker_info() {
+    docker ps -a dp --format "{{.Status}} | {{.Image}}"
+}
+
 system_info() {
     DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
     MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
