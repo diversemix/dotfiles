@@ -8,4 +8,6 @@ echo
 figlet -w240 -W  -f small "$(date '+%A %d %b %Y')" | lolcat
 
 system_info
+echo
+docker_info
 echo ""

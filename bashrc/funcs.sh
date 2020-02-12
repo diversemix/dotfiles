@@ -49,7 +49,7 @@ git_info() {
 }
 
 docker_info() {
-    docker ps -a dp --format "{{.Status}} | {{.Image}}"
+    docker ps -a --format "{{.Status}} | {{.Image}}"
 }
 
 system_info() {
