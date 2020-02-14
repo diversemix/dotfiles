@@ -11,13 +11,15 @@ Below is how I use/install the dotfiles configuations
 
 ### Aliases
 
-- Link with `ln -s %{HOME}/dotfiles/diversemix_aliases ~/.bash_aliases` 
+- Link with `ln -s ${HOME}/dotfiles/diversemix_aliases ~/.bash_aliases` 
 
 (If you already have this file you can source `diversemix_aliases`at the end)
 
 ### Bash Environment
 
-- Edit `.profile` and add `source ~/dotfiles/diversemix_profile`, you may wish to follow the pattern below 
+There are 2 steps:
+
+1) Edit `.profile` and add `source ~/dotfiles/diversemix_profile`, you may wish to follow the pattern below 
 so that you don't have issues in non-interactive shells.
 
 ```
@@ -28,10 +30,8 @@ esac
 
 ```
 
-- (Change terminal Preferences->Command to Run Shell at login)[https://askubuntu.com/a/1026126/124914]
+2) (Change terminal Preferences->Command to Run Shell at login)[https://askubuntu.com/a/1026126/124914]
 
-In most `~/.bashrc` there is a section that runs `~/.bash_aliases` if it exists.
-If not you can add the following to your `~/.bashrc`:
 
 ### ViM Environment
 
