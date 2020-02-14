@@ -5,7 +5,7 @@ source ~/dotfiles/bashrc/prompt.sh
 source ~/dotfiles/bashrc/elife.sh
 
 echo 
-figlet -w240 -W  -f small "$(date '+%A %d %b %Y')" | lolcat
+figlet -w240 -W  -f small "$(date '+%A %d %b')" | lolcat
 
 system_info
 echo
