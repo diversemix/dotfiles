@@ -49,16 +49,16 @@ lua_draw_hook_post main
 TEXT
 ${voffset 20} ${font Ubuntu:size=10:bold}${color5}CPU
 ${offset 120}${cpugraph 40,183 002200 66aa66}
-${offset 80}${font Ubuntu:size=10}${color4}${top name 1}${alignr}${top cpu 1}%
-${offset 80}${font Ubuntu:size=10}${color1}${top name 2}${alignr}${top cpu 2}%
-${offset 80}${font Ubuntu:size=10}${color2}${top name 3}${alignr}${top cpu 3}%
-${offset 80}${font Ubuntu:size=10}${color3}${top name 4}${alignr}${top cpu 4}%
+${offset 140}${font Ubuntu:size=10}${color4}${top name 1}${alignr}${top cpu 1}%
+${offset 140}${font Ubuntu:size=10}${color1}${top name 2}${alignr}${top cpu 2}%
+${offset 140}${font Ubuntu:size=10}${color2}${top name 3}${alignr}${top cpu 3}%
+${offset 140}${font Ubuntu:size=10}${color3}${top name 4}${alignr}${top cpu 4}%
 ${voffset 30}${font Ubuntu:size=10:bold}${color5}MEM
 ${offset 120}${memgraph 40,183 002200 66aa66}
-${offset 80}${font Ubuntu:size=10}${color4}${top_mem name 1}${alignr}${top_mem mem 1}%
-${offset 80}${font Ubuntu:size=10}${color1}${top_mem name 2}${alignr}${top_mem mem 2}%
-${offset 80}${font Ubuntu:size=10}${color2}${top_mem name 3}${alignr}${top_mem mem 3}%
-${offset 80}${font Ubuntu:size=10}${color3}${top_mem name 4}${alignr}${top_mem mem 4}%
+${offset 140}${font Ubuntu:size=10}${color4}${top_mem name 1}${alignr}${top_mem mem 1}%
+${offset 140}${font Ubuntu:size=10}${color1}${top_mem name 2}${alignr}${top_mem mem 2}%
+${offset 140}${font Ubuntu:size=10}${color2}${top_mem name 3}${alignr}${top_mem mem 3}%
+${offset 140}${font Ubuntu:size=10}${color3}${top_mem name 4}${alignr}${top_mem mem 4}%
 ${voffset 30}${font Ubuntu:size=10:bold}${color5}DISK
 ${offset 128}${diskiograph 40,183 002200 66aa66}
 ${offset 140}${font Ubuntu:size=10}${color1}/${alignr}${fs_free /}
