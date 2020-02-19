@@ -19,7 +19,7 @@ Below is how I use/install the dotfiles configuations
 
 There are 2 steps:
 
-1) Edit `.profile` and add `source ~/dotfiles/diversemix_profile`, you may wish to follow the pattern below 
+1) Edit `.bashrc` and add `source ~/dotfiles/diversemix_profile`, you may wish to follow the pattern below 
 so that you don't have issues in non-interactive shells.
 
 ```
@@ -29,9 +29,6 @@ case "$-" in
 esac
 
 ```
-
-2) (Change terminal Preferences->Command to Run Shell at login)[https://askubuntu.com/a/1026126/124914]
-
 
 ### ViM Environment
 
