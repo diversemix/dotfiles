@@ -24,7 +24,8 @@ alias gc_mm="google-chrome https://calendar.google.com/calendar/b/1/r"
 # Example : $ compare <branch>
 alias compare='browse_to https://github.com/elifesciences/elife-xpub/compare/develop...' 
 alias el="cd ~/dev/elifesciences/elife-xpub"
-alias rev="cd ~/dev/libero/reviewer"
+alias lr="cd ~/dev/libero/reviewer"
+alias lrs="cd ~/dev/libero/reviewer-submission"
 
 
 alias gk='gitkan'
