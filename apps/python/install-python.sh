@@ -12,6 +12,7 @@ pip2 install virtualenvwrapper
 pip3 install virtualenvwrapper
 
 echo "Setting up virual envs..."
+source ${HOME}/.local/bin/virtualenvwrapper.sh
 export VE=${HOME}/.virtualenvs
 mkdir $VE
 
