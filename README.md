@@ -38,6 +38,14 @@ esac
 
 - Use `ln -s ${HOME}/dotfiles/diversemix.tmux.conf ~/.tmux.conf`
 
+### Git Environment
+
+```
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+git config --global diff.tool meld
+git config --global difftool.prompt false
+```
 ## References
 
 [1] http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
