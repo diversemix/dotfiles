@@ -7,10 +7,16 @@ source ~/dotfiles/bashrc/elife.sh
 echo 
 figlet -w240 -W  -f small "$(date '+%a %d %b')" | lolcat
 
+# If pyenv is installed...
 if [ -d $HOME/.pyenv/bin ]; then
 	export PATH="$HOME/.pyenv/bin:$PATH"
 	eval "$(pyenv init -)"
 	eval "$(pyenv virtualenv-init -)"
+fi
+
+# If rust is installed...
+if [ -d $HOME/.cargo ]; then
+  source $HOME/.cargo/env
 fi
 
 system_info
