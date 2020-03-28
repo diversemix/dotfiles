@@ -4,13 +4,12 @@ tool_search() {
     if [ "$1" == "" ] ; then echo Need a search term as an argument! ; return 1 ; fi
     echo
     ARGS="--heading --break --match $1 "
-    ack -i ${TOOLBOX_DATA}/pocket ${ARGS} | cut -d '|' -f2- | sed -e "s/\\\/\n  /g" | colorize blue $1 | colorize green ${TOOLBOX_DATA}
-    ack -i ${TOOLBOX_DATA}/toolbox ${ARGS} | cut -d '|' -f2- | sed -e "s/\\\/\n  /g" | colorize blue $1  | colorize green ${TOOLBOX_DATA}
+    ack -i ${TOOLBOX_DATA} ${ARGS} | cut -d '|' -f2- | sed -e "s/\\\/\n  /g" | colorize blue $1  | colorize green ${TOOLBOX_DATA}
 
 }
 
 cheatsheet() {
-    curl -s "https://raw.githubusercontent.com/duckduckgo/zeroclickinfo-goodies/master/share/goodie/cheat_sheets/json/$1.json" | grep -A 2 $2
+    curl -s "https://raw.githubusercontent.com/duckduckgo/zeroclickinfo-goodies/master/share/goodie/cheat_sheets/json/$1.json" | grep -C 2 $2
 }
 
 tool_add() {
