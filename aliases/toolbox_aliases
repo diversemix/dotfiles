@@ -1,10 +1,7 @@
-
-
 tool_search() {
     if [ "$1" == "" ] ; then echo Need a search term as an argument! ; return 1 ; fi
     echo
-    ARGS="--heading --break --match $1 "
-    ack -i ${TOOLBOX_DATA} ${ARGS} | cut -d '|' -f2- | sed -e "s/\\\/\n  /g" | colorize blue $1  | colorize green ${TOOLBOX_DATA}
+    ag $1 ${TOOLBOX_DATA} 
 
 }
 
