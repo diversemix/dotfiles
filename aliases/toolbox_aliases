@@ -10,16 +10,7 @@ cheatsheet() {
 }
 
 tool_add() {
-    echo -n "Enter the filename/category > "
-    read tfile
-
-    echo -n "Enter the comma separated list of tags > "
-    read tags
-
-    echo "Now the useful info..."
-    read info
-
-    echo "$tags | $info" >> ${TOOLBOX_DATA}/pocket/$tfile
+  vi -c ":cd ${TOOLBOX_DATA}"
 }
 
 alias ts=tool_search
