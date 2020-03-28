@@ -14,7 +14,7 @@ noremap <Leader>o :vsp<cr>:exe "e $HOME/Dropbox/app_data/todo.md"<cr>
 noremap <Leader>q :q<cr>
 " noremap <Leader>s <c-w>w
 noremap <Leader>t :terminal<cr>
-noremap <Leader>v :e ~/dotfiles/vimrc<cr>
+noremap <Leader>v :e ~/dotfiles/diversemix.vimrc<cr>
 noremap <Leader>w <c-w>w
 noremap <Leader>x :new +0r!
 noremap <Leader>z :!how2 -l node
