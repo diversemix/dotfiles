@@ -1,11 +1,12 @@
 # dotfiles
+My own configuration and knowledge-based installed on all the machines I use.
 
 
-Started by reading the article[1].
+## Contents Explained
 
-Seems a common thing to do, and I find it very convient working on a number of machines to unify my setup.
-This did use an `install.sh` script - however I've found I need greater constrol of how things are done.
-Below is how I use/install the dotfiles configuations
+- All of the files in the root of the folder contain configuraton and can be installed using the instructions below.
+- `apps` - Used to install Ubuntu applications.
+- `kb` - This knowledgebase contains methods of commonly used tasks, recorded as scripts or text.
 
 ## Installing on Ubuntu
 
@@ -46,6 +47,3 @@ git config --global user.email johndoe@example.com
 git config --global diff.tool meld
 git config --global difftool.prompt false
 ```
-## References
-
-[1] http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/

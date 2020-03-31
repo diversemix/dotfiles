@@ -13,5 +13,5 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 # export SYSTEMD_PAGER=
 
 # Assume we have dropbox installed
-export TOOLBOX_DATA=~/diversemix.github.io/toolbox
+export TOOLBOX_DATA=~/Dropbox/app_data/toolbox
 echo -n "Got vars..."
