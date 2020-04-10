@@ -1,6 +1,7 @@
 ack # example comment
 build-essential
 conky-all
+diodon
 docker-ce
 docker-ce-cli
 encfs 
