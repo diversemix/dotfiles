@@ -36,13 +36,13 @@ git_info() {
 
     ahead_by=$(git rev-list origin..HEAD|wc -l)
     behind_by=$(git rev-list HEAD..origin|wc -l)
-    sync="${RESET} ⋮ ${ahead_by}▼ ${behind_by}▲ "
-    remote="${YELLOW}$remote_short${TEAL}:$branch"
+    sync="${RESET} ${ahead_by}▼ ${behind_by}▲ "
+    remote="${TEAL}($branch)"
     printf "⇒ ${remote}${sync}${RED}$locally ${GREEN}${staged}${RESET}\n"
     printf "%-45s %s\n%-45s %s\n%-45s %s\n%-45s %s\n" \
       $(pwd) [${ahead_by}] \
       ${remote_short}:${branch} [${behind_by}] \
-      "Not staged" ${locally} \
+      "Not staged" "${locally}" \
       "Staged" ${staged} \
       >/tmp/last_git
   fi
