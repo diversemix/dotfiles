@@ -6,26 +6,19 @@ alias db_rebuild="docker stop elifexpub_postgres_1; docker rm -v elifexpub_postg
 
 alias clean_stg="ssh elife@staging--xpub.elifesciences.org \"docker images | grep days | grep xpub| cut -d ' ' -f9 | xargs docker rmi\""
 
-# AWS
-alias ssh_ci="ssh elife@ci--xpub.elifesciences.org"
-alias ssh_stg="ssh -L 50000:elife-xpub-staging.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@54.91.166.142"
-alias ssh_prod="ssh -L 50001:elife-xpub-prod.cxyopn44uqbl.us-east-1.rds.amazonaws.com:5432 elife@52.5.166.105"
-alias psql_stg="psql -U root -h localhost -p 50000 elifexpubstaging -w"
-alias psql_prod="psql -U root -h localhost -p 50001 elifexpubprod -w"
 
 # eLife
 alias issue='browse_to https://github.com/elifesciences/elife-xpub/issues/'
 alias b="~/dev/builder/bldr"
 
-# google chrome
-alias gc_email="google-chrome https://mail.google.com/mail/u/1/#inbox"
-alias gc_mm="google-chrome https://calendar.google.com/calendar/b/1/r"
 
 # Example : $ compare <branch>
 alias compare='browse_to https://github.com/elifesciences/elife-xpub/compare/develop...' 
 alias el="cd ~/dev/elifesciences/elife-xpub"
 alias lr="cd ~/dev/libero/reviewer"
 alias lrs="cd ~/dev/libero/reviewer-submission"
+alias lrc="cd ~/dev/libero/reviewer-client"
+alias lrm="cd ~/dev/libero/reviewer-mocks"
 
 
 alias gk='gitkan'

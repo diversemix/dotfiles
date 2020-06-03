@@ -22,8 +22,9 @@ alias u='cd ..'
 # Double letter aliases...
 alias xo=xdg-open
 alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
-alias va='vi ~/.bash_aliases ; source ~/.bash_aliases'
-alias ve='vi ~/dotfiles/elife-aliases ; source ~/.bash_aliases'
+alias va='vi ~/dotfiles/diversemix_aliases ; source ~/.bash_aliases'
+alias ve='vi ~/dotfiles/aliases/elife-aliases ; source ~/.bash_aliases'
+
 alias vv='vi ~/.vimrc'
 alias hn='history | cut -d " " -f6- | sort | uniq -c | sort -n '
 
@@ -53,6 +54,7 @@ alias git_clean_all='git clean -xfd'
 alias longest_jsfiles='for f in $(git ls-tree --name-only -r HEAD | grep js$); do  cat $f | wc -l ; echo $f; done | paste -d "," - -  | sort -n'
 alias jstags="find . -type f -iregex '.*\.js$' -not -path './node_modules/*' -exec jsctags {} -f \; | sed '/^$/d' | LANG=C sort > tags"
 alias git_uncommit="git reset --soft HEAD^"
+alias enable_fn="echo 0 | pkexec tee /sys/module/hid_apple/parameters/fnmode"
 
 
 # Cheat sheets
