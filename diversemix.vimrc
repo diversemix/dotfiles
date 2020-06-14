@@ -8,7 +8,7 @@ source ~/dotfiles/vim/leader.vim
 
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
-colorscheme gruvbox       " set colorscheme
+colorscheme peachpuff     " set colorscheme
 set background=dark       " set the colorscheme (https://github.com/morhetz/gruvbox/wiki/Usage)
 set rnu                   " show line numbers
 set nu
@@ -39,8 +39,9 @@ set path+=**
 set wildmenu
 map <F6> :setlocal spell! spelllang=en_gb<CR>
 hi SpellBad guibg=#ff2929 ctermbg=224
+hi Search guibg=#ffff00 ctermbg=226
 
-" set listchars=eol:↩,tab:►-,trail:•,extends:>,precedes:<
+set listchars=eol:↩,tab:►-,trail:•,extends:>,precedes:<
 set list
 
 " Remove trailing whitespace

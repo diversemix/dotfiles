@@ -1,5 +1,19 @@
 source ~/dotfiles/aliases/toolbox_aliases
 
+timer() {
+  date1=`date +%s`; while true; do
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+  done
+}
+
+countdown() {
+  secs=1200; date1=$((`date +%s` + $secs)); 
+  while [ "$date1" -ge `date +%s` ]; do 
+    echo -ne "$(date -u --date @$(($date1 - `date +%s` )) +%H:%M:%S)\r"; 
+  done
+  notify-send -u critical -i "notification-message-IM" 'countdown timer' 'Has completed!'
+}
+
 ###################### ALIASES #####################
 # Overrides
 alias ls='ls --color'
@@ -24,6 +38,8 @@ alias xo=xdg-open
 alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 alias va='vi ~/dotfiles/diversemix_aliases ; source ~/.bash_aliases'
 alias ve='vi ~/dotfiles/aliases/elife-aliases ; source ~/.bash_aliases'
+alias tjp='firefox https://github.com/diversemix/tech-journal/projects/1'
+alias tj='firefox https://github.com/diversemix/tech-journal'
 
 alias vv='vi ~/.vimrc'
 alias hn='history | cut -d " " -f6- | sort | uniq -c | sort -n '
