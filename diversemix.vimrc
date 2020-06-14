@@ -37,11 +37,17 @@ let &colorcolumn="80,".join(range(120,120),",")
 set history=1000
 set path+=**
 set wildmenu
+
 map <F6> :setlocal spell! spelllang=en_gb<CR>
+map v :GoLint<CR>:GoVet<CR>
+
 hi SpellBad guibg=#ff2929 ctermbg=224
 hi Search guibg=#ffff00 ctermbg=226
+hi NonText ctermfg=237
+hi ExtraWhitespace ctermfg=199
+hi SpecialKey ctermfg=237
 
-set listchars=eol:↩,tab:►-,trail:•,extends:>,precedes:<
+set listchars=eol:↲,tab:··,trail:⏺,extends:>,precedes:<
 set list
 
 " Remove trailing whitespace

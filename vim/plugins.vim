@@ -21,9 +21,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-" Syntastic 
+" Syntastic
 Plugin 'scrooloose/syntastic'
-let g:syntastic_javascript_checkers = ['eslint']
+
+" Go lang
+Plugin 'fatih/vim-go'
 
 " Nerd Tree
 Plugin 'scrooloose/nerdtree'
@@ -31,22 +33,6 @@ let NERDTreeMapOpenInTab='\r'
 map <C-n> :NERDTreeToggle<CR>
 
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-" From vim-awesome
-Plugin 'pangloss/vim-javascript'
-" let g:javascript_conceal_function             = "ƒ"
-let g:javascript_conceal_null                 = "ø"
-let g:javascript_conceal_this                 = "@"
-"let g:javascript_conceal_return               = "⇚"
-let g:javascript_conceal_undefined            = "¿"
-let g:javascript_conceal_NaN                  = "ℕ"
-let g:javascript_conceal_prototype            = "¶"
-let g:javascript_conceal_static               = "•"
-let g:javascript_conceal_super                = "Ω"
-let g:javascript_conceal_arrow_function       = "⇒"
-" let g:javascript_conceal_noarg_arrow_function = ""
-" let g:javascript_conceal_underscore_arrow_function = ""
-set conceallevel=1
 
 Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_hotkey='<C-m>'
