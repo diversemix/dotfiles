@@ -2,7 +2,6 @@ tool_search() {
     if [ "$1" == "" ] ; then echo Need a search term as an argument! ; return 1 ; fi
     echo
     ag $1 ${TOOLBOX_DATA} 
-
 }
 
 cheatsheet() {

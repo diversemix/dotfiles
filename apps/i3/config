@@ -183,3 +183,4 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 exec dropbox start
+exec diodon

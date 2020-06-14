@@ -55,7 +55,7 @@ alias longest_jsfiles='for f in $(git ls-tree --name-only -r HEAD | grep js$); d
 alias jstags="find . -type f -iregex '.*\.js$' -not -path './node_modules/*' -exec jsctags {} -f \; | sed '/^$/d' | LANG=C sort > tags"
 alias git_uncommit="git reset --soft HEAD^"
 alias enable_fn="echo 0 | pkexec tee /sys/module/hid_apple/parameters/fnmode"
-
+alias messenger="google-chrome --app-id=lainlkmlgipednloilifbppmhdocjbda"
 
 # Cheat sheets
 alias cs='cheatsheet'
