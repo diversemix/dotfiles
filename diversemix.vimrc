@@ -39,7 +39,6 @@ set path+=**
 set wildmenu
 
 map <F6> :setlocal spell! spelllang=en_gb<CR>
-map v :GoLint<CR>:GoVet<CR>
 
 hi SpellBad guibg=#ff2929 ctermbg=224
 hi Search guibg=#ffff00 ctermbg=226

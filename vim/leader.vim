@@ -1,40 +1,49 @@
+let mapleader = ";"
+
 inoremap <Leader><Space> <Esc>/<++><Enter>"_c4l
 noremap <Leader><Space> /<++><Enter>"_c4l
 
-noremap <Leader>a :sp<cr>
-noremap <Leader>b :vsp<cr>
-noremap <Leader>c :bd<cr>
-noremap <Leader>e :e %:p:h<cr>
-noremap <Leader>h :vsp<cr>:exe "e $HOME/Dropbox/app_data/help/" . &ft . ".md"<cr>
+inoremap <Leader>; <Esc>
+noremap <Leader>a :sp<CR>
+noremap <Leader>b :vsp<CR>
+noremap <Leader>c :bd<CR>
+noremap <Leader>d :close<CR>
+noremap <Leader>e :cn<CR>
+noremap <Leader>h :vsp<CR>:exe "e $HOME/Dropbox/app_data/help/" . &ft . ".md"<CR>
 noremap <Leader>j :bprevious<CR>
 noremap <Leader>k :bnext<CR>
-noremap <Leader>l :e ~/dotfiles/leader.vim<cr>
+noremap <Leader>l :GoLint<CR>
 noremap <Leader>n :set norelativenumber!<CR>
-noremap <Leader>o :vsp<cr>:exe "e $HOME/Dropbox/app_data/todo.md"<cr>
-noremap <Leader>q :q<cr>
-" noremap <Leader>s <c-w>w
-noremap <Leader>t :terminal<cr>
-noremap <Leader>v :e ~/dotfiles/diversemix.vimrc<cr>
-noremap <Leader>w <c-w>w
+noremap <Leader>o :vsp<CR>:exe "e $HOME/Dropbox/app_data/todo.md"<CR>
+noremap <Leader>q :q<CR>
+noremap <Leader>t :terminal<CR>
+noremap <Leader>v :e ~/dotfiles/diversemix.vimrc<CR>
 noremap <Leader>x :new +0r!
-noremap <Leader>z :!how2 -l node
 
 " folding
-nnoremap <leader>ff :set fdm=manual<cr>
-nnoremap <leader>fi :set fdm=indent<cr>
-nnoremap <leader>fm :set fdm=marker<cr>
-nnoremap <leader>fs :set fdm=syntax<cr>
-nnoremap <leader>fd :set fdm=diff<cr>
+nnoremap <leader>ff :set fdm=manual<CR>
+nnoremap <leader>fi :set fdm=indent<CR>
+nnoremap <leader>fm :set fdm=marker<CR>
+nnoremap <leader>fs :set fdm=syntax<CR>
+nnoremap <leader>fd :set fdm=diff<CR>
 
 " html snippets
 autocmd FileType html inoremap <Leader>i <em></em><Space><++><Esc>FeT>i
 autocmd FileType html inoremap <Leader>h <h1></h1><Space><++><Esc>FhT>i
 autocmd FileType html inoremap <Leader>d <div></div><Space><++><Esc>FdT>i
 
-"js snippets
-autocmd FileType javascript inoremap <Leader>c console.log(``)<Space><++><Esc>F`i
-autocmd FileType javascript inoremap <Leader>j JSON.stringify()<Space><++><Esc>F)i
-autocmd FileType javascript inoremap <Leader>v ${}<Esc>i
-autocmd FileType javascript inoremap <Leader>a ()<Space>=><Space>{<CR><++><CR>}<Space><++><Esc>?)<CR>i
-autocmd FileType javascript inoremap <Leader>f function ()<Space>{<CR><++><CR>}<Space><++><Esc>?(<CR>i
+" js snippets
+autocmd FileType javasCRipt inoremap <Leader>c console.log(``)<Space><++><Esc>F`i
+autocmd FileType javasCRipt inoremap <Leader>j JSON.stringify()<Space><++><Esc>F)i
+autocmd FileType javasCRipt inoremap <Leader>v ${}<Esc>i
+autocmd FileType javasCRipt inoremap <Leader>a ()<Space>=><Space>{<CR><++><CR>}<Space><++><Esc>?)<CR>i
+autocmd FileType javasCRipt inoremap <Leader>f function ()<Space>{<CR><++><CR>}<Space><++><Esc>?(<CR>i
+
+" go snippets
+autocmd FileType go inoremap <Leader>f func<Space>
+autocmd FileType go inoremap <Leader>s <Space>{<CR>X<CR>}<Esc>?X<CR>:noh<CR>cw
+autocmd FileType go inoremap <Leader>a (X)<++><Esc>FXcw
+
+autocmd FileType go inoremap <Leader>p fmt.Printf("")<++><Esc>F"i
+autocmd FileType go noremap <Leader>p ofmt.Printf("")<++><Esc>F"i
 

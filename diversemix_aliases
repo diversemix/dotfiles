@@ -23,7 +23,7 @@ alias l="ls -ltrh $*"
 alias a="alias"
 alias s="systemctl $*"
 alias j="journalctl $*"
-alias v="vim $*"
+alias v="nvim $*"
 alias i="ifconfig $*"
 alias m="GTK_THEME=Arc meld"
 alias n="netstat -lpn"
@@ -34,6 +34,7 @@ alias c='top -d 0.5 -bn3 | grep "%Cpu(s)" | cut -d ',' -f4 | awk "{print 100 - $
 alias u='cd ..'
 
 # Double letter aliases...
+alias vi="nvim $*"
 alias xo=xdg-open
 alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 alias va='vi ~/dotfiles/diversemix_aliases ; source ~/.bash_aliases'
