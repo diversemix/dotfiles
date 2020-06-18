@@ -17,6 +17,8 @@ Plugin 'tpope/vim-surround'
 
 " Vim-Airline for the nice statusbar
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+let g:airline_theme='angr'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -39,6 +41,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_browser='Firefox'
 
 Plugin 'neoclide/coc.nvim'
 

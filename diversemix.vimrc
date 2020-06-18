@@ -40,8 +40,9 @@ set wildmenu
 
 map <F6> :setlocal spell! spelllang=en_gb<CR>
 
-hi SpellBad guibg=#ff2929 ctermbg=224
-hi Search guibg=#ffff00 ctermbg=226
+" https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
+hi SpellBad ctermbg=224
+hi Search ctermbg=100 ctermfg=black
 hi NonText ctermfg=237
 hi ExtraWhitespace ctermfg=199
 hi SpecialKey ctermfg=237
