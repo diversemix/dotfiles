@@ -2,13 +2,13 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 source ~/dotfiles/vim/disable-arrows.vim
-source ~/dotfiles/vim/plugins.vim
 source ~/dotfiles/vim/windows.vim
 source ~/dotfiles/vim/leader.vim
+source ~/dotfiles/vim/plugins.vim
 
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
-colorscheme peachpuff     " set colorscheme
+colorscheme gruvbox     " set colorscheme
 set background=dark       " set the colorscheme (https://github.com/morhetz/gruvbox/wiki/Usage)
 set rnu                   " show line numbers
 set nu
@@ -41,11 +41,11 @@ set wildmenu
 map <F6> :setlocal spell! spelllang=en_gb<CR>
 
 " https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
-hi SpellBad ctermbg=224
-hi Search ctermbg=100 ctermfg=black
-hi NonText ctermfg=237
-hi ExtraWhitespace ctermfg=199
-hi SpecialKey ctermfg=237
+" hi SpellBad ctermbg=224
+" hi Search ctermbg=100 ctermfg=black
+" hi NonText ctermfg=237
+" hi ExtraWhitespace ctermfg=199
+" hi SpecialKey ctermfg=237
 
 set listchars=eol:↲,tab:··,trail:⏺,extends:>,precedes:<
 set list
