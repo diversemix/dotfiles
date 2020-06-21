@@ -19,6 +19,8 @@ if [ -d $HOME/.cargo ]; then
   source $HOME/.cargo/env
 fi
 
+export $(gnome-keyring-daemon -s)
+
 system_info
 echo
 docker_info
