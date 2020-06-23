@@ -22,7 +22,7 @@ set softtabstop=2         " unify
 set shiftwidth=2          " indent/outdent by 2 columns
 set shiftround            " always indent/outdent to the nearest tabstop
 set expandtab             " use spaces instead of tabs
-set nowrap                " don't wrap text
+set wrap                " don't wrap text
 "set shortmess=at          " Don't display standard message
 set autowrite             " save buffers when going hidden
 set hls

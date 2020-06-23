@@ -63,6 +63,10 @@ alias docker_rmvol="docker volume ls | cut -d ' ' -f16- | xargs docker volume rm
 alias dc=docker-compose
 
 # Aliases - General
+alias 2..='cd ../..'
+alias 3..='cd ../../..'
+alias 4..='cd ../../../..'
+alias cdgo='cd ~/go/src/github.com'
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
 alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
 alias vpn='sudo /etc/vpnsecure/vpnsecure'
