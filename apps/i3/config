@@ -183,6 +183,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+exec --no-startup-id dunst
 exec dropbox start
 exec diodon
 exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
