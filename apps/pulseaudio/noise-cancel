@@ -1,0 +1,11 @@
+# From: http://askubuntu.com/questions/18958/realtime-noise-removal-with-pulseaudio
+# only need to run once to install...
+#
+#    cat noise-cancel | sudo bash && pulseaudio -k
+#
+# If using a USB mic just restart pulseaudio with the '-k' flag as above (don't rerun)
+
+sudo cp /etc/pulse/default.pa /etc/pulse/default.pa.bak
+sudo cat <<EOT >> /etc/pulse/default.pa
+load-module module-echo-cancel source_name=noechosource sink_name=noechosink
+EOT
