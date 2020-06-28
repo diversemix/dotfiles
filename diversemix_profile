@@ -20,6 +20,8 @@ if [ -d $HOME/.cargo ]; then
 fi
 
 export $(gnome-keyring-daemon -s)
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+xmodmap -e 'keycode 49 = grave asciitilde'
 
 system_info
 echo
