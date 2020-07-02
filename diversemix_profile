@@ -2,7 +2,6 @@ source ~/dotfiles/bashrc/colors.sh
 source ~/dotfiles/bashrc/vars.sh
 source ~/dotfiles/bashrc/funcs.sh
 source ~/dotfiles/bashrc/prompt.sh
-source ~/dotfiles/bashrc/elife.sh
 
 echo 
 figlet -w240 -W  -f small "$(date '+%a %d %b')" | lolcat
