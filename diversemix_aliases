@@ -76,7 +76,19 @@ alias jstags="find . -type f -iregex '.*\.js$' -not -path './node_modules/*' -ex
 alias git_uncommit="git reset --soft HEAD^"
 alias enable_fn="echo 0 | pkexec tee /sys/module/hid_apple/parameters/fnmode"
 alias messenger="google-chrome --app-id=lainlkmlgipednloilifbppmhdocjbda"
+alias loop_test="while inotifywait -r -q -e close_write . ; do  make test; done"
 
+# Simprints Aliases
+alias sp='cd ~/go/src/github.com/simprints/cloud'
+
+brightness_down() {
+  echo $(($(cat /sys/class/backlight/intel_backlight/brightness) - 1000))
+}
+brightness_up() {
+  echo $(($(cat /sys/class/backlight/intel_backlight/brightness) + 1000))
+}
+alias bdown="brightness_down|sudo tee /sys/class/backlight/intel_backlight/brightness"
+alias bup="brightness_up|sudo tee /sys/class/backlight/intel_backlight/brightness"
 # Cheat sheets
 alias cs='cheatsheet'
 
