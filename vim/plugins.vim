@@ -6,6 +6,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
+let g:gruvbox_contrast_dark='hard'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -16,9 +18,6 @@ Plugin 'tpope/vim-rhubarb'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_theme='angr'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Syntastic
 Plugin 'scrooloose/syntastic'
@@ -29,7 +28,8 @@ Plugin 'fatih/vim-go'
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
-
+let g:go_term_mode = "split"
+let g:go_term_enabled = 1
 
 Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_hotkey='<C-m>'

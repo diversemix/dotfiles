@@ -45,9 +45,13 @@ alias vv='vi ~/.vimrc'
 alias hn='history | cut -d " " -f6- | sort | uniq -c | sort -n '
 
 # Git aliases
+alias gh-gists="gh api gists | jq -r '.[] | [.html_url,(.files | to_entries | .[0].key),.description] | @tsv'"
 alias gl="git log --oneline --graph --decorate --all"
 alias glf="git log --oneline --name-only"
 alias gs='git status -sb'
+alias gp='git pull'
+alias gb='git checkout -b'
+alias gd='git checkout develop&& git pull'
 alias pr='hub pull-request'
 alias tag_hist='git for-each-ref --sort=taggerdate --format "%(taggerdate) %(refname)" refs/tags'
 
@@ -77,9 +81,14 @@ alias git_uncommit="git reset --soft HEAD^"
 alias enable_fn="echo 0 | pkexec tee /sys/module/hid_apple/parameters/fnmode"
 alias messenger="google-chrome --app-id=lainlkmlgipednloilifbppmhdocjbda"
 alias loop_test="while inotifywait -r -q -e close_write . ; do  make test; done"
+alias vvim="/usr/bin/vim -u NONE"
 
 # Simprints Aliases
-alias sp='cd ~/go/src/github.com/simprints/cloud'
+alias cdc='cd ~/dev/cloud'
+alias cdcc='cd ~/dev/Cloud-Config'
+alias vt='nvim ~/todo'
+alias kata='nvim ~/kata'
+alias reload='source ~/.bashrc'
 
 brightness_down() {
   echo $(($(cat /sys/class/backlight/intel_backlight/brightness) - 1000))
