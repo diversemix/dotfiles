@@ -1,27 +1,46 @@
-let mapleader = ";"
+let mapleader=";"
 
 noremap <C-p> :GFiles<CR>
 
-inoremap <Leader><Space> <Esc>/<++><Enter>"_c4l
 noremap <Leader><Space> /<++><Enter>"_c4l
 
-inoremap <Leader>; <Esc>
-noremap <Leader>a :sp<CR>
-noremap <Leader>b :vsp<CR>
+map <A-j> :bprevious<cr>
+map <A-k> :bnext<cr>
+map <C-3> :buffers<cr>
+
 noremap <Leader>c :bd<CR>
-noremap <Leader>d :cd %:p:h<CR>
+noremap <Leader>d :lcd %:p:h<CR>
 noremap <Leader>e :cn<CR>
 noremap <Leader>E :cp<CR>
 noremap <Leader>g :Git<CR>
 noremap <Leader>h :call CocAction('doHover')<CR>
-noremap <Leader>j :bprevious<CR>
-noremap <Leader>k :bnext<CR>
-noremap <Leader>l :GoLint<CR>
+noremap <Leader>j :bprevious<cr>
+noremap <Leader>k :bnext<cr>
 noremap <Leader>n :set norelativenumber!<CR>
+noremap <Leader>p :setlocal spell! spelllang=en_gb<CR>
 noremap <Leader>q :q<CR>
-noremap <Leader>t :terminal<CR>
+noremap <Leader>t :sp<CR>
+noremap <Leader>tt :vsp<CR>
 noremap <Leader>v :e ~/dotfiles/diversemix.vimrc<CR>
+noremap <Leader>w :w<CR>
 noremap <Leader>x :new +0r!
+noremap <Leader>z :let @+=expand("%")<CR>
+
+noremap <Leader>gb :GoBuild<CR>
+noremap <Leader>gd :GoDoc<CR>
+noremap <Leader>gD :GoDocBrowser<CR>
+noremap <Leader>gl :GoLint<CR>
+noremap <Leader>gt :GoTest<CR>
+noremap <Leader>gr :GoRun<CR>
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+" not really getting on with auto bracket closing
+" inoremap ( ()<Esc>i
+" inoremap [ []<Esc>i
+" inoremap { {}<Esc>i
+" inoremap " ""<Esc>i
 
 " folding
 nnoremap <leader>ff :set fdm=manual<CR>
@@ -30,23 +49,6 @@ nnoremap <leader>fm :set fdm=marker<CR>
 nnoremap <leader>fs :set fdm=syntax<CR>
 nnoremap <leader>fd :set fdm=diff<CR>
 
-" html snippets
-autocmd FileType html inoremap <Leader>i <em></em><Space><++><Esc>FeT>i
-autocmd FileType html inoremap <Leader>h <h1></h1><Space><++><Esc>FhT>i
-autocmd FileType html inoremap <Leader>d <div></div><Space><++><Esc>FdT>i
-
-" js snippets
-autocmd FileType javasCRipt inoremap <Leader>c console.log(``)<Space><++><Esc>F`i
-autocmd FileType javasCRipt inoremap <Leader>j JSON.stringify()<Space><++><Esc>F)i
-autocmd FileType javasCRipt inoremap <Leader>v ${}<Esc>i
-autocmd FileType javasCRipt inoremap <Leader>a ()<Space>=><Space>{<CR><++><CR>}<Space><++><Esc>?)<CR>i
-autocmd FileType javasCRipt inoremap <Leader>f function ()<Space>{<CR><++><CR>}<Space><++><Esc>?(<CR>i
-
-" go snippets
-autocmd FileType go inoremap <Leader>f func<Space>X(<++>)<Space>{<CR><++><CR>}<Esc>?X<CR>:noh<CR>cw
-
-autocmd FileType go inoremap <Leader>p fmt.Printf("")<++><Esc>F"i
-autocmd FileType go noremap <Leader>p ofmt.Printf("")<++><Esc>F"i
 
 " -----------------------------------------------------------------------------
 "  Settings for Coc

@@ -1,11 +1,3 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-source ~/dotfiles/vim/disable-arrows.vim
-source ~/dotfiles/vim/windows.vim
-source ~/dotfiles/vim/leader.vim
-source ~/dotfiles/vim/plugins.vim
-
 inoremap jj <Esc>
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
@@ -34,7 +26,7 @@ set hidden                " unamed files don't need saving
 set splitright            " new split on right
 set splitbelow            " new split below
 
-let &colorcolumn="80,".join(range(120,120),",")
+let &colorcolumn="80,".join(range(80,120),",")
 
 set history=1000
 set path+=**
@@ -51,5 +43,10 @@ set undoreload=10000
 set listchars=eol:↲,tab:··,trail:⏺,extends:>,precedes:<
 set list
 
+set foldlevel=1
+set foldenable
+set foldmethod=syntax
+
 " Remove trailing whitespace
-autocmd BufWritePre *.js :%s/\s\+$//e
+autocmd BufWritePre *.go :%s/\s\+$//e
+

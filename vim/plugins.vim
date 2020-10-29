@@ -6,18 +6,18 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
+let g:gruvbox_contrast_dark='hard'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
 
 " Vim-Airline for the nice statusbar
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_theme='angr'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Syntastic
 Plugin 'scrooloose/syntastic'
@@ -28,7 +28,8 @@ Plugin 'fatih/vim-go'
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
-
+let g:go_term_mode = "split"
+let g:go_term_enabled = 1
 
 Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_hotkey='<C-m>'
@@ -40,15 +41,11 @@ Plugin 'junegunn/fzf.vim'
 
 " The Silver Searcher
 if executable('ag')
-  " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  let g:ctrls_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrls_use_caching = 0
 endif
+
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
