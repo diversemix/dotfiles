@@ -82,6 +82,7 @@ alias enable_fn="echo 0 | pkexec tee /sys/module/hid_apple/parameters/fnmode"
 alias messenger="google-chrome --app-id=lainlkmlgipednloilifbppmhdocjbda"
 alias loop_test="while inotifywait -r -q -e close_write . ; do  make test; done"
 alias vvim="/usr/bin/vim -u NONE"
+alias fixgit="git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/master"
 
 # Simprints Aliases
 alias cdc='cd ~/dev/cloud'
