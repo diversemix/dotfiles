@@ -34,8 +34,8 @@ git_info() {
     staged="($(git status -s | grep -v '?' |cut -c 1| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs))"
     locally="[$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | xargs)]"
 
-    ahead_by=$(git rev-list origin..HEAD|wc -l)
-    behind_by=$(git rev-list HEAD..origin|wc -l)
+    ahead_by=$(git rev-list ${branch}..HEAD|wc -l)
+    behind_by=$(git rev-list HEAD..${branch}|wc -l)
     sync="${RESET} ${ahead_by}▼ ${behind_by}▲ "
     remote="${TEAL}($branch)"
     printf "⇒ ${remote}${sync}${RED}$locally ${GREEN}${staged}${RESET}\n"

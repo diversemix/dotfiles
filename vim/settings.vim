@@ -43,9 +43,9 @@ set undoreload=10000
 set listchars=eol:↲,tab:··,trail:⏺,extends:>,precedes:<
 set list
 
-set foldlevel=1
-set foldenable
-set foldmethod=syntax
+"set foldlevel=1
+"set foldenable
+"set foldmethod=syntax
 
 " Remove trailing whitespace
 autocmd BufWritePre *.go :%s/\s\+$//e

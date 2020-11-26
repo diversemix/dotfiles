@@ -46,8 +46,6 @@ if executable('ag')
   let g:ctrls_use_caching = 0
 endif
 
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

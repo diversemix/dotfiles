@@ -40,6 +40,7 @@ alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 alias va='vi ~/dotfiles/diversemix_aliases ; source ~/.bash_aliases'
 alias tjp='firefox https://github.com/diversemix/tech-journal/projects/1'
 alias tj='firefox https://github.com/diversemix/tech-journal'
+alias sk="slack-term -token ${SLACK_TOKEN}"
 
 alias vv='vi ~/.vimrc'
 alias hn='history | cut -d " " -f6- | sort | uniq -c | sort -n '
@@ -89,6 +90,7 @@ alias cdcc='cd ~/dev/Cloud-Config'
 alias vt='nvim ~/todo'
 alias kata='nvim ~/kata'
 alias reload='source ~/.bashrc'
+alias note='slack-cli -d peter'
 
 brightness_down() {
   echo $(($(cat /sys/class/backlight/intel_backlight/brightness) - 1000))
