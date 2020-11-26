@@ -26,6 +26,13 @@ git_info() {
   if [ -d .git ]; then
     local branch=$(git status -s -b | head -n 1 | sed -e 's/## //g' | sed -e 's/\.\.\..*//g')
     local remote=$(git remote -v | grep fetch | cut -f2 | cut -d ' ' -f1)
+    if [ -z "$remote" ]
+    then
+      printf "⇒ ${TEAL}($branch)${RESET}\n"
+      return
+      printf "cheese"
+    fi
+
     local remote_short=$(echo $remote | \
       sed -e 's/https:\/\/github.com\///g' | \
       sed -e 's/.git$//g' | \
@@ -37,8 +44,7 @@ git_info() {
     ahead_by=$(git rev-list ${branch}..HEAD|wc -l)
     behind_by=$(git rev-list HEAD..${branch}|wc -l)
     sync="${RESET} ${ahead_by}▼ ${behind_by}▲ "
-    remote="${TEAL}($branch)"
-    printf "⇒ ${remote}${sync}${RED}$locally ${GREEN}${staged}${RESET}\n"
+    printf "⇒ ${TEAL}${branch}${sync}${RED}$locally ${GREEN}${staged}${RESET}\n"
     printf "%-45s %s\n%-45s %s\n%-45s %s\n%-45s %s\n" \
       $(pwd) [${ahead_by}] \
       ${remote_short}:${branch} [${behind_by}] \
