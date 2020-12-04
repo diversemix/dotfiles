@@ -1,28 +1,43 @@
+figlet -w240 -W  -f small "$(date '+%a %d %b')" | lolcat
 source ~/dotfiles/bashrc/colors.sh
 source ~/dotfiles/bashrc/vars.sh
+source ~/dotfiles/bashrc/toolbox.sh
 source ~/dotfiles/bashrc/funcs.sh
 source ~/dotfiles/bashrc/prompt.sh
 
-echo 
-figlet -w240 -W  -f small "$(date '+%a %d %b')" | lolcat
+set-title "Bash-$(ps aux| grep ' bash' | wc -l)"
+
+echo "${YELLOW}System${RESET}"
+print-status
+
+# echo "${YELLOW}Todo${RESET}"
+# ~/dotfiles/scripts/todo.sh
+# echo 
 
 # If pyenv is installed...
 if [ -d $HOME/.pyenv/bin ]; then
+	echo -n "${YELLOW}python${RESET} "
 	export PATH="$HOME/.pyenv/bin:$PATH"
 	eval "$(pyenv init -)"
 	eval "$(pyenv virtualenv-init -)"
+	pyenv version
 fi
 
 # If rust is installed...
 if [ -d $HOME/.cargo ]; then
-  source $HOME/.cargo/env
+  echo "${YELLOW}rust${RESET} $(rustc -V)"
+fi
+
+# If nvm installed
+if [ -d $HOME/.nvm ]; then
+	echo -n "${YELLOW}node${RESET} "
+	node -v
+	echo -n "${YELLOW}npm${RESET} "
+	npm --version
 fi
 
 export $(gnome-keyring-daemon -s)
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-xmodmap -e 'keycode 49 = grave asciitilde'
 
-system_info
-echo
-docker_info
-echo ""
+# Taking these out for now as had weirdness with them
+# xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+# xmodmap -e 'keycode 49 = grave asciitilde'

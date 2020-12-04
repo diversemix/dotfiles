@@ -62,7 +62,7 @@ ${offset 140}${font Ubuntu:size=10}${color3}${top_mem name 4}${alignr}${top_mem 
 ${voffset 30}${font Ubuntu:size=10:bold}${color5}DISK
 ${offset 128}${diskiograph 40,183 002200 66aa66}
 ${offset 140}${font Ubuntu:size=10}${color1}/${alignr}${fs_free /}
-${offset 140}${font Ubuntu:size=10}${color1}/home/peter-big${alignr}${fs_free /home/peter-big}
+${offset 140}${font Ubuntu:size=10}${color1}/home/peter${alignr}${fs_free /home/peter}
 ${voffset 60}
 ${font Ubuntu:size=10:bold}${color5}ETHERNET${voffset 10}
 ${offset 15}${color1}${font Ubuntu:size=9:bold}Up: ${font Ubuntu:size=9}$color2${upspeed wlp2s0} \

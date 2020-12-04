@@ -1,8 +1,8 @@
-
 function topmem()
 {
     ps -eo size,pid,user,command --sort -size | \
         awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s" , $x) } print "" }' | \
+        cut -c -120 |\
         head
 }
 
@@ -54,17 +54,20 @@ git_info() {
   fi
 }
 
-docker_info() {
-    docker ps -a --format "{{.Status}} | {{.Image}}"
+docker-info() {
+    docker ps -a --format "....{{.Image}} | {{.Status}}"
 }
 
-system_info() {
+docker-count() {
+  docker ps | grep -v CONTAINER | wc -l
+}
+
+system-info() {
     DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
     MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
-    DOCKER=$(docker ps | grep -v CONTAINER | wc -l)
-    print_value_with_color "⛃ ${DISK}%%" ${DISK}
-    print_value_with_color " 🐘 ${MEM}%%" ${MEM}
-    printf " 🐋 ${DOCKER}"
+    print_percent_with_color "⛃ ${DISK}%%" ${DISK}
+    print_percent_with_color " 🐘 ${MEM}%%" ${MEM}
+    printf " 🐋 $(docker-count)\n"
 }
 
 host_or_git() {
@@ -75,11 +78,20 @@ host_or_git() {
   fi
 }
 
-print_value_with_color() {
+print_nonzero_with_color() {
 	message=$1
 	value=$2
 	color=${RED}
-	if [ $value -le 80 ] ; then color=${YELLOW} ; fi
+	if [ $value -le 0 ] ; then color=${GREEN} ; fi
+	if [ $value -gt 0 ] ; then color=${RED}${BLINK} ; fi
+	printf "${color}${message}${RESET}"
+}
+
+print_percent_with_color() {
+	message=$1
+	value=$2
+	color=${RED}${BLINK}
+	if [ $value -le 80 ] ; then color=${YELLOW}${BLINK} ; fi
 	if [ $value -le 50 ] ; then color=${GREEN} ; fi
 	printf "${color}${message}${RESET}"
 }
@@ -87,9 +99,15 @@ print_value_with_color() {
 print_command_with_color() {
   message=$1
   command=$2
-  color=${RED}
-  value=$($command)
-  if [ $? = 0 ]; then color=${GREEN} ; fi
+  value=$(${command})
+  if [ $? = 0 ]
+  then 
+    color=${GREEN}
+    [ "${value}" == "" ] && value="good"
+  else
+    color=${RED}${BLINK}
+    [ "${value}" == "" ] && value="bad"
+  fi
   printf "${color}${message}${value}${RESET}"
 }
 
@@ -102,21 +120,38 @@ test_dropbox() {
   echo $out ; ps aux | grep dropbox | grep -v grep >/dev/null
 }
 
-print_stats() {
+test_uncommited() {
+  pushd . > /dev/null; cd $1 ; git status -s | wc -l ; popd > /dev/null
+}
+
+
+print-status() {
 	DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
 	MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
 	SWAP=$(free | grep Swap | awk '{printf ("%2.0f", $3/$2 * 100.0) }')
+  DOCKER=$(docker ps | grep -v CONTAINER | wc -l)
 
-	printf "${GREEN}✔ Last    : Return value of last command${RESET}\n"
-	# disk, memory, network, dropbox
-
-	print_value_with_color "⛃ Disk    : ${DISK}%% \n" ${DISK}
-	print_value_with_color "🐘 Memory  : ${MEM}%% \n" ${MEM}
-	print_value_with_color "  Swap    : ${SWAP}%% \n" ${SWAP}
-	print_command_with_color "🖧 Network : " "test_network"
+	print_percent_with_color "  💾 Disk    : ${DISK}%% \n" ${DISK}
+	print_percent_with_color "  🐘 Memory  : ${MEM}%% \n" ${MEM}
+	print_percent_with_color "  🧻 Swap    : ${SWAP}%% \n" ${SWAP}
+	print_command_with_color "  🤝 Network : " "test_network"
   echo ""
-	print_command_with_color "🖿 Dropbox : " "test_dropbox"
+	print_command_with_color "  🧳 Dropbox : " "test_dropbox"
+  echo ""
+	print_command_with_color "  🐋 Docker  : " "docker-count"
+  echo ""
+  uncommited=$(test_uncommited ${TOOLBOX_DATA})
+	print_nonzero_with_color "  toolbox  : ${uncommited}"  ${uncommited}
+  echo ""
+  uncommited=$(test_uncommited ${HOME}/dotfiles)
+	print_nonzero_with_color "  dotfiles : ${uncommited}"  ${uncommited}
   echo ""
 }
 
-echo -n "Got funcs..."
+echo "${YELLOW}Functions"
+echo "    ${GREEN}topmem${RESET}       : lists top memory hogs"
+echo "    ${GREEN}set-title${RESET}    : sets window title"
+echo "    ${GREEN}print-status${RESET} : prints status of system"
+echo "    ${GREEN}system-info${RESET}  : one line status of system"
+echo "    ${GREEN}docker-info${RESET}  : docker version"
+# EOF

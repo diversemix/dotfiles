@@ -1,18 +1,19 @@
 # dotfiles
-My own configuration and knowledge-based installed on all the machines I use.
+My own bash and app configurations and knowledge-base installed on all the machines I use.
 
+**NOTE** knowledge based now moved to Dropbox
 
 ## Contents Explained
 
-- All of the files in the root of the folder contain configuraton and can be installed using the instructions below.
+- All of the files in the root of the folder contain configuration and can be installed using the instructions below.
 - `apps` - Used to install Ubuntu applications.
-- `kb` - This knowledgebase contains methods of commonly used tasks, recorded as scripts or text.
+- `kb` - This knowledge-base contains methods of commonly used tasks, recorded as scripts or text.
 
 ## Installing on Ubuntu
 
 ### Aliases
 
-- Link with `ln -s ${HOME}/dotfiles/diversemix_aliases ~/.bash_aliases` 
+- Link with `ln -s ${HOME}/dotfiles/diversemix_aliases ~/.bash_aliases`
 
 (If you already have this file you can source `diversemix_aliases`at the end)
 
