@@ -91,8 +91,9 @@ print_percent_with_color() {
   message=$1
   value=$2
   color=${RED}${BLINK}
-  if [ $value -le 80 ] ; then color=${YELLOW}${BLINK} ; fi
-  if [ $value -le 50 ] ; then color=${GREEN} ; fi
+  if [ $value -le 80 ] ; then color=${RED} ; fi
+  if [ $value -le 70 ] ; then color=${YELLOW} ; fi
+  if [ $value -le 40 ] ; then color=${GREEN} ; fi
   printf "${color}${message}${RESET}"
 }
 
@@ -128,7 +129,6 @@ genetics_define() {
   curl -s https://www.genomicseducation.hee.nhs.uk/glossary/$1/ | pup  'meta[property="og:description"] attr{content}'
 }
 
-
 git_search() {
   curl -s "https://github.com/search?q=$1&type=repositories" | pup 'ul[class="repo-list"]' | sed -e 's/href=\"/href=\"https:\/\/github.com/g' | w3m -T text/html
 }
@@ -138,10 +138,12 @@ print-status() {
   MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
   SWAP=$(free | grep Swap | awk '{printf ("%2.0f", $3/$2 * 100.0) }')
   DOCKER=$(docker ps | grep -v CONTAINER | wc -l)
-
+  TEMP=$(sensors | grep Tdie | cut -c15-22)
+  TEMP_NUM=$(sensors | grep Tdie | cut -c16-17)
   print_percent_with_color "  💾 Disk    : ${DISK}%% \n" ${DISK}
   print_percent_with_color "  🐘 Memory  : ${MEM}%% \n" ${MEM}
   print_percent_with_color "  🧻 Swap    : ${SWAP}%% \n" ${SWAP}
+  print_percent_with_color "  🌡  Temp    : ${TEMP} \n" ${TEMP_NUM}
   print_command_with_color "  🤝 Network : " "test_network"
   echo ""
   print_command_with_color "  🧳 Dropbox : " "test_dropbox"
@@ -149,7 +151,7 @@ print-status() {
   print_command_with_color "  🐋 Docker  : " "docker-count"
   echo ""
   uncommited=$(test_uncommited ${TOOLBOX_DATA})
-  print_nonzero_with_color "  toolbox  : ${uncommited}"  ${uncommited}
+  print_nonzero_with_color "  tech-journal  : ${uncommited}"  ${uncommited}
   echo ""
   uncommited=$(test_uncommited ${HOME}/dotfiles)
   print_nonzero_with_color "  dotfiles : ${uncommited}"  ${uncommited}
