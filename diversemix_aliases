@@ -100,4 +100,5 @@ alias bdown="brightness_down|sudo tee /sys/class/backlight/intel_backlight/brigh
 alias bup="brightness_up|sudo tee /sys/class/backlight/intel_backlight/brightness"
 # Cheat sheets
 alias cs='cheatsheet'
-
+alias gen-define="genetics_define"
+alias git-search="git_search"

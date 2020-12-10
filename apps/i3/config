@@ -30,7 +30,11 @@ font pango:Source Code Pro 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
+
+# ---- My other bits ------
+bindsym $mod+x exec gnome-terminal -e "ranger"
+# -------------------------
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -157,6 +161,7 @@ bar {
         font pango:Source Code Pro 14
 }
 
+
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
 # keysym-based config which used their favorite modifier (alt or windows)
@@ -183,9 +188,8 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 exec --no-startup-id dunst
 exec dropbox start
 exec diodon
 exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
-exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-

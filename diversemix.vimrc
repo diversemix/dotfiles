@@ -5,6 +5,7 @@ source ~/dotfiles/vim/disable-arrows.vim
 source ~/dotfiles/vim/windows.vim
 source ~/dotfiles/vim/leader.vim
 source ~/dotfiles/vim/plugins.vim
+source ~/dotfiles/vim/coc.vim
 
 inoremap jj <Esc>
 set t_Co=256              " enable 256-color mode.
