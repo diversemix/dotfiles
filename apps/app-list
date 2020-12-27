@@ -4,7 +4,6 @@ conky-all
 diodon
 docker-ce
 docker-ce-cli
-encfs 
 figlet
 fzf
 gimp
@@ -23,10 +22,13 @@ nodejs-dev
 npm
 openssh-client
 openssl
-postgresql-client-10 
+postgresql-client-10
+ranger
 silversearcher-ag
 tcpdump
 tmux
 vim
 w3m
+w3m-img
 youtube-dl
+zathura
