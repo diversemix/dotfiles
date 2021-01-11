@@ -180,3 +180,4 @@ exec_always --no-startup-id setxkbmap -option caps:escape
 exec_always --no-startup-id dropbox start
 exec_always --no-startup-id diodon
 exec_always --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+exec always --no-startup-id xautolock -time 1 -locker i3lock

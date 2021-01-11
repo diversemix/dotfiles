@@ -105,3 +105,4 @@ alias gen-define="genetics_define"
 alias git-search="git_search"
 alias adr="~/adr-tools/src/adr"
 alias lock="i3lock; dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true"
+alias clearlock='xmodmap -e "clear Lock"'
