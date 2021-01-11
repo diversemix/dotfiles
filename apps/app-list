@@ -1,4 +1,4 @@
-ack # example comment
+ack
 build-essential
 conky-all
 diodon
@@ -19,11 +19,10 @@ meld
 neovim
 net-tools
 nodejs
-nodejs-dev
 npm
 openssh-client
 openssl
-postgresql-client-10 
+postgresql-client-common 
 silversearcher-ag
 tcpdump
 tmux

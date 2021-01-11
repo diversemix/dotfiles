@@ -43,6 +43,7 @@ alias vv='vi ~/.vimrc'
 alias hn='history | cut -d " " -f6- | sort | uniq -c | sort -n '
 
 # Git aliases
+alias cb='git branch | fzf --header Checkout | xargs git checkout'
 alias gh-gists="gh api gists | jq -r '.[] | [.html_url,(.files | to_entries | .[0].key),.description] | @tsv'"
 alias gl="git log --oneline --graph --decorate --all"
 alias glf="git log --oneline --name-only"
@@ -102,3 +103,5 @@ alias bup="brightness_up|sudo tee /sys/class/backlight/intel_backlight/brightnes
 alias cs='cheatsheet'
 alias gen-define="genetics_define"
 alias git-search="git_search"
+alias adr="~/adr-tools/src/adr"
+alias lock="i3lock; dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true"
