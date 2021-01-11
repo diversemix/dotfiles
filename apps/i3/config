@@ -158,7 +158,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
         position top
-        font pango:Source Code Pro 14
+        font pango:Source Code Pro Light 14
 }
 
 
@@ -171,25 +171,12 @@ bar {
 #
 # Please remove the following exec line:
 #######################################################################
-exec --no-startup-id xinput --set-int-prop 'DELL07E6:00 06CB:76AF Touchpad' 'libinput Natural Scrolling Enabled' 8 1
-exec --no-startup-id xinput --set-prop 'DELL07E6:00 06CB:76AF Touchpad' 'libinput Tapping Enabled' 1
-exec --no-startup-id xinput --set-prop 'DELL07E6:00 06CB:76AF Touchpad' 'libinput Click Method Enabled' 0 1
 
+# exec_always --no-startup-id xmodmap -e "clear Lock"
+# exec_always --no-startup-id xmodmap "keycode 0x42 = Escape"
+# exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+exec_always --no-startup-id setxkbmap -option caps:escape
 
-# Multimedia Keys
-# increase volume
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
-# decrease volume
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
-# mute volume
-bindsym XF86AudioMute exec amixer -q set Master mute
-# pause / play / next / previous
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-exec --no-startup-id dunst
-exec dropbox start
-exec diodon
-exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+exec_always --no-startup-id dropbox start
+exec_always --no-startup-id diodon
+exec_always --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
