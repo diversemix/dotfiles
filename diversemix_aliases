@@ -35,7 +35,7 @@ alias u='cd ..'
 alias vi="nvim $*"
 alias xo=xdg-open
 alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
-alias va='vi ~/dotfiles/diversemix_aliases ; source ~/.bash_aliases'
+alias va='vi ~/.bash_aliases; source ~/.bash_aliases'
 alias tjp='firefox https://github.com/diversemix/tech-journal/projects/1'
 alias tj='firefox https://github.com/diversemix/tech-journal'
 alias sk="slack-term -token ${SLACK_TOKEN}"
@@ -53,6 +53,7 @@ alias gb='git checkout -b'
 alias gd='git checkout develop&& git pull'
 alias pr='hub pull-request'
 alias tag_hist='git for-each-ref --sort=taggerdate --format "%(taggerdate) %(refname)" refs/tags'
+alias git_rm_local='git fetch -p; git for-each-ref --format "%(refname:short) %(upstream:track)" | grep  "\[gone\]" | cut -d '[' -f1 | xargs -r git branch -D'
 
 # Docker
 alias dp="docker ps -a"
@@ -77,7 +78,7 @@ alias git_clean_all='git clean -xfd'
 alias longest_jsfiles='for f in $(git ls-tree --name-only -r HEAD | grep js$); do  cat $f | wc -l ; echo $f; done | paste -d "," - -  | sort -n'
 alias jstags="find . -type f -iregex '.*\.js$' -not -path './node_modules/*' -exec jsctags {} -f \; | sed '/^$/d' | LANG=C sort > tags"
 alias git_uncommit="git reset --soft HEAD^"
-alias enable_fn="echo 0 | pkexec tee /sys/module/hid_apple/parameters/fnmode"
+alias enable_fn="echo 0 | sudo pkexec tee /sys/module/hid_apple/parameters/fnmode"
 alias messenger="google-chrome --app-id=lainlkmlgipednloilifbppmhdocjbda"
 alias loop_test="while inotifywait -r -q -e close_write . ; do  make test; done"
 alias vvim="/usr/bin/vim -u NONE"
@@ -106,3 +107,6 @@ alias git-search="git_search"
 alias adr="~/adr-tools/src/adr"
 alias lock="i3lock; dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true"
 alias clearlock='xmodmap -e "clear Lock"'
+alias withdotenv='eval $(egrep -v '^#' .env | xargs)'
+alias dbvis='~/DbVisualizer/dbvis'
+alias laws='aws --endpoint-url=http://localhost:4566 '

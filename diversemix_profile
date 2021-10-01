@@ -7,36 +7,36 @@ source ~/dotfiles/bashrc/prompt.sh
 
 set-title "Bash-$(ps aux| grep ' bash' | wc -l)"
 
+export $(gnome-keyring-daemon -s)
+
 echo "${YELLOW}System${RESET}"
-print-status
+echo Use "print-status"
 
 # echo "${YELLOW}Todo${RESET}"
 # ~/dotfiles/scripts/todo.sh
 # echo 
 
 # If pyenv is installed...
-if [ -d $HOME/.pyenv/bin ]; then
-	echo -n "${YELLOW}python${RESET} "
-	export PATH="$HOME/.pyenv/bin:$PATH"
-	eval "$(pyenv init -)"
-	eval "$(pyenv virtualenv-init -)"
-	pyenv version
-fi
+#if [ -d $HOME/.pyenv/bin ]; then
+	#echo -n "${YELLOW}python${RESET} "
+	#export PATH="$HOME/.pyenv/bin:$PATH"
+	#eval "$(pyenv init -)"
+	#eval "$(pyenv virtualenv-init -)"
+	#pyenv version
+#fi
 
 # If rust is installed...
-if [ -d $HOME/.cargo ]; then
-  echo "${YELLOW}rust${RESET} $(rustc -V)"
-fi
+#if [ -d $HOME/.cargo ]; then
+  #echo "${YELLOW}rust${RESET} $(rustc -V)"
+#fi
 
 # If nvm installed
-if [ -d $HOME/.nvm ]; then
-	echo -n "${YELLOW}node${RESET} "
-	node -v
-	echo -n "${YELLOW}npm${RESET} "
-	npm --version
-fi
+#if [ -d $HOME/.nvm ]; then
+	#echo -n "${YELLOW}node${RESET} "
+	#node -v
+	# Time consuming: echo -n "${YELLOW}npm${RESET} "; npm --version
+#fi
 
-export $(gnome-keyring-daemon -s)
 
 # Taking these out for now as had weirdness with them
 # xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
