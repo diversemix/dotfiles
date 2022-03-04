@@ -1,56 +1,63 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-source ~/dotfiles/vim/disable-arrows.vim
-source ~/dotfiles/vim/windows.vim
-source ~/dotfiles/vim/leader.vim
-source ~/dotfiles/vim/plugins.vim
+source ~/dotfiles/vim/plugs.vim
+let g:UltiSnipsExpandTrigger = "<nop>"
 source ~/dotfiles/vim/coc.vim
 
-inoremap jj <Esc>
-set t_Co=256              " enable 256-color mode.
-syntax enable             " enable syntax highlighting (previously syntax on).
-colorscheme gruvbox     " set colorscheme
-set background=dark       " set the colorscheme (https://github.com/morhetz/gruvbox/wiki/Usage)
-set rnu                   " show line numbers
-set nu
+set clipboard^=unnamed,unnamedplus
+
+filetype plugin indent on    " required
+
+" Setup Javascript
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_undefined            = "¿"
+let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "⇒"
+"let g:javascript_conceal_noarg_arrow_function = ""
+"let g:javascript_conceal_underscore_arrow_function = ""
+set conceallevel=1
+
+" Setup FZF
+nmap <C-p> :Files<CR>
+nmap <C-e> :CocCommand explorer<CR>
+nmap <C-r> :Buffers<CR>
+nmap <C-a> :Ag<CR>
+
+" Setup Theme
+colorscheme gruvbox
+set background=dark
+let g:gruvbox_contrast_dark='hard'
+
+" Setup airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16'
+let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " f/p/file-name.js
+
 set cursorline
 set laststatus=2          " last window always has a statusline
 set nohlsearch            " Don't continue to highlight searched phrases.
 set incsearch             " But do highlight as you type your search.
 set ruler                 " Always show info along bottom.
 set autoindent            " auto-indent
-set tabstop=2             " tab spacing
-set softtabstop=2         " unify
-set shiftwidth=2          " indent/outdent by 2 columns
+set tabstop=4             " tab spacing
+set softtabstop=4         " unify
+set shiftwidth=4          " indent/outdent by 2 columns
 set shiftround            " always indent/outdent to the nearest tabstop
 set expandtab             " use spaces instead of tabs
 set wrap                  " don't wrap text
-"set shortmess=at          " Don't display standard message
-set autowrite             " save buffers when going hidden
-"   set hls
 set mouse=a
-set clipboard=unnamedplus
-set hidden                " unamed files don't need saving
-set splitright            " new split on right
-set splitbelow            " new split below
 
-let &colorcolumn="80,".join(range(120,120),",")
-
-set history=1000
-set path+=**
-set wildmenu
-set spell
+" Setup line width coloring
+let &colorcolumn="80,".join(range(80,120),",")
+highlight ColorColumn ctermbg=DarkGray
 
 " Persistent undo
 set undofile
 set undodir=$HOME/.vim/undo
-
-set undolevels=1000
+set undolevels=10000
 set undoreload=10000
-
-set listchars=eol:↲,tab:··,trail:⏺,extends:>,precedes:<
-set list
-
-" Remove trailing whitespace
-autocmd BufWritePre *.js :%s/\s\+$//e
