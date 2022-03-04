@@ -3,6 +3,13 @@ let g:UltiSnipsExpandTrigger = "<nop>"
 source ~/dotfiles/vim/coc.vim
 
 set clipboard^=unnamed,unnamedplus
+set backup
+if !isdirectory($HOME."/.vim/backupdir")
+    silent! execute "!mkdir ~/.vim/backupdir"
+endif
+set backupdir=~/.vim/backupdir
+"not generate .swap
+set noswapfile
 
 filetype plugin indent on    " required
 
@@ -51,13 +58,16 @@ set shiftround            " always indent/outdent to the nearest tabstop
 set expandtab             " use spaces instead of tabs
 set wrap                  " don't wrap text
 set mouse=a
+set number
 
 " Setup line width coloring
 let &colorcolumn="80,".join(range(80,120),",")
-highlight ColorColumn ctermbg=DarkGray
+highlight ColorColumn ctermbg=Black
 
 " Persistent undo
 set undofile
 set undodir=$HOME/.vim/undo
 set undolevels=10000
 set undoreload=10000
+
+autocmd BufWritePost *Note-*.md silent !/home/peter/dotfiles/scripts/buildnote.sh %:p
