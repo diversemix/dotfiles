@@ -1,12 +1,11 @@
-let mapleader=";"
-
-noremap <C-p> :GFiles<CR>
+" let mapleader=";"
 
 noremap <Leader><Space> /<++><Enter>"_c4l
 
-map <A-j> :bprevious<cr>
-map <A-k> :bnext<cr>
-map <C-3> :buffers<cr>
+" javascript section
+inoremap <Leader>fe .forEach(item => {<CR>});<Up><Esc>o
+inoremap <Leader>cl console.log(``);<Left><Left><Left>
+inoremap <Leader>af const fn = () => {};<Esc>0ffcw
 
 noremap <Leader>c :bd<CR>
 noremap <Leader>e :cn<CR>
@@ -24,18 +23,8 @@ noremap <Leader>tt :vsp<CR>
 noremap <Leader>v :e ~/dotfiles/diversemix.vimrc<CR>
 noremap <Leader>w :w<CR>
 noremap <Leader>x :new +0r!
-noremap <Leader>z :let @+=expand("%")<CR>
+noremap <Leader>z :let @+=expand("%")<CR> 
 
-noremap <Leader>gb :GoBuild<CR>
-noremap <Leader>gd :GoDoc<CR>
-noremap <Leader>gD :GoDocBrowser<CR>
-noremap <Leader>gl :GoLint<CR>
-noremap <Leader>gt :GoTest<CR>
-noremap <Leader>gr :GoRun<CR>
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 " not really getting on with auto bracket closing
 " inoremap ( ()<Esc>i
 " inoremap [ []<Esc>i

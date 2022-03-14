@@ -1,6 +1,8 @@
 source ~/dotfiles/vim/plugs.vim
 let g:UltiSnipsExpandTrigger = "<nop>"
 source ~/dotfiles/vim/coc.vim
+source ~/dotfiles/vim/leader.vim
+source ~/dotfiles/vim/mappings.vim
 
 set clipboard^=unnamed,unnamedplus
 set backup
@@ -58,10 +60,11 @@ set shiftround            " always indent/outdent to the nearest tabstop
 set expandtab             " use spaces instead of tabs
 set wrap                  " don't wrap text
 set mouse=a
-set number
+set number relativenumber
 
 " Setup line width coloring
-let &colorcolumn="80,".join(range(80,120),",")
+"let &colorcolumn="80,".join(range(80,81),",")
+let &colorcolumn="80,81,120,121"
 highlight ColorColumn ctermbg=Black
 
 " Persistent undo
