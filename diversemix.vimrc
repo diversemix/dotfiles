@@ -5,10 +5,12 @@ source ~/dotfiles/vim/leader.vim
 source ~/dotfiles/vim/mappings.vim
 
 set clipboard^=unnamed,unnamedplus
+
 set backup
 if !isdirectory($HOME."/.vim/backupdir")
     silent! execute "!mkdir ~/.vim/backupdir"
 endif
+
 set backupdir=~/.vim/backupdir
 "not generate .swap
 set noswapfile
@@ -33,7 +35,7 @@ set conceallevel=1
 " Setup FZF
 nmap <C-p> :Files<CR>
 nmap <C-e> :CocCommand explorer<CR>
-nmap <C-r> :Buffers<CR>
+nmap <C-b> :Buffers<CR>
 nmap <C-a> :Ag<CR>
 
 " Setup Theme

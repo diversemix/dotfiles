@@ -1,9 +1,6 @@
 
-nmap j :bp<CR>
-nmap k :bn<CR>
-
-nmap <C-j> :cp<CR>
-nmap <C-k> :cn<CR>
-nmap <C-o> :co<CR>
+nmap <C-j> :cn<CR>
+nmap <C-k> :cp<CR>
+"nmap <C-o> :co<CR>
 
 map <C-3> :buffers<cr>
