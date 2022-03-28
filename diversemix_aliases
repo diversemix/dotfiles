@@ -51,7 +51,7 @@ alias gs='git status -sb'
 alias gp='git pull'
 alias gb='git checkout -b'
 alias gd='git checkout develop&& git pull'
-alias pr='hub pull-request'
+alias pr='gh pr create --fill'
 alias tag_hist='git for-each-ref --sort=taggerdate --format "%(taggerdate) %(refname)" refs/tags'
 alias git_rm_local='git fetch -p; git for-each-ref --format "%(refname:short) %(upstream:track)" | grep  "\[gone\]" | cut -d '[' -f1 | xargs -r git branch -D'
 
