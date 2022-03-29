@@ -35,7 +35,7 @@ set conceallevel=1
 " Setup FZF
 nmap <C-p> :Files<CR>
 nmap <C-e> :CocCommand explorer<CR>
-nmap <C-b> :Buffers<CR>
+"nmap <C-r> :Buffers<CR>
 nmap <C-a> :Ag<CR>
 
 " Setup Theme
@@ -48,6 +48,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='base16'
 let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " f/p/file-name.js
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 set cursorline
 set laststatus=2          " last window always has a statusline
