@@ -1,0 +1,14 @@
+###################
+.DS_Store
+.hg
+.svn
+*.vscode
+node_modules
+###################
+# Temporary files
+*.kate-swp
+*.swp
+*.swo
+*.class
+*.orig
+*~

@@ -1,5 +1,4 @@
 source ~/dotfiles/vim/plugs.vim
-let g:UltiSnipsExpandTrigger = "<nop>"
 source ~/dotfiles/vim/coc.vim
 source ~/dotfiles/vim/leader.vim
 source ~/dotfiles/vim/mappings.vim
@@ -10,60 +9,37 @@ set backup
 if !isdirectory($HOME."/.vim/backupdir")
     silent! execute "!mkdir ~/.vim/backupdir"
 endif
-
 set backupdir=~/.vim/backupdir
-"not generate .swap
-set noswapfile
+
+set noswapfile " do not generate .swap
 
 filetype plugin indent on    " required
 
-" Setup Javascript
-let g:javascript_conceal_function             = "ƒ"
-let g:javascript_conceal_null                 = "ø"
-let g:javascript_conceal_this                 = "@"
-let g:javascript_conceal_return               = "⇚"
-let g:javascript_conceal_undefined            = "¿"
-let g:javascript_conceal_NaN                  = "ℕ"
-let g:javascript_conceal_prototype            = "¶"
-let g:javascript_conceal_static               = "•"
-let g:javascript_conceal_super                = "Ω"
-let g:javascript_conceal_arrow_function       = "⇒"
-"let g:javascript_conceal_noarg_arrow_function = ""
-"let g:javascript_conceal_underscore_arrow_function = ""
-set conceallevel=1
-
-" Setup FZF
-nmap <C-p> :Files<CR>
-nmap <C-e> :CocCommand explorer<CR>
-"nmap <C-r> :Buffers<CR>
-nmap <C-a> :Ag<CR>
-
-" Setup Theme
-colorscheme gruvbox
-set background=dark
-let g:gruvbox_contrast_dark='hard'
-
-" Setup airline
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
-let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " f/p/file-name.js
-let g:airline#extensions#tabline#buffer_nr_show = 1
-
 set cursorline
+syntax enable
 set laststatus=2          " last window always has a statusline
 set nohlsearch            " Don't continue to highlight searched phrases.
 set incsearch             " But do highlight as you type your search.
 set ruler                 " Always show info along bottom.
 set autoindent            " auto-indent
-set tabstop=4             " tab spacing
-set softtabstop=4         " unify
-set shiftwidth=4          " indent/outdent by 2 columns
-set shiftround            " always indent/outdent to the nearest tabstop
-set expandtab             " use spaces instead of tabs
-set wrap                  " don't wrap text
+set nohlsearch
+set nowrap                  " don't wrap text
 set mouse=a
 set number relativenumber
+
+" Tabs And Spaces
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
+
+" File Find {{{
+
+set path+=**
+set wildmenu
+set wildignore+=**/node_modules/** 
+set wildignore+=**/*.class
+set hidden
 
 " Setup line width coloring
 "let &colorcolumn="80,".join(range(80,81),",")
@@ -76,4 +52,17 @@ set undodir=$HOME/.vim/undo
 set undolevels=10000
 set undoreload=10000
 
+" Center search results 
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+" Scrolling 'border'
+set scrolloff=10
+
+" Integration with my scripts...
 autocmd BufWritePost *Note-*.md silent !/home/peter/dotfiles/scripts/buildnote.sh %:p
+

@@ -12,10 +12,6 @@ export $(gnome-keyring-daemon -s)
 echo "${YELLOW}System${RESET}"
 echo Use "print-status"
 
-# echo "${YELLOW}Todo${RESET}"
-# ~/dotfiles/scripts/todo.sh
-# echo 
-
 # If pyenv is installed...
 #if [ -d $HOME/.pyenv/bin ]; then
 	#echo -n "${YELLOW}python${RESET} "
@@ -37,6 +33,7 @@ echo Use "print-status"
 	# Time consuming: echo -n "${YELLOW}npm${RESET} "; npm --version
 #fi
 
+export FZF_CTRL_T_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,**/*.class}"'
 
 # Taking these out for now as had weirdness with them
 # xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
