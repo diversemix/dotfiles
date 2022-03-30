@@ -17,19 +17,22 @@ countdown() {
 alias ls='ls --color'
 
 # Single letter aliases...
-alias l="ls -ltrh $*"
 alias a="alias"
-alias s="systemctl $*"
-alias j="journalctl $*"
-alias v="nvim $*"
+alias c='top -d 0.5 -bn3 | grep "%Cpu(s)" | cut -d ',' -f4 | awk "{print 100 - $1"% Cpu Load"}" | tail -n 1'
+alias f="free -mh $*"
+alias g="./gradlew"
+alias h="history $*"
 alias i="ifconfig $*"
+alias j="journalctl $*"
+alias k="kubectl"
+alias l="ls -ltrh $*"
 alias m="GTK_THEME=Arc meld"
 alias n="netstat -lpn"
 alias p="ps aux"
-alias h="history $*"
-alias f="free -mh $*"
-alias c='top -d 0.5 -bn3 | grep "%Cpu(s)" | cut -d ',' -f4 | awk "{print 100 - $1"% Cpu Load"}" | tail -n 1'
+alias r="ranger"
+alias s="systemctl $*"
 alias u='cd ..'
+alias v="nvim $*"
 
 # Double letter aliases...
 alias vi="nvim $*"
@@ -41,6 +44,7 @@ alias tj='firefox https://github.com/diversemix/tech-journal'
 alias sk="slack-term -token ${SLACK_TOKEN}"
 alias vv='vi ~/.vimrc'
 alias hn='history | cut -d " " -f6- | sort | uniq -c | sort -n '
+alias tf=terraform
 
 # Git aliases
 alias cb='git branch | fzf --header Checkout | xargs git checkout'
@@ -54,6 +58,8 @@ alias gd='git checkout develop&& git pull'
 alias pr='GITHUB_TOKEN=$GH_CLI_TOKEN gh pr create'
 alias tag_hist='git for-each-ref --sort=taggerdate --format "%(taggerdate) %(refname)" refs/tags'
 alias git_rm_local='git fetch -p; git for-each-ref --format "%(refname:short) %(upstream:track)" | grep  "\[gone\]" | cut -d '[' -f1 | xargs -r git branch -D'
+alias gcm="git checkout main"
+alias gc="git commit -m"
 
 # Docker
 alias dp="docker ps -a"
@@ -83,14 +89,6 @@ alias messenger="google-chrome --app-id=lainlkmlgipednloilifbppmhdocjbda"
 alias loop_test="while inotifywait -r -q -e close_write . ; do  make test; done"
 alias vvim="/usr/bin/vim -u NONE"
 alias fixgit="git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/master"
-
-# Simprints Aliases
-alias cdc='cd ~/dev/cloud'
-alias cdcc='cd ~/dev/Cloud-Config'
-alias vt='nvim ~/todo'
-alias kata='nvim ~/kata'
-alias reload='source ~/.bashrc'
-alias note='slack-cli -d peter'
 
 brightness_down() {
   echo $(($(cat /sys/class/backlight/intel_backlight/brightness) - 1000))
