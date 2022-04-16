@@ -1,14 +1,22 @@
 #!/bin/bash
 
+print_good() { 
+    echo ${GREEN}✔ $* ${RESET} 
+}
+
+print_bad() { 
+    echo ${RED}✖  $* ${RESET} 
+}
+
 install() {
-    echo checking $1...
+    echo -n checking $1...
     local binary=$2
     [ -z "$binary" ] && binary=$1
-    [ -x `which $binary` ] || sudo apt install -y $1
+    which $binary > /dev/null && print_good || print_bad sudo apt install -y $1
 }
 
 exitmsg() {
-    echo ${RED}✖ $* ${RESET}
+    print_bad $*
     exit 1
 }
 
@@ -43,10 +51,9 @@ echo ""
 echo Checking environment dotfiles
 echo ""
 
-[ -d $HOME/dotfiles ] || exitmsg "dotfiles folder not found in home"
-[ -x `which notes.sh` ]  || exitmsg "dotfiles/scripts not found in path"
+[ -d $HOME/dotfiles ] && print_good Found dotfiles folder || exitmsg "dotfiles folder not found in home"
+[ -x `which notes.sh` ] && print_good Found scripts on PATH || exitmsg "dotfiles/scripts not found in path"
 
-echo "${GREEN}✔ Validation Succeeded${RESET}"
 exit 0
 
 # -------------------------------------------------------------
