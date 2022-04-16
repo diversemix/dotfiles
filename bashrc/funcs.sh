@@ -1,3 +1,6 @@
+# -------------------------------------------------------------
+# Top list of process taking the most memory
+# -------------------------------------------------------------
 function topmem()
 {
     ps -eo size,pid,user,command --sort -size | \
@@ -6,20 +9,42 @@ function topmem()
         head
 }
 
+# -------------------------------------------------------------
+# set the title for the current terminal
+# -------------------------------------------------------------
 function set-title() {
     TITLE=$1
     PROMPT_COMMAND='echo -ne "\033]0;${TITLE}\007"'
 }
 
-function swap()
-{
+# -------------------------------------------------------------
+# Useful for a script example:
+#    echo 1 2 | swap
+# -------------------------------------------------------------
+function swap() {
     awk '{ t = $1; $1 = $2; $2 = t; print; }'
 }
 
+# -------------------------------------------------------------
+# abbreviated path
+# -------------------------------------------------------------
 short_pwd() {
   local pwd=$(pwd)
   pwd=${pwd/#$HOME/\~}
   sed 's:\([^/]\)[^/]*/:\1/:g' <<<"$pwd"
+}
+
+set_dir_title() {
+  TITLE=`short_pwd`
+  echo -ne "\033]0;${TITLE}\007"
+}
+
+git_short_info() {
+  if [ -d .git ]; then
+    local branch=$(git status -s -b | head -n 1 | sed -e 's/## //g' | sed -e 's/\.\.\..*//g')
+    locally="$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' )"
+    printf "⎇⇒${TEAL}($branch)${RED}$locally ${RESET}"
+  fi
 }
 
 git_info() {
@@ -30,7 +55,6 @@ git_info() {
     then
       printf "⇒ ${TEAL}($branch)${RESET}\n"
       return
-      printf "cheese"
     fi
 
     local remote_short=$(echo $remote | \
@@ -138,30 +162,28 @@ print-status() {
   MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
   SWAP=$(free | grep Swap | awk '{printf ("%2.0f", $3/$2 * 100.0) }')
   DOCKER=$(docker ps | grep -v CONTAINER | wc -l)
-  TEMP=$(sensors | grep Tdie | cut -c15-22)
-  TEMP_NUM=$(sensors | grep Tdie | cut -c16-17)
+  TEMP=$(sensors | grep CPU | cut -c15-22)
+  TEMP_NUM=$(sensors | grep CPU | cut -c16-17)
+  echo ────────────────────────────────────────────────────────────────────────────
   print_percent_with_color "  💾 Disk    : ${DISK}%% \n" ${DISK}
   print_percent_with_color "  🐘 Memory  : ${MEM}%% \n" ${MEM}
   print_percent_with_color "  🧻 Swap    : ${SWAP}%% \n" ${SWAP}
   print_percent_with_color "  🌡  Temp    : ${TEMP} \n" ${TEMP_NUM}
+  echo ────────────────────────────────────────────────────────────────────────────
   print_command_with_color "  🤝 Network : " "test_network"
-  echo ""
   print_command_with_color "  🧳 Dropbox : " "test_dropbox"
-  echo ""
   print_command_with_color "  🐋 Docker  : " "docker-count"
-  echo ""
-  uncommited=$(test_uncommited ${TOOLBOX_DATA})
-  print_nonzero_with_color "  tech-journal  : ${uncommited}"  ${uncommited}
-  echo ""
   uncommited=$(test_uncommited ${HOME}/dotfiles)
   print_nonzero_with_color "  dotfiles : ${uncommited}"  ${uncommited}
   echo ""
+  echo ────────────────────────────────────────────────────────────────────────────
 }
 
-echo "${YELLOW}Functions"
-echo "    ${GREEN}topmem${RESET}       : lists top memory hogs"
-echo "    ${GREEN}set-title${RESET}    : sets window title"
-echo "    ${GREEN}print-status${RESET} : prints status of system"
-echo "    ${GREEN}system-info${RESET}  : one line status of system"
-echo "    ${GREEN}docker-info${RESET}  : docker version"
+# echo "${YELLOW}Functions"
+# echo "    ${GREEN}topmem${RESET}       : lists top memory hogs"
+# echo "    ${GREEN}set-title${RESET}    : sets window title"
+# echo "    ${GREEN}print-status${RESET} : prints status of system"
+# echo "    ${GREEN}system-info${RESET}  : one line status of system"
+# echo "    ${GREEN}docker-info${RESET}  : docker version"
+
 # EOF

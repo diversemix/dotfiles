@@ -1,16 +1,16 @@
-figlet -w240 -W  -f small "$(date '+%a %d %b')" | lolcat
 source ~/dotfiles/bashrc/colors.sh
 source ~/dotfiles/bashrc/vars.sh
-source ~/dotfiles/bashrc/toolbox.sh
 source ~/dotfiles/bashrc/funcs.sh
 source ~/dotfiles/bashrc/prompt.sh
 
+figlet -w240 -f small "$(date '+%a - %d %b')" | lolcat
+print-status
+echo ""
+
 set-title "Bash-$(ps aux| grep ' bash' | wc -l)"
+export PATH="$HOME/dotfiles/scripts:$PATH"
 
 export $(gnome-keyring-daemon -s)
-
-echo "${YELLOW}System${RESET}"
-echo Use "print-status"
 
 # If pyenv is installed...
 #if [ -d $HOME/.pyenv/bin ]; then
@@ -35,6 +35,5 @@ echo Use "print-status"
 
 export FZF_CTRL_T_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,**/*.class}"'
 
-# Taking these out for now as had weirdness with them
-# xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-# xmodmap -e 'keycode 49 = grave asciitilde'
+# Swap CAPS and ESC - should consider doing this permanently
+/usr/bin/setxkbmap -option "caps:swapescape"

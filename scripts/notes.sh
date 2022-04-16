@@ -2,7 +2,8 @@
 #
 # Inspired by https://github.com/CalinLeafshade/dots/blob/master/bin/bin/notetaker
 #
-noteFilename="$HOME/Dropbox/Documents/Notes/md/Notes-$(date +%Y-%m).md"
+cd "$HOME/Dropbox/Documents/Notes/md/"
+noteFilename="Notes-$(date +%Y-%m).md"
 
 if [ ! -f $noteFilename ]; then
   echo "# Notes for $(date +%Y-%m)" > $noteFilename
