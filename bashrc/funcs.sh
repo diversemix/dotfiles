@@ -40,10 +40,14 @@ set_dir_title() {
 }
 
 git_short_info() {
-  if [ -d .git ]; then
+  if [ -d $1/.git ]; then
     local branch=$(git status -s -b | head -n 1 | sed -e 's/## //g' | sed -e 's/\.\.\..*//g')
     locally="$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' )"
     printf "⎇⇒${TEAL}($branch)${RED}$locally ${RESET}"
+  else
+    if [ "$1" != "/" ]; then
+      git_short_info $(dirname $1)
+    fi
   fi
 }
 

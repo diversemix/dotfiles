@@ -10,12 +10,11 @@ last_result_color() {
 }
 
 # Prompt Section
-#PS1='\[$(last_result_color)\]\w\[${RESET}\]$(system-info)$(git_short_info)$(set_dir_title)$ '
 long-prompt() {
-  PS1='\[$(last_result_color)\]\[${RESET}\]$(system-info)$(git_short_info)$(set_dir_title) $(short_pwd) $ '
+  PS1='\[$(last_result_color)\]\[${RESET}\]$(system-info) $(git_short_info $PWD)$(set_dir_title)$(short_pwd) $ '
 }
 
 short-prompt() {
-  PS1='\[$(last_result_color)\]\[${RESET}\]$(git_short_info)$(set_dir_title) $(short_pwd) $ '
+  PS1='\[$(last_result_color)\]\[${RESET}\]$(git_short_info $PWD)$(set_dir_title)$(short_pwd) $ '
 }
 short-prompt
