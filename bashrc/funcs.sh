@@ -90,8 +90,8 @@ system-info() {
     DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
     MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
     print_percent_with_color "⛃ ${DISK}%%" ${DISK}
-    print_percent_with_color " 🐘 ${MEM}%%" ${MEM}
-    printf " 🐋 $(docker-count)\n"
+    print_percent_with_color " 🐘${MEM}%%" ${MEM}
+    printf " 🐋$(docker-count)\n"
 }
 
 host_or_git() {
@@ -109,6 +109,15 @@ print_nonzero_with_color() {
   if [ $value -le 0 ] ; then color=${GREEN} ; fi
   if [ $value -gt 0 ] ; then color=${RED}${BLINK} ; fi
   printf "${color}${message}${RESET}"
+}
+
+print_threshold_with_color() {
+  message=$1
+  value=$2
+  threshold=$3
+  color=${RED}${BLINK}
+  if [ $value -le $threshold ] ; then color=${GREEN} ; fi
+  printf "${WHITE}${message}${color}${value}${RESET}"
 }
 
 print_percent_with_color() {
@@ -163,12 +172,19 @@ print-status() {
   SWAP=$(free | grep Swap | awk '{printf ("%2.0f", $3/$2 * 100.0) }')
   DOCKER=$(docker ps | grep -v CONTAINER | wc -l)
   TEMP=$(sensors | grep CPU | cut -c15-22)
-  TEMP_NUM=$(sensors | grep CPU | cut -c16-17)
+  TEMP_NUM=$(grep -c ^processor /proc/cpuinfo)
   echo ────────────────────────────────────────────────────────────────────────────
   print_percent_with_color "  💾 Disk    : ${DISK}%% \n" ${DISK}
   print_percent_with_color "  🐘 Memory  : ${MEM}%% \n" ${MEM}
   print_percent_with_color "  🧻 Swap    : ${SWAP}%% \n" ${SWAP}
-  print_percent_with_color "  🌡  Temp    : ${TEMP} \n" ${TEMP_NUM}
+for a in `seq 0 ${TEMP_NUM}`
+do
+  HW=/sys/class/hwmon/hwmon$a/temp1_input
+  [[ -f $HW ]] || continue
+  TEMP=$(cat $HW)
+  print_threshold_with_color "  🌡  Temp $a  : " $((${TEMP}/1000)) 50
+  printf "°C\n"
+done
   echo ────────────────────────────────────────────────────────────────────────────
   print_command_with_color "  🤝 Network : " "test_network"
   print_command_with_color "  🧳 Dropbox : " "test_dropbox"
