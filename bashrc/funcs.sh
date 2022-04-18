@@ -42,7 +42,7 @@ set_dir_title() {
 git_short_info() {
   if [ -d $1/.git ]; then
     local branch=$(git status -s -b | head -n 1 | sed -e 's/## //g' | sed -e 's/\.\.\..*//g')
-    locally="$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' )"
+    locally="$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | awk 'BEGIN{OFS=","} FNR==1{first=$0;next} {val=val?val OFS $0:$0} END{print first FS val}')"
     printf "⎇⇒${TEAL}($branch)${RED}$locally ${RESET}"
   else
     if [ "$1" != "/" ]; then

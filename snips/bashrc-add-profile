@@ -1,0 +1,8 @@
+
+case "$-" in
+  *i*) source ~/dotfiles/diversemix_profile ;;
+  *)   echo This shell is not interactive ;;
+esac
+
+export PATH=$HOME/dotfiles/scripts:$PATH
+
