@@ -26,29 +26,12 @@ function swap() {
 }
 
 # -------------------------------------------------------------
-# abbreviated path
+# prints an abbreviated path
 # -------------------------------------------------------------
 short_pwd() {
-  local pwd=$(pwd)
-  pwd=${pwd/#$HOME/\~}
-  sed 's:\([^/]\)[^/]*/:\1/:g' <<<"$pwd"
-}
-
-set_dir_title() {
-  TITLE=`short_pwd`
-  echo -ne "\033]0;${TITLE}\007"
-}
-
-git_short_info() {
-  if [ -d $1/.git ]; then
-    local branch=$(git status -s -b | head -n 1 | sed -e 's/## //g' | sed -e 's/\.\.\..*//g')
-    locally="$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | awk 'BEGIN{OFS=","} FNR==1{first=$0;next} {val=val?val OFS $0:$0} END{print first FS val}')"
-    printf "⎇⇒${TEAL}($branch)${RED}$locally ${RESET}"
-  else
-    if [ "$1" != "/" ]; then
-      git_short_info $(dirname $1)
-    fi
-  fi
+  local newpwd=$(pwd)
+  newpwd=${newpwd/#$HOME/\~}
+  echo $newpwd | sed 's:\([^/]\)[^/]*/:\1/:g'
 }
 
 git_info() {
@@ -88,14 +71,6 @@ docker-info() {
 
 docker-count() {
   docker ps | grep -v CONTAINER | wc -l
-}
-
-system-info() {
-    DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
-    MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
-    print_percent_with_color "⛃ ${DISK}%%" ${DISK}
-    print_percent_with_color " 🐘${MEM}%%" ${MEM}
-    printf " 🐋$(docker-count)\n"
 }
 
 host_or_git() {
