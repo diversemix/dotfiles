@@ -1,5 +1,9 @@
 #!/bin/bash
 
+RESET=$(tput sgr0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+
 print_good() { 
     echo ${GREEN}✔ $* ${RESET} 
 }
@@ -51,8 +55,13 @@ echo ""
 echo Checking environment dotfiles
 echo ""
 
-[ -d $HOME/dotfiles ] && print_good Found dotfiles folder || exitmsg "dotfiles folder not found in home"
-[ -x `which notes.sh` ] && print_good Found scripts on PATH || exitmsg "dotfiles/scripts not found in path"
+[ -d $HOME/dotfiles ] && print_good "Found dotfiles folder" || print_bad "dotfiles folder not found in home"
+[ -x `which notes.sh` ] && print_good "Found scripts on PATH" || print_bad "dotfiles/scripts not found in path"
+grep "diversemix_profile" ~/.bashrc > /dev/null && print_good "Found use of diversemix_profile in .bashrc" || print_bad "not using diversemix_profile"
+grep "diversemix_aliases" ~/.bash_aliases > /dev/null && print_good "Found use of diversemix_aliases in .bash_aliases" || print_bad "not using diversemix_aliases"
+ls -la ~/.gitignore | grep diversemix.gitignore > /dev/null && print_good "Found use of diversemix.gitignore" || print_bad "not using diversemix.gitignore"
+ls -la ~/.tmux.conf | grep diversemix.tmux.conf > /dev/null && print_good "Found use of diversemix.tmux.conf" || print_bad "not using diversemix.tmux.conf"
+ls -la ~/.vimrc | grep diversemix.vimrc > /dev/null && print_good "Found use of diversemix.vimrc" || print_bad "not using diversemix.vimrc"
 
 exit 0
 
