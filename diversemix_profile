@@ -11,6 +11,8 @@ export PATH="$HOME/dotfiles/scripts:$PATH"
 
 export $(gnome-keyring-daemon -s)
 
+. ~/dotfiles/scripts/z.sh
+
 # If pyenv is installed...
 #if [ -d $HOME/.pyenv/bin ]; then
 	#echo -n "${YELLOW}python${RESET} "
