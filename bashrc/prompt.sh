@@ -3,14 +3,6 @@ export MEM_THRESHOLD=50
 export DOCKER_THRESHOLD=3
 
 # Prompt Section
-set_long_prompt() {
-  PS1='$(last_result_color)${RESET}$(system-info) $(git_short_info $PWD)$(set_dir_title)$(short_pwd) $ '
-}
-
-set_short_prompt() {
-  PS1='$(last_result_color)${RESET}$(git_short_info $PWD)$(set_dir_title)$(short_pwd) $ '
-}
-
 git_branch() {
   if [ -d $1/.git ]; then
     echo $(git status -s -b | head -n 1 | sed -e 's/## //g' | sed -e 's/\.\.\..*//g')
@@ -31,11 +23,13 @@ git_local() {
   fi
 }
 
-system_info() {
-    printf " $(docker-count)\n"
-}
-
 set_prompt_vars() {
+  # Using z.sh so handle the PROMPT_COMMAND
+  if [ $_Z_NO_PROMPT_COMMAND ]
+  then
+    _z --add "$(command pwd '$_Z_RESOLVE_SYMLINKS' 2>/dev/null)" 2>/dev/null 
+  fi
+
   # last result
   CODE=$?
   if [ $CODE = 0 ]
