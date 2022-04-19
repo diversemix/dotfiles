@@ -29,6 +29,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Theme
 Plug 'morhetz/gruvbox'
+Plug 'sainnhe/everforest'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Vim-Airline for the nice statusbar
 Plug 'bling/vim-airline'
@@ -91,7 +93,9 @@ nmap <C-a> :Ag<CR>
 
 " Setup Theme
 syntax enable
+"colorscheme PaperColor
 colorscheme gruvbox
+"colorscheme everforest
 set background=dark
 let g:gruvbox_contrast_dark='hard'
 

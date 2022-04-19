@@ -60,6 +60,8 @@ alias tag_hist='git for-each-ref --sort=taggerdate --format "%(taggerdate) %(ref
 alias git_rm_local='git fetch -p; git for-each-ref --format "%(refname:short) %(upstream:track)" | grep  "\[gone\]" | cut -d '[' -f1 | xargs -r git branch -D'
 alias gcm="git checkout main"
 alias gc="git commit -m"
+alias git_clean='git clean -xfd .'
+alias git_clean_branches="git branch --merged origin/main | grep -v main | xargs git branch -d"
 
 # Docker
 alias dp="docker ps -a"
@@ -80,7 +82,6 @@ alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sor
 alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
 alias vpn='sudo /etc/vpnsecure/vpnsecure'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-alias git_clean_all='git clean -xfd'
 alias longest_jsfiles='for f in $(git ls-tree --name-only -r HEAD | grep js$); do  cat $f | wc -l ; echo $f; done | paste -d "," - -  | sort -n'
 alias jstags="find . -type f -iregex '.*\.js$' -not -path './node_modules/*' -exec jsctags {} -f \; | sed '/^$/d' | LANG=C sort > tags"
 alias git_uncommit="git reset --soft HEAD^"
