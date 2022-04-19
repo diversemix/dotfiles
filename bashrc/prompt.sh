@@ -28,7 +28,6 @@ git_local() {
 }
 
 system_info() {
-    DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
     MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
     print_percent_with_color "⛃ ${DISK}%%" ${DISK}
     print_percent_with_color " 🐘${MEM}%%" ${MEM}
@@ -47,7 +46,10 @@ set_prompt_vars() {
     echo "${RED}${BOLD}${CODE}⏎"
     BAD="✖"
   fi
+
   NEW_PWD="$(short_pwd)"
+  PROMPT_PWD="◣${NEW_PWD}◥"
+
   GIT_BRANCH="$(git_branch $PWD)"
   if [ ! -z "${GIT_BRANCH}" ]
   then
@@ -61,7 +63,14 @@ set_prompt_vars() {
   else
       GIT_LOCAL=""
   fi
-  PROMPT_PWD="◣${NEW_PWD}◥"
+
+  DISK=$(df -h $HOME | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
+  if [ $DISK -gt 70 ]
+  then
+    DISK="⛃ ${DISK}%%"
+  else
+    DISK=""
+  fi
 }
 
 bash_prompt() {
@@ -96,13 +105,14 @@ bash_prompt() {
     local BGM="\[\033[45m\]"
     local BGC="\[\033[46m\]"
     local BGW="\[\033[47m\]"
+    local BK="\[\033[5m\]"
     
     local UC=$W                 # user's color
     [ $UID -eq "0" ] && UC=$R   # root's color
     
     TITLEBAR="\[\033]0;\u:\${NEW_PWD}\007\]"
     LAST_RESULT="${EMG}\${OK}${EMR}\${BAD}"
-    PS1="${TITLEBAR}${LAST_RESULT}${EMY}${UC}\u${EMY}@${UC}\h ${BGB}${EMK}\${PROMPT_PWD}${BGY}\${GIT_BRANCH}${BGR}\${GIT_LOCAL}${UC}$ ${NONE}"
+    PS1="${TITLEBAR}${LAST_RESULT}${EMY}${UC}\u${EMY}@${UC}\h ${BGR}${EMK}${BK}\${DISK}${NONE} ${BGY}${EMK}\${GIT_BRANCH}${BGM}\${GIT_LOCAL}${BGB}\${PROMPT_PWD}${UC}$ ${NONE}"
 }
 
 PROMPT_COMMAND=set_prompt_vars
