@@ -49,7 +49,7 @@ set_prompt_vars() {
   fi
   NEW_PWD="$(short_pwd)"
   GIT_BRANCH="$(git_branch $PWD)"
-  if [ ! -z ${GIT_BRANCH} ]
+  if [ ! -z "${GIT_BRANCH}" ]
   then
       GIT_BRANCH="◣ ${GIT_BRANCH}◥"
   fi
