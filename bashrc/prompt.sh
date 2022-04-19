@@ -1,3 +1,7 @@
+export DISK_THRESHOLD=70
+export MEM_THRESHOLD=50
+export DOCKER_THRESHOLD=3
+
 # Prompt Section
 set_long_prompt() {
   PS1='$(last_result_color)${RESET}$(system-info) $(git_short_info $PWD)$(set_dir_title)$(short_pwd) $ '
@@ -28,10 +32,7 @@ git_local() {
 }
 
 system_info() {
-    MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
-    print_percent_with_color "⛃ ${DISK}%%" ${DISK}
-    print_percent_with_color " 🐘${MEM}%%" ${MEM}
-    printf " 🐋$(docker-count)\n"
+    printf " $(docker-count)\n"
 }
 
 set_prompt_vars() {
@@ -65,11 +66,27 @@ set_prompt_vars() {
   fi
 
   DISK=$(df -h $HOME | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
-  if [ $DISK -gt 70 ]
+  if [ $DISK -gt $DISK_THRESHOLD ]
   then
-    DISK="⛃ ${DISK}%%"
+    DISK="⛃ ${DISK}% "
   else
     DISK=""
+  fi
+  
+  MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
+  if [ $MEM -gt $MEM_THRESHOLD ]
+  then
+    MEM="🐘${MEM}% "
+  else
+    MEM=""
+  fi
+
+  DKR_COUNT=$(docker-count)
+  if [ $DKR_COUNT -gt $DOCKER_THRESHOLD ]
+  then
+    DKR_COUNT="🐋${DKR_COUNT} "
+  else
+    DKR_COUNT=""
   fi
 }
 
@@ -112,7 +129,7 @@ bash_prompt() {
     
     TITLEBAR="\[\033]0;\u:\${NEW_PWD}\007\]"
     LAST_RESULT="${EMG}\${OK}${EMR}\${BAD}"
-    PS1="${TITLEBAR}${LAST_RESULT}${EMY}${UC}\u${EMY}@${UC}\h ${BGR}${EMK}${BK}\${DISK}${NONE} ${BGY}${EMK}\${GIT_BRANCH}${BGM}\${GIT_LOCAL}${BGB}\${PROMPT_PWD}${UC}$ ${NONE}"
+    PS1="${TITLEBAR}${LAST_RESULT}${EMY}${UC}\u${EMY}@${UC}\h ${EMW}${BK}\${DISK}\${MEM}\${DKR_COUNT}${NONE}${BGY}${EMK}\${GIT_BRANCH}${BGM}\${GIT_LOCAL}${BGB}\${PROMPT_PWD}${UC}$ ${NONE}"
 }
 
 PROMPT_COMMAND=set_prompt_vars
