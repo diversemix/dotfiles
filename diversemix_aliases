@@ -32,10 +32,10 @@ alias p="ps aux"
 alias r="ranger"
 alias s="systemctl $*"
 alias u='cd ..'
-alias v="nvim $*"
+alias v="vim $*"
 
 # Double letter aliases...
-alias vi="nvim $*"
+alias vi="vim $*"
 alias xo=xdg-open
 alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 alias va='vi ~/.bash_aliases; source ~/.bash_aliases'

@@ -48,6 +48,10 @@ set_prompt_vars() {
   GIT_BRANCH="$(git_branch $PWD)"
   if [ ! -z "${GIT_BRANCH}" ]
   then
+      if [ ${GIT_BRANCH::4} == "HEAD" ]
+      then
+        GIT_BRANCH=$(git rev-parse --short HEAD)
+      fi
       GIT_BRANCH="◣ ${GIT_BRANCH}◥"
   fi
 
