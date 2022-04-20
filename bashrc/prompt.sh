@@ -2,6 +2,7 @@ export DISK_THRESHOLD=70
 export MEM_THRESHOLD=50
 export DOCKER_THRESHOLD=3
 
+# 160 ms base line
 # Prompt Section
 git_branch() {
   if [ -d $1/.git ]; then
@@ -15,7 +16,7 @@ git_branch() {
 
 git_local() {
   if [ -d $1/.git ]; then
-    echo "$(git status -s | cut -c 2| uniq -c| sed -e 's/ //g' | grep -e '..' |tr -s ' ' | awk 'BEGIN{OFS=","} FNR==1{first=$0;next} {val=val?val OFS $0:$0} END{print first OFS val}')" | tr -d ' '
+    echo "$(git status -s -b | grep -v "##" | wc -l)"
   else
     if [ "$1" != "/" ]; then
       git_local $(dirname $1)
@@ -27,7 +28,7 @@ set_prompt_vars() {
   # Using z.sh so handle the PROMPT_COMMAND
   if [ $_Z_NO_PROMPT_COMMAND ]
   then
-    _z --add "$(command pwd '$_Z_RESOLVE_SYMLINKS' 2>/dev/null)" 2>/dev/null 
+    (_z --add "$(command pwd '$_Z_RESOLVE_SYMLINKS' 2>/dev/null)" 2>/dev/null &     )
   fi
 
   # last result
@@ -45,6 +46,7 @@ set_prompt_vars() {
   NEW_PWD="$(short_pwd)"
   PROMPT_PWD="◣${NEW_PWD}◥"
 
+  GIT_BRANCH=""
   GIT_BRANCH="$(git_branch $PWD)"
   if [ ! -z "${GIT_BRANCH}" ]
   then
@@ -55,14 +57,16 @@ set_prompt_vars() {
       GIT_BRANCH="◣ ${GIT_BRANCH}◥"
   fi
 
+  GIT_LOCAL=0
   GIT_LOCAL="$(git_local $PWD)"
-  if [ ${#GIT_LOCAL} -gt 2 ]
+  if [ ${GIT_LOCAL} -gt 0 ]
   then
       GIT_LOCAL="◣${GIT_LOCAL}◥"
   else
       GIT_LOCAL=""
   fi
 
+  DISK=0
   DISK=$(df -h $HOME | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
   if [ $DISK -gt $DISK_THRESHOLD ]
   then
@@ -71,6 +75,7 @@ set_prompt_vars() {
     DISK=""
   fi
   
+  MEM=0
   MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
   if [ $MEM -gt $MEM_THRESHOLD ]
   then
@@ -79,13 +84,18 @@ set_prompt_vars() {
     MEM=""
   fi
 
-  DKR_COUNT=$(docker-count)
+  DKR_COUNT=0
+  DKR_COUNT=$(ip a | grep veth | wc -l)
   if [ $DKR_COUNT -gt $DOCKER_THRESHOLD ]
   then
     DKR_COUNT="🐋${DKR_COUNT} "
   else
     DKR_COUNT=""
   fi
+}
+
+prompt_test() {
+  time for a in `seq 1 10` ; do set_prompt_vars ; done
 }
 
 bash_prompt() {
