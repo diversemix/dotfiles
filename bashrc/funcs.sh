@@ -9,6 +9,11 @@ function topmem()
         head
 }
 
+function ismac() 
+{
+  [ ${TERM_PROGRAM} == "Apple_Terminal" ]
+}
+
 # -------------------------------------------------------------
 # set the title for the current terminal
 # -------------------------------------------------------------
@@ -70,7 +75,7 @@ docker-info() {
 }
 
 docker-count() {
-  docker ps | grep -v CONTAINER | wc -l
+  docker ps | grep -v CONTAINER | wc -l | tr -d ' '
 }
 
 host_or_git() {
@@ -101,7 +106,7 @@ print_threshold_with_color() {
 
 print_percent_with_color() {
   message=$1
-  value=$2
+  value=${2:-0}
   color=${RED}${BLINK}
   if [ $value -le 80 ] ; then color=${RED} ; fi
   if [ $value -le 70 ] ; then color=${YELLOW} ; fi
@@ -129,12 +134,12 @@ test_network() {
 }
 
 test_dropbox() {
-  out=$(dropbox status)
+  out=$(ismac || dropbox status)
   echo $out ; ps aux | grep dropbox | grep -v grep >/dev/null
 }
 
 test_uncommited() {
-  pushd . > /dev/null; cd $1 ; git status -s | wc -l ; popd > /dev/null
+  pushd . > /dev/null; cd $1 ; git status -s | wc -l | tr -d ' '; popd > /dev/null
 }
 
 genetics_define() {
@@ -147,11 +152,11 @@ git_search() {
 
 print-status() {
   DISK=$(df -h / | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
-  MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
-  SWAP=$(free | grep Swap | awk '{printf ("%2.0f", $3/$2 * 100.0) }')
+  MEM=$(ismac || free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
+  SWAP=$(ismac || free | grep Swap | awk '{printf ("%2.0f", $3/$2 * 100.0) }')
   DOCKER=$(docker ps | grep -v CONTAINER | wc -l)
-  TEMP=$(sensors | grep CPU | cut -c15-22)
-  TEMP_NUM=$(grep -c ^processor /proc/cpuinfo)
+  TEMP=$(ismac || sensors | grep CPU | cut -c15-22)
+  TEMP_NUM=$(ismac || grep -c ^processor /proc/cpuinfo)
   echo ────────────────────────────────────────────────────────────────────────────
   print_percent_with_color "  💾 Disk    : ${DISK}%% \n" ${DISK}
   print_percent_with_color "  🐘 Memory  : ${MEM}%% \n" ${MEM}

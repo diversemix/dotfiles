@@ -77,7 +77,7 @@ set_prompt_vars() {
   fi
   
   MEM=0
-  MEM=$(free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }')
+  MEM=$([ ! -z $(which free) ] && free | grep Mem | awk  '{printf ("%2.0f", $3/$2 * 100.0) }' || echo 0)
   if [ $MEM -gt $MEM_THRESHOLD ]
   then
     MEM="🐘${MEM}% "
@@ -86,7 +86,7 @@ set_prompt_vars() {
   fi
 
   DKR_COUNT=0
-  DKR_COUNT=$(ip a | grep veth | wc -l)
+  DKR_COUNT=$([ ! -z $(which ip) ] && ip a | grep veth | wc -l || echo 0)
   if [ $DKR_COUNT -gt $DOCKER_THRESHOLD ]
   then
     DKR_COUNT="🐋${DKR_COUNT} "

@@ -9,7 +9,7 @@ echo ""
 set-title "Bash-$(ps aux| grep ' bash' | wc -l)"
 export PATH="$HOME/dotfiles/scripts:$PATH"
 
-export $(gnome-keyring-daemon -s)
+ismac || export $(gnome-keyring-daemon -s)
 
 # If pyenv is installed...
 #if [ -d $HOME/.pyenv/bin ]; then
@@ -35,7 +35,8 @@ export $(gnome-keyring-daemon -s)
 export FZF_CTRL_T_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,**/*.class}"'
 
 # Swap CAPS and ESC - should consider doing this permanently
-/usr/bin/setxkbmap -option "caps:swapescape"
+# For mac this can be done in the keyboard settings
+ismac || /usr/bin/setxkbmap -option "caps:swapescape"
 
 export _Z_NO_PROMPT_COMMAND=1
 export _Z_EXCLUDE_DIRS=node_modules
