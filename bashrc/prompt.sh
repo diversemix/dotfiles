@@ -16,7 +16,7 @@ git_branch() {
 
 git_local() {
   if [ -d "$1/.git" ]; then
-    echo "$(git status -s -b | grep -v "##" | wc -l)"
+    echo "$(git status -s -b | grep -v "##" | wc -l | tr -d ' ')"
   else
     if [ "$1" != "/" ]; then
       git_local $(dirname $1)
@@ -44,7 +44,7 @@ set_prompt_vars() {
   fi
 
   NEW_PWD="$(short_pwd)"
-  PROMPT_PWD="◣${NEW_PWD}◥"
+  PROMPT_PWD=" ${NEW_PWD}▒▓"
 
   GIT_BRANCH=""
   GIT_BRANCH="$(git_branch $PWD)"
@@ -54,7 +54,7 @@ set_prompt_vars() {
       then
         GIT_BRANCH=$(git rev-parse --short HEAD)
       fi
-      GIT_BRANCH="◣ ${GIT_BRANCH}◥"
+      GIT_BRANCH="  ${GIT_BRANCH}▒"
   fi
 
   GIT_LOCAL=0
@@ -62,7 +62,7 @@ set_prompt_vars() {
   GIT_LOCAL=${GIT_LOCAL:=0}
   if [ ${GIT_LOCAL} -gt 0 ]
   then
-      GIT_LOCAL="◣${GIT_LOCAL}◥"
+      GIT_LOCAL=" ${GIT_LOCAL}▒"
   else
       GIT_LOCAL=""
   fi
