@@ -15,7 +15,7 @@ git_branch() {
 }
 
 git_local() {
-  if [ -d $1/.git ]; then
+  if [ -d "$1/.git" ]; then
     echo "$(git status -s -b | grep -v "##" | wc -l)"
   else
     if [ "$1" != "/" ]; then
@@ -58,7 +58,8 @@ set_prompt_vars() {
   fi
 
   GIT_LOCAL=0
-  GIT_LOCAL="$(git_local $PWD)"
+  GIT_LOCAL=$(git_local $PWD)
+  GIT_LOCAL=${GIT_LOCAL:=0}
   if [ ${GIT_LOCAL} -gt 0 ]
   then
       GIT_LOCAL="◣${GIT_LOCAL}◥"
