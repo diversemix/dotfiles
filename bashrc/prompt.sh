@@ -44,7 +44,7 @@ set_prompt_vars() {
   fi
 
   NEW_PWD="$(short_pwd)"
-  PROMPT_PWD=" ${NEW_PWD}▒▓"
+  PROMPT_PWD=" ${NEW_PWD}"
 
   GIT_BRANCH=""
   GIT_BRANCH="$(git_branch $PWD)"
@@ -54,7 +54,7 @@ set_prompt_vars() {
       then
         GIT_BRANCH=$(git rev-parse --short HEAD)
       fi
-      GIT_BRANCH="  ${GIT_BRANCH}▒"
+      GIT_BRANCH="  ${GIT_BRANCH}"
   fi
 
   GIT_LOCAL=0
@@ -62,7 +62,7 @@ set_prompt_vars() {
   GIT_LOCAL=${GIT_LOCAL:=0}
   if [ ${GIT_LOCAL} -gt 0 ]
   then
-      GIT_LOCAL=" ${GIT_LOCAL}▒"
+      GIT_LOCAL=" ${GIT_LOCAL}"
   else
       GIT_LOCAL=""
   fi
@@ -136,9 +136,10 @@ bash_prompt() {
     local UC=$W                 # user's color
     [ $UID -eq "0" ] && UC=$R   # root's color
     
+    SEP=""
     TITLEBAR="\[\033]0;\u:\${NEW_PWD}\007\]"
     LAST_RESULT="${EMG}\${OK}${EMR}\${BAD}"
-    PS1="${TITLEBAR}${LAST_RESULT}${EMY}${UC}\u${EMY}@${UC}\h ${EMW}${BK}\${DISK}\${MEM}\${DKR_COUNT}${NONE}${BGY}${EMK}\${GIT_BRANCH}${BGM}\${GIT_LOCAL}${BGB}\${PROMPT_PWD}${UC}$ ${NONE}"
+    PS1="${TITLEBAR}${LAST_RESULT}${EMY}${UC}\u${EMY}@${UC}\h ${EMW}${BK}\${DISK}\${MEM}\${DKR_COUNT}${NONE}${BGY}${EMK}\${GIT_BRANCH}${Y}${BGM}${SEP}${K}${BGM}\${GIT_LOCAL}${M}${BGB}${SEP}${K}${BGB}\${PROMPT_PWD}${BGB}${B}${SEP}${UC}$ ${NONE}"
 }
 
 PROMPT_COMMAND=set_prompt_vars
