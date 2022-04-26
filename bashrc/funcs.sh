@@ -11,7 +11,7 @@ function topmem()
 
 function ismac() 
 {
-  [ ${TERM_PROGRAM} == "Apple_Terminal" ] || [ ${TERM_PROGRAM} == "iTerm.app" ]
+  [ ${TERM_PROGRAM:-""} == "Apple_Terminal" ] || [ ${TERM_PROGRAM:-""} == "iTerm.app" ]
 }
 
 # -------------------------------------------------------------
