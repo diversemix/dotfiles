@@ -25,13 +25,7 @@ git_local() {
 }
 
 set_prompt_vars() {
-  # Using z.sh so handle the PROMPT_COMMAND
-  if [ $_Z_NO_PROMPT_COMMAND ]
-  then
-    (_z --add "$(command pwd '$_Z_RESOLVE_SYMLINKS' 2>/dev/null)" 2>/dev/null &     )
-  fi
-
-  # last result
+  # IMPORTANT - the checking of the last return code must come first
   CODE=$?
   if [ $CODE = 0 ]
   then 
@@ -41,6 +35,12 @@ set_prompt_vars() {
     OK=""
     echo "${RED}${BOLD}${CODE}⏎"
     BAD="✖"
+  fi
+
+  # Using z.sh so handle the PROMPT_COMMAND
+  if [ $_Z_NO_PROMPT_COMMAND ]
+  then
+    (_z --add "$(command pwd '$_Z_RESOLVE_SYMLINKS' 2>/dev/null)" 2>/dev/null &     )
   fi
 
   NEW_PWD="$(short_pwd)"
@@ -139,7 +139,7 @@ bash_prompt() {
     SEP=""
     TITLEBAR="\[\033]0;\u:\${NEW_PWD}\007\]"
     LAST_RESULT="${EMG}\${OK}${EMR}\${BAD}"
-    PS1="${TITLEBAR}${LAST_RESULT}${EMY}${UC}\u${EMY}@${UC}\h ${EMW}${BK}\${DISK}\${MEM}\${DKR_COUNT}${NONE}${BGY}${EMK}\${GIT_BRANCH}${Y}${BGM}${SEP}${K}${BGM}\${GIT_LOCAL}${M}${BGB}${SEP}${K}${BGB}\${PROMPT_PWD}${BGB}${B}${SEP}${UC}$ ${NONE}"
+    PS1="${TITLEBAR}${LAST_RESULT}${Y}${UC}\u${Y}@${UC}\h ${EMW}${BK}\${DISK}\${MEM}\${DKR_COUNT}${NONE}${K}${BGY}\${GIT_BRANCH}${Y}${BGM}${SEP}${K}${BGM}\${GIT_LOCAL}${M}${BGB}${SEP}${K}${BGB}\${PROMPT_PWD}${BGB}${B}${SEP}${UC}$ ${NONE}"
 }
 
 PROMPT_COMMAND=set_prompt_vars
