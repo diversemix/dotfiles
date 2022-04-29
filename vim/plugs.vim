@@ -9,6 +9,8 @@ call plug#begin()
 
 " Make sure you use single quotes
 
+" For examples see: https://dev.to/iggredible/debugging-in-vim-with-vimspector-4n0m
+Plug 'puremourning/vimspector'
 Plug 'sheerun/vim-polyglot'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
@@ -113,3 +115,16 @@ let g:prettier#config#trailing_comma = "none"
 let g:prettier#autoformat = 0
 " Uncomment when configured properly
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+"
+" Vimspector
+nnoremap <Leader>dd :call vimspector#Launch()<CR>
+nnoremap <Leader>de :call vimspector#Reset()<CR>
+nnoremap <Leader>dc :call vimspector#Continue()<CR>
+
+nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
+
+nmap <Leader>dk <Plug>VimspectorRestart
+nmap <Leader>dh <Plug>VimspectorStepOut
+nmap <Leader>dl <Plug>VimspectorStepInto
+nmap <Leader>dj <Plug>VimspectorStepOver
