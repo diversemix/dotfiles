@@ -1,7 +1,6 @@
 export DISK_THRESHOLD=70
 export MEM_THRESHOLD=50
 export DOCKER_THRESHOLD=3
-export SEP="▌"
 
 # 160 ms base line
 # Prompt Section
@@ -45,28 +44,29 @@ set_prompt_vars() {
   fi
 
   NEW_PWD="$(short_pwd)"
-  PROMPT_PWD="▌${NEW_PWD}"
+  PROMPT_PWD="${NEW_PWD}"
 
   GIT_BRANCH=""
+  GIT_LOCAL=""
+
   GIT_BRANCH="$(git_branch $PWD)"
   if [ ! -z "${GIT_BRANCH}" ]
   then
-      if [ ${GIT_BRANCH::4} == "HEAD" ]
-      then
-        GIT_BRANCH=$(git rev-parse --short HEAD)
-      fi
-      GIT_BRANCH="${GIT_BRANCH}"
+    GIT_LOCAL=$(git_local $PWD)
+    if [ ${GIT_LOCAL} -gt 0 ]
+    then
+      GIT_LOCAL="(${GIT_LOCAL})"
+    else
+      GIT_LOCAL=""
+    fi
+
+    if [ ${GIT_BRANCH::4} == "HEAD" ]
+    then
+      GIT_BRANCH=$(git rev-parse --short HEAD)
+    fi
+    GIT_BRANCH="${GIT_BRANCH}"
   fi
 
-  GIT_LOCAL=0
-  GIT_LOCAL=$(git_local $PWD)
-  GIT_LOCAL=${GIT_LOCAL:=0}
-  if [ ${GIT_LOCAL} -gt 0 ]
-  then
-      GIT_LOCAL="(${GIT_LOCAL})"
-  else
-      GIT_LOCAL=""
-  fi
 
   DISK=0
   DISK=$(df -h $HOME | tr -s ' ' | cut -d ' ' -f5 | tail -n 1 | cut -d '%' -f1)
@@ -133,13 +133,19 @@ bash_prompt() {
     local BGC="\[\033[46m\]"
     local BGW="\[\033[47m\]"
     local BK="\[\033[5m\]"
+    local UND="\[\033[4m\]"
     
     local UC=$W                 # user's color
     [ $UID -eq "0" ] && UC=$R   # root's color
     
     TITLEBAR="\[\033]0;\u:\${NEW_PWD}\007\]"
     LAST_RESULT="${EMG}\${OK}${EMR}\${BAD}"
-    PS1="${TITLEBAR}${LAST_RESULT}${Y}${UC}\u${Y}@${UC}\h${EMW}${BK}\${DISK}\${MEM}\${DKR_COUNT}${NONE}${K}${BGY}\${GIT_BRANCH}${BGM}\${GIT_LOCAL}${BGB}\${PROMPT_PWD}${BGB}${B}${SEP}${UC}$ ${NONE}"
+    GIT="${K}${BGY}\${GIT_BRANCH}${BGM}\${GIT_LOCAL}${NONE}\n"
+    ALERTS="${EMW}${BK}\${DISK}\${MEM}\${DKR_COUNT}${NONE}"
+    LOCATION="${EMB}${UND}\${PROMPT_PWD}${NONE}"
+    ENDING="${BGB}${B}${NONE}" 
+
+    PS1="${TITLEBAR}${GIT}${LAST_RESULT}${Y}${UC}\u@\h${ALERTS} ${LOCATION}${ENDING} ${UC}$ ${NONE}"
 }
 
 PROMPT_COMMAND=set_prompt_vars

@@ -32,7 +32,7 @@ ismac || export $(gnome-keyring-daemon -s)
 	# Time consuming: echo -n "${YELLOW}npm${RESET} "; npm --version
 #fi
 
-export FZF_CTRL_T_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,**/*.class}"'
+#export FZF_CTRL_T_COMMAND='ag --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,**/*.class}"'
 
 # Swap CAPS and ESC - should consider doing this permanently
 # For mac this can be done in the keyboard settings
