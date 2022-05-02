@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -en "\e]P0000000" #black
+echo -en "\e]P0888800" #black
 echo -en "\e]P8333333" #darkgrey
 echo -en "\e]P1432424" #darkred
 echo -en "\e]P9482727" #red
