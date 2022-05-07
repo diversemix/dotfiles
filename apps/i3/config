@@ -207,3 +207,7 @@ exec_always --no-startup-id dunst
 exec_always --no-startup-id diodon
 exec_always --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
 exec always --no-startup-id xautolock -time 1 -locker i3lock
+
+# my shortcuts
+bindsym $mod+n          exec i3-sensible-terminal -e $HOME/dotfiles/scripts/notes.sh
+bindsym $mod+shift+n    exec ls -r ~/Dropbox/Documents/Notes/pdf/*.pdf | grep -v Blog |head -n1 | xargs xdg-open 
