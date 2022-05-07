@@ -11,3 +11,9 @@ Please see https://diversemix.github.io/software/setup.html
 ## Still todo
 
 - Finish the `validate.sh` script
+
+## Other useful commands
+
+```
+sudo update-alternatives --config editor
+```
