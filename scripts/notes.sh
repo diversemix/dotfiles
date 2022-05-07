@@ -9,9 +9,19 @@ if [ ! -f $noteFilename ]; then
   echo "# Notes for $(date +%Y-%m)" > $noteFilename
 fi
 
-vim -c "norm Go" \
-  -c "norm Go## $(date '+%A %d-%B, %Y %H:%M')" \
-  -c "norm G2o" \
-  -c "norm zz" \
-  -c "startinsert" $noteFilename
+HEADER=$(date '+%A %d-%B, %Y')
+
+if [ "`grep "$HEADER" $noteFilename`" != "" ]
+then
+  vim -c "norm G2o" \
+    -c "norm zz" \
+    -c "startinsert" $noteFilename
+else
+  vim -c "norm Go" \
+    -c "norm Go## $HEADER" \
+    -c "norm G2o" \
+    -c "norm zz" \
+    -c "startinsert" $noteFilename
+fi
+
 

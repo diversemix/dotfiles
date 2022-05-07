@@ -1,3 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
-ls -r ~/Dropbox/Documents/Notes/pdf/*.pdf | head -n1 | xargs xdg-open
+ls -r ~/Dropbox/Documents/Notes/pdf/*.pdf | head -n1 | xargs xdg-open &
+disown -a
