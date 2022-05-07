@@ -22,3 +22,11 @@ The final line in the config does it for touchpads. However for mice, add the fo
 ```
 Option "NaturalScrolling" "True"
 ```
+
+## Icons
+
+In order to get icons working with dunst - this is what I did
+
+```
+for f in `find  /usr/share/icons/oxygen/base/32x32/  -name '*.png' ` ; do cp $f ~/.config/breeze_icons/`basename $f`; done
+```
