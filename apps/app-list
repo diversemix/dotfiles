@@ -25,6 +25,7 @@ openssh-client
 openssl
 postgresql-client-common 
 postgresql-client-10
+pm-utils
 ranger
 silversearcher-ag
 tcpdump
@@ -32,5 +33,6 @@ tmux
 vim
 w3m
 w3m-img
+xautolock
 youtube-dl
 zathura

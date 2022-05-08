@@ -58,10 +58,10 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -70,10 +70,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -82,7 +82,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+p split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -203,12 +203,30 @@ bar {
 # exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 exec_always --no-startup-id setxkbmap -option caps:escape
 
+# TODO: make sure you have dropbox installed
 exec_always --no-startup-id dropbox start
+
+# TODO: make sure you've installed the icons see README.md
 exec_always --no-startup-id dunst
+
+# TODO: make sure you have diodon installed
 exec_always --no-startup-id diodon
-exec_always --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
-exec always --no-startup-id xautolock -time 1 -locker i3lock
+
+# TODO: make sure xfce4-power-manager installed
+exec_always --no-startup-id xfce4-power-manager
+
+# Do we need this line or just follow instructions in README
+#exec_always --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+
+# This comment is here as this is how we used to do it but now has been
+# superceeded by using xfce4-power-manager
+#
+# exec always --no-startup-id xautolock -time 1 -locker i3lock
+# xautolock -time 1 -detectsleep  -corners 00++ -locker "i3lock -c 306010" -notify 30 -notifier "notify-send -u critical 'Locking in 30 secs...'"
+#
 
 # my shortcuts
 bindsym $mod+n          exec i3-sensible-terminal -e $HOME/dotfiles/scripts/notes.sh
 bindsym $mod+shift+n    exec ls -r ~/Dropbox/Documents/Notes/pdf/*.pdf | grep -v Blog |head -n1 | xargs xdg-open 
+bindsym $mod+ctrl+l     exec i3lock -c 306010
+
