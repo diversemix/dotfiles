@@ -10,7 +10,7 @@ call plug#begin()
 " Make sure you use single quotes
 
 " For examples see: https://dev.to/iggredible/debugging-in-vim-with-vimspector-4n0m
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 Plug 'sheerun/vim-polyglot'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align

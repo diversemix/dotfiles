@@ -35,5 +35,5 @@ export FZF_CTRL_T_OPTS='--border --info=inline --preview "bat --style=numbers --
 
 # -----------------------------------------------------------------------
 # BAT
-export BAT_THEME=ansi-dark
+export BAT_THEME=ansi
 export BAT_STYLE=changes,header,grid,numbers

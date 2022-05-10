@@ -64,5 +64,6 @@ nnoremap g# g#zz
 set scrolloff=10
 
 " Integration with my scripts...
-autocmd BufWritePost Notes-*.md silent !/home/peter/dotfiles/scripts/buildnote.sh %:p
+autocmd BufWritePost Notes-*.md silent !${HOME}/dotfiles/scripts/buildnote.sh %:p
+
 
