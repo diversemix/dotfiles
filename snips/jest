@@ -1,0 +1,11 @@
+import {jest} from '@jest/globals';
+
+describe("Function",() => {
+    it('should doX',() => {
+        // Arrange
+
+        // Act
+
+        // Assert
+    })
+});

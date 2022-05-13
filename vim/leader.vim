@@ -15,9 +15,11 @@ noremap <Leader>h :call CocAction('doHover')<CR>
 noremap <Leader>j :bprevious<cr>
 noremap <Leader>k :bnext<cr>
 noremap <Leader>n :set norelativenumber!<CR>
+noremap <Leader>ns :!npm start<CR>
+noremap <Leader>nt :!npm test<CR>
 noremap <Leader>p :setlocal spell! spelllang=en_gb<CR>
 noremap <Leader>q :q<CR>
-noremap <Leader>s :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+noremap <Leader>s :r ~/dotfiles/snips/
 noremap <Leader>t :sp<CR>
 noremap <Leader>tt :vsp<CR>
 noremap <Leader>v :e ~/dotfiles/diversemix.vimrc<CR>

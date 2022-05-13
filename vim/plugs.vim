@@ -91,12 +91,12 @@ set conceallevel=1
 nmap <C-p> :GFiles<CR>
 nmap <C-e> :CocCommand explorer<CR>
 "nmap <C-r> :Buffers<CR>
-nmap <C-a> :Ag!<CR>
+nmap <C-a> :Ag<CR>
 
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..' }, 'down:60%')
-  \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'down:60%')
+  \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:60%'),
   \                 <bang>0)
  
 
