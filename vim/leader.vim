@@ -3,10 +3,13 @@
 noremap <Leader><Space> /<++><Enter>"_c4l
 
 " javascript section
-inoremap <Leader>fe .forEach(item => {<CR>});<Up><Esc>o
-inoremap <Leader>cl console.log(``);<Left><Left><Left>
-inoremap <Leader>af const fn = () => {};<Esc>0ffcw
+" inoremap <Leader>fe .forEach(item => {<CR>});<Up><Esc>o
+" inoremap <Leader>cl console.log(``);<Left><Left><Left>
+" inoremap <Leader>af const fn = () => {};<Esc>0ffcw
 
+set timeoutlen=250
+
+noremap <Leader>a :silent grep! "\b\s?<C-R><C-W>\b"<CR>:cw<CR>:redr!<CR>
 noremap <Leader>c :bd<CR>
 noremap <Leader>e :cn<CR>
 noremap <Leader>E :cp<CR>

@@ -216,7 +216,7 @@ exec_always --no-startup-id diodon
 exec_always --no-startup-id xfce4-power-manager
 
 # Do we need this line or just follow instructions in README
-#exec_always --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+# exec_always --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
 
 # This comment is here as this is how we used to do it but now has been
 # superceeded by using xfce4-power-manager

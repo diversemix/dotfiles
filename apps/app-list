@@ -2,10 +2,12 @@ ack
 batcat
 bash-completion
 build-essential
+btop
 conky-all
 diodon
 docker-ce
 docker-ce-cli
+entr
 figlet
 fzf
 gimp
@@ -27,6 +29,7 @@ postgresql-client-common
 postgresql-client-10
 pm-utils
 ranger
+rmlnt
 silversearcher-ag
 tcpdump
 tmux
