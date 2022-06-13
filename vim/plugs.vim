@@ -98,7 +98,25 @@ command! -bang -nargs=* Ag
   \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'down:60%')
   \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:60%'),
   \                 <bang>0)
- 
+
+
+set grepprg=ag\ --nogroup\ --nocolor
+
+if executable("ag")
+    set wildignore+=*/tmp/*,*.txt,*.txt.*,*.so,*.swp,*.zip,*/.tmp/*,*/.sass-cache/*,*/node_modules/*,*.keep,*.DS_Store,*/.git/*
+    "set grepprg=echo\ -e\ \"\$(ag\ --nogroup\ --nocolor\ --ignore-case\ --column\ --ignore\ node_modules\ --ignore\ '*.txt*'\ --ignore\ '*.log'\ --ignore\ '*/tmp/*'\ --ignore\ '*.txt*'\ --ignore\ '*.so'\ --igno
+    "set grepformat=%f:%l:%c:%m,%f:%l:%m
+    function! SilverSearch()
+      let g:s = input("silversearch: ")
+      execute 'silent! grep! "' . g:s . '"'
+      cw
+      redr!
+    endfunction
+    " nnoremap <silent> <Tab> yiw:cw<CR>:call setqflist([])<CR>:silent! grep! "<C-S-V>\b"<CR>:cw<CR>:redr!<CR>
+    nnoremap <Tab> yiw:cw<CR>:call setqflist([])<CR>:silent! grep! "<C-R><C-W>\b"<CR>:cw<CR>:redr!<CR>
+endif
+nnoremap <C-Tab> :call fzf#vim#ag("<C-R><C-W>")
+
 
 " Setup Theme
 syntax enable

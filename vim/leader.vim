@@ -9,10 +9,7 @@ noremap <Leader><Space> /<++><Enter>"_c4l
 
 set timeoutlen=250
 
-noremap <Leader>a :silent grep! "\b\s?<C-R><C-W>\b"<CR>:cw<CR>:redr!<CR>
 noremap <Leader>c :bd<CR>
-noremap <Leader>e :cn<CR>
-noremap <Leader>E :cp<CR>
 noremap <Leader>g :Git<CR>
 noremap <Leader>h :call CocAction('doHover')<CR>
 noremap <Leader>j :bprevious<cr>
