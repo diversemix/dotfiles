@@ -1,6 +1,6 @@
 ack
-batcat
 bash-completion
+bat
 build-essential
 btop
 conky-all
@@ -16,6 +16,8 @@ i3
 imagemagick
 jq
 keepassx
+lm-sensors
+lolcat
 lolcat
 make
 meld
@@ -25,14 +27,13 @@ nodejs
 npm
 openssh-client
 openssl
-postgresql-client-common 
-postgresql-client-10
 pm-utils
 ranger
 rmlnt
 silversearcher-ag
 tcpdump
 tmux
+tree
 vim
 w3m
 w3m-img

@@ -201,7 +201,7 @@ bar {
 # exec_always --no-startup-id xmodmap -e "clear Lock"
 # exec_always --no-startup-id xmodmap "keycode 0x42 = Escape"
 # exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
-exec_always --no-startup-id setxkbmap -option caps:escape
+# exec_always --no-startup-id setxkbmap -option caps:escape
 
 # TODO: make sure you have dropbox installed
 exec_always --no-startup-id dropbox start
@@ -230,3 +230,4 @@ bindsym $mod+n          exec i3-sensible-terminal -e $HOME/dotfiles/scripts/note
 bindsym $mod+shift+n    exec ls -r ~/Dropbox/Documents/Notes/pdf/*.pdf | grep -v Blog |head -n1 | xargs xdg-open 
 bindsym $mod+ctrl+l     exec i3lock -c 306010
 
+exec_always setxkbmap -model pc104 -layout gb
