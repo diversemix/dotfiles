@@ -4,7 +4,7 @@ filename=$1
 target="$(dirname "${filename}")/../pdf"
 outputFile="$(basename "$filename" .md).pdf"
 
-echo Making $target
+echo " Making $outputFile"
 mkdir -p $target
 
 pandoc \
