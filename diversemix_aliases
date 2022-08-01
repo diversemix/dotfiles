@@ -45,6 +45,7 @@ alias sk="slack-term -token ${SLACK_TOKEN}"
 alias vv='vi ~/.vimrc'
 alias hn='history | cut -d " " -f6- | sort | uniq -c | sort -n '
 alias tf=terraform
+alias nr="npm run"
 
 # Git aliases
 alias cb='git branch | fzf --header Checkout | xargs git checkout'
@@ -60,6 +61,7 @@ alias tag_hist='git for-each-ref --sort=taggerdate --format "%(taggerdate) %(ref
 alias git_rm_local='git fetch -p; git for-each-ref --format "%(refname:short) %(upstream:track)" | grep  "\[gone\]" | cut -d '[' -f1 | xargs -r git branch -D'
 alias gcm="git checkout main"
 alias gc="git commit -m"
+alias gco="git checkout"
 alias git_clean='git clean -xfd .'
 alias git_clean_branches="git branch --merged origin/main | grep -v main | xargs git branch -d"
 
@@ -109,3 +111,4 @@ alias clearlock='xmodmap -e "clear Lock"'
 alias withdotenv='eval $(egrep -v '^#' .env | xargs)'
 alias dbvis='~/DbVisualizer/dbvis'
 alias laws='aws --endpoint-url=http://localhost:4566 '
+alias sus='sudo systemctl suspend'

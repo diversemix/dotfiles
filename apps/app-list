@@ -10,6 +10,7 @@ figlet
 fzf
 gimp
 git
+hplip-gui
 i3
 imagemagick
 jq
@@ -36,3 +37,4 @@ w3m-img
 xautolock
 youtube-dl
 zathura
+inotify-tools

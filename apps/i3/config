@@ -215,6 +215,9 @@ exec_always --no-startup-id diodon
 # TODO: make sure xfce4-power-manager installed
 exec_always --no-startup-id xfce4-power-manager
 
+# TODO: install hplip-gui
+# exec_always --no-startup-id hp-toolbox
+
 # Do we need this line or just follow instructions in README
 #exec_always --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
 
