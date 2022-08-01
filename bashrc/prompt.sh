@@ -1,5 +1,5 @@
 export DISK_THRESHOLD=70
-export MEM_THRESHOLD=50
+export MEM_THRESHOLD=80
 export DOCKER_THRESHOLD=3
 
 # 160 ms base line
