@@ -79,6 +79,7 @@ alias dc=docker-compose
 alias 2..='cd ../..'
 alias 3..='cd ../../..'
 alias 4..='cd ../../../..'
+alias bat=/usr/bin/batcat
 alias cdgo='cd ~/go/src/github.com'
 alias uniq_ext='find . -name '\''*.*'\'' -print | rev | cut -d . -f1 | rev | sort | uniq'
 alias load_me='for i in 1 2 3 4; do while : ; do : ; done & done'
@@ -112,3 +113,6 @@ alias withdotenv='eval $(egrep -v '^#' .env | xargs)'
 alias dbvis='~/DbVisualizer/dbvis'
 alias laws='aws --endpoint-url=http://localhost:4566 '
 alias sus='sudo systemctl suspend'
+
+### Overrides for CPR
+alias p="pulumi"
