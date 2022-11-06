@@ -21,7 +21,7 @@ alias a="alias"
 alias c='top -d 0.5 -bn3 | grep "%Cpu(s)" | cut -d ',' -f4 | awk "{print 100 - $1"% Cpu Load"}" | tail -n 1'
 alias f="free -mh $*"
 alias g="./gradlew"
-alias h="history $*"
+alias h="history $* | tail -n 24"
 alias i="ifconfig $*"
 alias j="journalctl $*"
 alias k="kubectl"
@@ -114,5 +114,3 @@ alias dbvis='~/DbVisualizer/dbvis'
 alias laws='aws --endpoint-url=http://localhost:4566 '
 alias sus='sudo systemctl suspend'
 
-### Overrides for CPR
-alias p="pulumi"

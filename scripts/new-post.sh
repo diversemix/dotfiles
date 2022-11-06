@@ -6,15 +6,18 @@
 #
 cd "$HOME/diversemix.github.io/_posts"
 TIMESTAMP=$(date -u -Iseconds)
-POSTNAME="$(date -u -Iminute | tr -c '0-9T' '-'| sed -E 's/-00-00-//g' | sed -E 's/T/__/g')-new-post.md"
 
 # Needs these lines for vim to load node successfully
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
+TITLE=$(whiptail --inputbox "Enter the post's title:" 10 60 3>&1 1>&2 2>&3)
+
+POSTNAME="$(echo -n $(date -u -I) ${TITLE}|tr -c '[A-z,0-9]' '-').md"
+
 cat << EOF > $POSTNAME
 ---
-title: "New Post"
+title: "${TITLE}"
 last_modified_at: ${TIMESTAMP}
 categories:
   - blank
