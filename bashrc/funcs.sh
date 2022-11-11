@@ -1,6 +1,7 @@
 # -------------------------------------------------------------
 # Top list of process taking the most memory
 # -------------------------------------------------------------
+
 function topmem()
 {
     ps -eo size,pid,user,command --sort -size | \
@@ -178,6 +179,8 @@ done
   echo ""
   echo ────────────────────────────────────────────────────────────────────────────
 }
+
+termtitle() { printf "\033]0;$*\007"; }
 
 # echo "${YELLOW}Functions"
 # echo "    ${GREEN}topmem${RESET}       : lists top memory hogs"
