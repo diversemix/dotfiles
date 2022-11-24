@@ -1,31 +1,25 @@
 #!/bin/sh
 #
-# Inspired by https://github.com/CalinLeafshade/dots/blob/master/bin/bin/notetaker
-#
-cd "$HOME/Dropbox/Documents/Notes/md/"
+cd "$HOME/Dropbox/Documents/Notes"
 noteFilename="Notes-$(date +%Y-%m).md"
 
-# Needs these lines for vim to load node successfully
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-if [ ! -f $noteFilename ]; then
-  echo "# Notes for $(date +%Y-%m)" > $noteFilename
+# Look for the file - if not there create one
+if [ ! -f ${noteFilename} ]; then
+  echo "# Notes for $(date +%Y-%m)" > ${noteFilename}
 fi
 
+# Look for this header - if not there then add at end
 HEADER=$(date '+%A %d-%B, %Y')
+FOUND=$(grep "$HEADER" ${noteFilename})
 
-if [ "`grep "$HEADER" $noteFilename`" != "" ]
+if [ -z "${FOUND}" ]
 then
-  vim -c "norm G2o" \
-    -c "norm zz" \
-    -c "startinsert" $noteFilename
-else
-  vim -c "norm Go" \
-    -c "norm Go## $HEADER" \
-    -c "norm G2o" \
-    -c "norm zz" \
-    -c "startinsert" $noteFilename
+  echo Adding header
+  echo "" >> ${noteFilename}
+  echo "" >> ${noteFilename}
+  echo "## ${HEADER}" >> ${noteFilename}
+  echo "" >> ${noteFilename}
 fi
 
-
+echo "" >> ${noteFilename}
+code --goto ${noteFilename}:99999 .

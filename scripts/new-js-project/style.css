@@ -1,0 +1,35 @@
+.output {
+  font-family: monospace;
+}
+body {
+  min-height: 100%;
+  padding: 20px;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  margin: 0em;
+  color: #666;
+  line-height: 22px;
+}
+h1 {
+  margin: 15px 0;
+  font-weight: 700;
+}
+.item-form {
+  width: 800px;
+  margin-left: 1em;
+  padding: 1em;
+  background-color: #e8e8e8;
+}
+.row {
+  margin-bottom: 1em;
+}
+.btn-block {
+  display: flex;
+  flex-direction: row-reverse;
+}
+button {
+  padding: 1em;
+  font-weight: 500;
+  background-color: darkred;
+  color: white;
+}

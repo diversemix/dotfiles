@@ -1,0 +1,16 @@
+{
+  "tasks": [
+     {
+      "label": "CloseSideBar",
+      "command": "${command:workbench.action.closeSidebar}",
+      "problemMatcher": [],
+      "runOptions": { "runOn": "folderOpen" }
+    },
+    {
+      "label": "StartLivePreview",
+      "command": "${command:livePreview.start}",
+      "problemMatcher": [],
+      "runOptions": { "runOn": "folderOpen" }
+    }
+  ]
+}

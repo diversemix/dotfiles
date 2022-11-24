@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+
+LANG=$1
+PS3="Select the language: "
+
+if [[ -z $LANG ]]
+then
+    echo Need to define a language!
+    select LANG in js python c cpp rust
+    do
+        break
+    done    
+fi
+
+case $LANG in
+    js)
+        STARTFILE=index.html
+        ;;
+    *)
+        STARTFILE=""
+        ;;
+esac
+
+SOURCE="$HOME/dotfiles/scripts/new-${LANG}-project"
+
+if [[ ! -d $SOURCE ]] 
+then
+    echo Language not yet supported!
+    exit 1
+fi
+
+TS=$(date -Iminutes)
+DEST="$HOME/dev/scratch-${LANG}"
+mkdir -p $DEST
+
+cp -r $SOURCE $DEST/project-${TS::16}
+cd $DEST/project-${TS::16}
+code -n . $STARTFILE
