@@ -32,7 +32,7 @@ alias p="ps aux"
 alias r="ranger"
 alias s="systemctl $*"
 alias u='cd ..'
-alias v="vim $*"
+alias v='vim `fzf --preview "bat --color=always {}"`'
 
 # Double letter aliases...
 alias vi="vim $*"
