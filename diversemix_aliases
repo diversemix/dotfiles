@@ -32,17 +32,18 @@ alias p="ps aux"
 alias r="ranger"
 alias s="systemctl $*"
 alias u='cd ..'
-alias v='vim `fzf --preview "bat --color=always {}"`'
+alias v="vim $*"
 
 # Double letter aliases...
 alias vi="vim $*"
+alias vv='vim `fzf --preview "bat --color=always {}"`'
 alias xo=xdg-open
 alias dm='gnome-terminal -e "ssh -R 2222:127.0.0.1:22 peter@diversemix.com"'
 alias va='vi ~/.bash_aliases; source ~/.bash_aliases'
 alias tjp='firefox https://github.com/diversemix/tech-journal/projects/1'
 alias tj='firefox https://github.com/diversemix/tech-journal'
 alias sk="slack-term -token ${SLACK_TOKEN}"
-alias vv='vi ~/.vimrc'
+alias vr='vi ~/.vimrc'
 alias hn='history | cut -d " " -f6- | sort | uniq -c | sort -n '
 alias tf=terraform
 alias nr="npm run"
@@ -93,6 +94,7 @@ alias messenger="google-chrome --app-id=lainlkmlgipednloilifbppmhdocjbda"
 alias loop_test="while inotifywait -r -q -e close_write . ; do  make test; done"
 alias vvim="/usr/bin/vim -u NONE"
 alias fixgit="git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/master"
+alias glo="git log --pretty=format:'%h %<(18,trunc)%d %<(10,trunc)%an %<(22,trunc)%ad %x09%s'"
 
 brightness_down() {
   echo $(($(cat /sys/class/backlight/intel_backlight/brightness) - 1000))
@@ -114,3 +116,12 @@ alias dbvis='~/DbVisualizer/dbvis'
 alias laws='aws --endpoint-url=http://localhost:4566 '
 alias sus='sudo systemctl suspend'
 
+
+alias nav="cd ~/work/navigator-backend;source nav-env.sh;pyenv activate navigator"
+alias staging="cd ~/work/navigator-infra/backend; termtitle Staging ; export AWS_PROFILE=staging ; eval \$(aws-sso-creds export) ; pulumi stack select staging"
+alias prod="cd ~/work/navigator-infra/backend; termtitle PRODUCTION ; export AWS_PROFILE=prod ; eval \$(aws-sso-creds export) ;  pulumi stack select production"
+alias sandbox="cd ~/work/navigator-infra/backend; termtitle Sandbox  ; export AWS_PROFILE=sandbox ; eval \$(aws-sso-creds export) ;  pulumi stack select sandbox"
+alias admin="cd ~/work/navigator-admin-backend; termtitle Admin ; pyenv activate admin-backend"
+# Example : alembic revision --autogenerate --rev-id 0018 -m "add more language fields"
+#        use: alembicgen 0018 -m "blah"
+alias alembicgen="alembic revision --autogenerate --rev-id "

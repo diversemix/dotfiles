@@ -13,6 +13,8 @@ call plug#begin()
 " Plug 'puremourning/vimspector'
 Plug 'sheerun/vim-polyglot'
 
+Plug 'rust-lang/rust.vim'
+
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 

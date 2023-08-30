@@ -43,7 +43,7 @@ set hidden
 
 " Setup line width coloring
 "let &colorcolumn="80,".join(range(80,81),",")
-let &colorcolumn="80,81,120,121"
+let &colorcolumn="80,88,120,121"
 highlight ColorColumn ctermbg=Black
 
 " Persistent undo
