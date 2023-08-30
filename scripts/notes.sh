@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-cd "$HOME/Dropbox/Documents/Notes"
+cd "$HOME/Sync/Notes"
 noteFilename="Notes-$(date +%Y-%m).md"
 
 # Look for the file - if not there create one

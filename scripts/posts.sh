@@ -3,7 +3,7 @@
 # Inspired by https://github.com/CalinLeafshade/dots/blob/master/bin/bin/notetaker
 #
 #
-cd "$HOME/Dropbox/diversemix.github.io/_posts"
+cd "$HOME/Sync/diversemix.github.io/_posts"
 
 TITLE=$(whiptail --inputbox "Enter the post's title:" 10 60 3>&1 1>&2 2>&3)
 
